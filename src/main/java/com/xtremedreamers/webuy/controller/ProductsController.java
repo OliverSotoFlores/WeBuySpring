@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.xtremedreamers.webuy.models.Product;
 import com.xtremedreamers.webuy.persistence.ProductDao;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
 @Controller
 public class ProductsController {
 	

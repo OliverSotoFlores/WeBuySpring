@@ -80,3 +80,28 @@ create table payment(
     shopping_cart_id int not null, 
     foreign key(shopping_cart_id) references shopping_cart(shopping_cart_id)
 );
+
+insert into admin values (1, 'Alan', 'alan@gmail.com', 'pass123');
+insert into admin values (2, 'Oliver', 'oliver@gmail.com', 'pass123');
+insert into admin values (3, 'Andre', 'andre@gmail.com', 'pass123');
+insert into admin values (4, 'Carlos', 'carlos@gmail.com', 'pass123');
+insert into admin values (5, 'Alejandro', 'alejandro@gmail.com', 'pass123');
+insert into admin values (6, 'Hazzim', 'hazzim@gmail.com', 'pass123');
+
+insert into product_category values (1, 'Electronics', 'Electronics category');
+insert into product_category values (2, 'Videogames', 'Videogames category');
+insert into product_category values (3, 'Cooking', 'Cooking category');
+insert into product_category values (4, 'Cloths', 'Cloths category');
+insert into product_category values (5, 'Toys', 'Toys category');
+
+insert into promotion_event values (1, 'Christmas2021', 'Christmas of 2021', '2021-12-21', '2022-01-21', 'valid', 1);
+insert into promotion_event values (2, 'Christmas2020', 'Christmas of 2020', '2020-12-21', '2021-01-21', 'expired', 1);
+insert into promotion_event values (3, 'Halloween2021', 'Halloween of 2021', '2021-10-21', '2021-11-06', 'Expired', 2);
+insert into promotion_event values (4, 'NewYear2022', 'New Year 2022', '2021-12-31', '2022-01-01', 'Expired', 4);
+insert into promotion_event values (5, 'HotSale', 'Hot Sale of June', '2021-06-01', '2021-07-01', 'Cancelled', 5);
+
+insert into coupon values (1, 'C2021', 'Open', 20, 1, 1);
+insert into coupon values (2, 'C2020', 'Open', 20, 2, 1);
+insert into coupon values (3, 'H2021', 'n_open', 15, 3, 4);
+insert into coupon values (4, 'NY2021', 'Open', 30, 4, 2);
+insert into coupon values (5, 'HS2021', 'Open', 60, 5, 3);

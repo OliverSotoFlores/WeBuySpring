@@ -1,0 +1,85 @@
+.cartItemContainer{
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+
+.module-border-wrap {
+  border-radius: 25px;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to bottom, #0734b8 0%, #7a7bba 25%, #ec6f43 75%, #e85923 100%);
+  padding: 3px;
+}
+
+.module {
+  display: flex;
+  border-radius: 25px;
+  background: #fff;
+  color: black;
+  padding: 1rem;
+}
+
+.module-2 {
+  display: flex;
+  border-radius: 25px;
+  background: linear-gradient(to bottom, #0734b8 0%, #7a7bba 25%, #ec6f43 75%, #e85923 100%);
+  color: black;
+  padding: 1rem;
+}
+
+.img-cart {
+  border-radius: 50%;
+  border: 2px solid;
+  height: 100px; 
+  width: 100px;
+}
+.right-div{
+  float:right;
+  padding-left: 50%;
+  padding-top: 1%;
+}
+.center-div{
+  float:right;
+  padding-left: 5%;
+  padding-top: 1%;
+}
+
+.left-div{
+  float:left;
+}
+
+.description{
+  font-size: 150%;
+}
+
+.btn-remove {
+  background-color: #dd372b;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.cart-items-container{
+  background-color: white;
+  padding: 2%;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.btn-custom{
+    background-color: var(--first-color);
+    color: white;
+}
+
+.btn-custom:hover, .btn-custom:focus{
+    background-color: var(--first-color);
+    color: white;
+}

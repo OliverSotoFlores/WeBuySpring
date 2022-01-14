@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700&display=swap');
+
+body{
+    font-family: 'Nunito', sans-serif;
+    background-color: #fbfbfb
+}
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #0733b8;
+    --first-color-light: #ec6f43;
+    --white-color: #F7F6FB;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100
+}
+
+footer{
+    background: linear-gradient(128deg, rgba(7,52,184,1) 0%, rgba(122,123,186,1) 100%);
+    color: white;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}

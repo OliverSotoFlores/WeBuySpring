@@ -1,0 +1,279 @@
+#admin-header {
+  padding: 20px;
+  background-color: #0734b8;
+  color: white;
+}
+
+h1 {
+  display: block;
+  width: 32%;
+  font-size: 55px;
+  font-weight: 600;
+  margin: 30px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ccc;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.coupon-actions {
+  margin: 30px;
+}
+
+datalist {
+  border-radius: 5px;
+  outline: none;
+}
+
+input[type="text"] {
+  border-radius: 5px;
+  padding: 0px 14px;
+  outline: none;
+}
+
+input[type="text"].search-input {
+  border-radius: 5px 0px 0px 5px;
+  flex-grow: 2;
+}
+
+.coupon-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-btn {
+  color: white;
+  background-color: #e85923;
+  border-radius: 0px 5px 5px 0px;
+  padding-top: 5px;
+}
+
+.add-btn {
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  z-index: 100;
+  border-radius: 100%;
+  padding: 20px;
+  color: white;
+  background-color: #e85923;
+  transition: all 300ms;
+  cursor: pointer;
+}
+.add-btn:hover {
+  background-color: white;
+  box-shadow: 0px 0px 3px 2px #e85923;
+  color: #ec6f43;
+}
+
+#p-edit {
+  color: #e85923;
+  text-shadow: 0px 1px 0px black;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+#p-edit:hover {
+  color: blue;
+}
+
+#p-delete {
+  text-shadow: 0px 1px 0px black;
+  color: #e85923;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+#p-delete:hover {
+  color: red;
+}
+
+.coupons-container {
+  margin: 20px;
+}
+
+#pagination-wrapper {
+  display: block;
+  width: 245px;
+  margin: 20px auto;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 8px 2px #ccc;
+  transform: scale(1.3);
+}
+
+#pagination-wrapper .page-link {
+  color: #0734b8;
+}
+
+#pagination-wrapper .page-item.active .page-link {
+  background-color: #0734b8;
+  border-color: #0734b8;
+  color: white;
+}
+
+#pagination-wrapper .page-item.disabled .page-link {
+  color: #6c757d;
+}
+
+footer {
+  background: linear-gradient(128deg, rgba(7, 52, 184, 1) 0%, rgba(122, 123, 186, 1) 100%);
+  color: white;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 101;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-contents {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatefromtop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatefromtop;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatefromtop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatefromtop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-contents h3 {
+  display: block;
+  width: 32%;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-contents label {
+  color: #888;
+  font-size: 15px;
+}
+
+.modal-contents input[type="text"],
+.modal-contents input[type="number"],
+.modal-contents textarea {
+  width: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 0px;
+  padding: 8px 0px;
+  color: #4e4e4e;
+  border-bottom: 3px solid #aaa;
+  margin-bottom: 15px;
+  transition: all 400ms;
+}
+
+.modal-contents input[type="text"]:focus,
+.modal-contents input[type="number"]:focus,
+.modal-contents textarea:focus {
+  color: black;
+  border-bottom: 3px solid #ec6f43;
+}
+
+.modal-contents select {
+  padding: 5px;
+  margin-bottom: 15px;
+  margin-top: 8px;
+  border-radius: 5px;
+  color: #4e4e4e;
+  transition: all 400ms;
+}
+
+.modal-contents select:focus {
+  border: 1px solid #ec6f43;
+  color: black;
+}
+
+.modal-contents input[type="file"] {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.modal-contents button[type="submit"] {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 22px;
+  padding: 20px 0px;
+  color: white;
+  margin-top: 10px;
+  background: linear-gradient(128deg, rgba(7, 52, 184, 1) 0%, rgba(122, 123, 186, 1) 100%);
+}
+
+.modal-contents span {
+  display: inline-flex;
+  vertical-align: top;
+}
+
+#editModal .modal-contents button[type="submit"] {
+  line-height: 24px;
+}
+
+.date--container {
+  margin-bottom: 10px;
+}

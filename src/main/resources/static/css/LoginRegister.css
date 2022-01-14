@@ -1,0 +1,186 @@
+.body-register {
+    min-height: 100vh;
+    background-color: white; 
+            font-family: 'Nunito', sans-serif;
+}
+
+nav {
+    top: 0px;
+    width: 100%;
+    height: 100px;
+}
+
+
+
+
+
+/* Login View CSS */
+
+.login-form-container{
+    width: 35%;
+    height: 4em;
+    background: linear-gradient(90deg, rgba(7,52,184,1) 0%, rgba(122,123,186,1) 100%);   
+    margin: 0px auto;
+    margin-top: 50px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+}
+
+.login-form-container h2 {
+    color: white;
+    margin: 0px !important;
+}
+
+.login-container {
+    width: 35%;
+    margin: 0px auto 10px auto;
+    margin-bottom: 50px;
+    text-align: center;
+    background-color: rgb(122, 123, 186, 0.5) !important;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px;
+}
+
+.login-form * {
+    display: inline-block !important;
+}
+
+.form-control {
+    width: 400px !important;
+    margin: 0px auto !important;
+}
+
+.form-control:focus {
+    border-color: #ec6f43 !important;
+    box-shadow: 2px 2px 20px #ec6f43 !important;
+}
+
+.material-icons.webuy-orange {
+    color: #e85923 !important;
+}
+
+.login-form-icons {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin: 5px 5px;
+}
+
+.btn-primary {
+    width: 200px !important;
+    background-color: #e85923 !important;
+    margin-bottom: 10px !important;
+}
+
+.login-container .btn-primary{
+    width: 40%;
+    padding-right: 28px;
+}
+
+.btn-primary:hover {
+    /* background-color: #0734b8 !important; */
+    -moz-box-shadow:    inset 0 0 12px #0734b8;
+    -webkit-box-shadow: inset 0 0 12px #0734b8;
+    box-shadow:         inset 0 0 12px #0734b8;
+}
+
+.login-btn-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-left: 5px;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: white;
+}
+
+.login-container a:hover{
+    text-decoration: none;
+    color: #0734b8;
+}
+
+
+
+
+
+
+/* Register View CSS */
+
+.register-form-container {
+    width: 35%;
+    height: 4em;
+    background: linear-gradient(90deg, rgba(7,52,184,1) 0%, rgba(122,123,186,1) 100%);   
+    margin: 0px auto;
+    margin-top: 50px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+}
+
+.register-form-container h2 {
+    color: white;
+    margin: 0px !important;
+}
+
+.register-container {
+    width: 35%;
+    margin: 0px auto 10px auto;
+    margin-bottom: 50px;
+    text-align: center;
+    background-color: rgb(122, 123, 186, 0.5) !important;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px;
+}
+
+.register-container .form-control {
+    width: 60% !important;
+}
+
+.form-check {
+    margin: 5px auto !important;
+    width: 40%;
+}
+
+.register-container .btn-primary {
+    width: 25% !important;
+}
+
+.register-container a{
+    text-decoration: none;
+    color: white;
+}
+
+.register-container a:hover{
+    text-decoration: none;
+    color: #0734b8;
+}
+
+
+
+
+
+/* Footer */
+footer {
+    width: 100%;
+    height: 10vh;
+}
+
+footer img {
+    height: 10vh;
+    margin: 15px;
+}
+
+
+footer{
+    background: linear-gradient(128deg, rgba(7,52,184,1) 0%, rgba(122,123,186,1) 100%);
+    color: white;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}

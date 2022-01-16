@@ -21,6 +21,6 @@ public class ProductsController {
 	public String ProductsList() {
 		List<Product> products = productDao.findAll();
 		System.out.println(products);
-		return "mainView";
+		return "index";
 	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Webuy | Register</title>
@@ -16,38 +16,7 @@
 </head>
 
 <body class="body-register">
-	<!-- NavBar -->
-	<header class="section-header">
-		<section class="header-main bg-white">
-			<div class="container-fluid">
-				<div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-					<div class="col-md-2 d-md-flex justify-content-center logo-wrapper"> <a href="../index.html"><img src="../img/webuy-color.png"></a> </div>
-					<div class="col-md-7">
-						<div class="d-flex form-inputs">
-							<select name="category-search">
-								<option disabled selected>Search by category</option>
-								<option value="electronics">Electronics</option>
-								<option value="clothing">Clothing</option>
-								<option value="kitchen">Kitchen</option>
-							</select>
-							<input type="text" placeholder="Search any product..."><i class="bx bx-search"></i>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex flex-row justify-content-between">
-						<div class="d-flex d-none d-md-flex flex-row align-items-center"> <a href="cart.html"><span class="shop-bag"><i class='bi bi-cart'></i></span></a>
-							<div class="d-flex flex-column ms-2"> <span class="qty">1 Product</span> <span class="fw-bold">$27.90</span> </div>
-						</div>
-						<ul class="navbar-nav d-flex flex-row align-items-center ml-2">
-							<li class="nav-item"> <a href="login.html" class="p-2" data-abc="true"><span>Sign in</span></a> </li>
-							<li class="nav-item"> <a href="register.html" class="p-2" data-abc="true"><span>Register</span></a> </li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-	</header>
-
-
+	<header th:insert="headerfooter :: header"> </header>
 	<div class="register-form-container">
 		<h2>Registration Form</h2>
 	</div>
@@ -89,9 +58,7 @@
 
 
 	</div>
-	<footer>
-		<p>webuy &copy; 2022</p>
-	</footer>
+	<footer th:insert="headerfooter :: footer"> </footer>
 </body>
 
 </html>

@@ -48,86 +48,18 @@
                         <th>Coupon Code</th>
                         <th>Discount Percentage</th>
                         <th>Category</th>
-                        <th>Expiry Date</th>
+                        <th>Promotion Event</th>
+                        <th>Coupon type</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="coupons-table-body">
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>40%</td>
-                        <td>Electronics</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>christmas2021</td>
-                        <td>20%</td>
-                        <td>Clothing</td>
-                        <td>12-31-2021</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>loyal4ever</td>
-                        <td>15%</td>
-                        <td></td>
-                        <td></td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>50%</td>
-                        <td>Kitchen</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>45%</td>
-                        <td>Clothing</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>thanksgiving2021</td>
-                        <td>25%</td>
-                        <td>Electronics</td>
-                        <td>11-24-2021</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>itsrainingclothes</td>
-                        <td>20%</td>
-                        <td>Clothing</td>
-                        <td></td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>happynewyear2022</td>
-                        <td>15%</td>
-                        <td>Kitchen</td>
-                        <td>02-01-2022</td>
+                    <tr th:each="coupons: ${coupons}">
+                        <td th:text="${coupons.coupon_name}" />
+                        <td th:text="${coupons.coupon_discount}" />
+                        <td th:text="${coupons.category_name}" />
+                        <td th:text="${coupons.promotion_event_name}" />
+                        <td th:text="${coupons.coupon_type}" />
                         <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
                         </td>
                         <td><span id="p-delete" class="material-icons p-action"

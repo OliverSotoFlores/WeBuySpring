@@ -21,7 +21,7 @@
         <section id="admin-header">
             <h1>Promotion Event Manager</h1>
             <section class="coupon-actions">
-                <form action="" class="coupon-form">
+                <form action="searchPromotionEvent" class="coupon-form">
                     <input type="text" name="search-bar" class="search-input" placeholder="Search promotion event..." />
                     <button type="submit" class="search-btn">
                         <span class="material-icons">
@@ -40,25 +40,17 @@
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Status</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="coupons-table-body">
-                    <tr>
-                        <td>Black friday 2022</td>
-                        <td>Event that happens once a year, 2022 version.</td>
-                        <td>2022-01-01</td>
-                        <td>2022-01-10</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>Loyalty event</td>
-                        <td>Geared towards clients that have more than 1 year of beign customers.</td>
-                        <td>2022-01-01</td>
-                        <td>2022-01-20</td>
+                    <tr th:each="promotionEvents: ${promotionEvents}">
+                        <td th:text="${promotionEvents.promotion_event_name}" />
+                        <td th:text="${promotionEvents.promotion_event_description}">
+                        <td th:text="${promotionEvents.promotion_event_start_date}" />
+                        <td th:text="${promotionEvents.promotion_event_end_date}" />
+                        <td th:text="${promotionEvents.promotion_event_status}"/>
                         <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
                         </td>
                         <td><span id="p-delete" class="material-icons p-action"

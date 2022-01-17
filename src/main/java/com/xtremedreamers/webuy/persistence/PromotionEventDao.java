@@ -15,23 +15,40 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	RowMapper<PromotionEvent> rowMapper = (rs, rowNum) -> {
-		PromotionEvent promotionEvent = new PromotionEvent();
-		promotionEvent.setPromotion_event_id(rs.getInt(1));
-		promotionEvent.setPromotion_event_name(rs.getString(2));
-		promotionEvent.setPromotion_event_description(rs.getString(3));
-		promotionEvent.setPromotion_event_start_date(rs.getString(4));
-		promotionEvent.setPromotion_event_end_date(rs.getString(5));
-		promotionEvent.setPromotion_event_status(rs.getString(6));
-		promotionEvent.setAdmin_id(rs.getInt(7));
-		
-		return promotionEvent;
-	};
 	
 	@Override
 	public PromotionEvent findById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT promotion_event_id, "
+				+ "promotion_event_name, "
+				+ "promotion_event_description, "
+				+ "promotion_event_start_date, "
+				+ "promotion_event_end_date, "
+				+ "promotion_event_status, "
+				+ "admin_id "
+				+ "FROM promotion_event "
+				+ "WHERE promotion_event_id = ?";
+		
+		PromotionEvent promo = jdbcTemplate.queryForObject(query, new Object[] {id}, new PromotionRowMapper());
+		
+		return promo;
+	}
+	
+	public PromotionEvent findByName(String name) {
+		
+		String query = "SELECT promotion_event_id, "
+				+ "promotion_event_name, "
+				+ "promotion_event_description, "
+				+ "promotion_event_start_date, "
+				+ "promotion_event_end_date, "
+				+ "promotion_event_status, "
+				+ "admin_id "
+				+ "FROM promotion_event "
+				+ "WHERE promotion_event_name = ?";
+		
+		PromotionEvent promo = jdbcTemplate.queryForObject(query, new Object[] {name}, new PromotionRowMapper());
+		
+		return promo;
 	}
 
 	@Override
@@ -47,7 +64,7 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 						+ "admin_id "
 						+ "FROM promotion_event";
 		
-		return jdbcTemplate.query(sql, rowMapper);
+		return jdbcTemplate.query(sql, new PromotionRowMapper());
 	}
 
 	@Override
@@ -66,13 +83,28 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 	@Override
 	public Integer save(PromotionEvent instance) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return jdbcTemplate.update("INSERT INTO promotion_event (promotion_event_id, promotion_event_name, promotion_event_description, promotion_event_start_date, promotion_event_end_date, promotion_event_status, admin_id)"
+					+ "values(?,?,?,?,?,?,?)"
+					, new Object[] {instance.getPromotion_event_id(), instance.getPromotion_event_name(), 
+									instance.getPromotion_event_description(), instance.getPromotion_event_start_date(), 
+									instance.getPromotion_event_end_date(), instance.getPromotion_event_status(), instance.getAdmin_id()});
 	}
 
 	@Override
 	public void update(PromotionEvent instance) {
 		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update("UPDATE promotion_event SET " +
+											" promotion_event_name = '" + instance.getPromotion_event_name() +
+											"' , promotion_event_description = '" + instance.getPromotion_event_description() +
+											"' , promotion_event_start_date = '" + instance.getPromotion_event_start_date() +
+											"' , promotion_event_end_date = '" + instance.getPromotion_event_end_date() +
+											"' , promotion_event_status = '" + instance.getPromotion_event_status() +
+											"' WHERE promotion_event_id = " + instance.getPromotion_event_id());
+	}
+	
+	public void deletePromotionEvent(int promotion_event_id) {
+		jdbcTemplate.update("DELETE FROM promotion_event WHERE promotion_event_id = " + promotion_event_id);
 	}
 
 	@Override
@@ -81,6 +113,9 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 		
 	}
 
-	
+	public int getLastId() {
+		int result = jdbcTemplate.queryForObject("SELECT max(promotion_event_id)+1 FROM promotion_event", Integer.class);
+		return result;
+	}
 	
 }

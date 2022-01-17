@@ -65,8 +65,11 @@ public class CouponDao implements GenericDao<Coupon, Integer>{
 
 	@Override
 	public Integer save(Coupon instance) {
-		// TODO Auto-generated method stub
-		return null;
+		return jdbcTemplate.update("insert into coupon (coupon_id, coupon_name, coupon_type, coupon_discount, promotion_event_id, product_category_id )"
+				+ "values (?,?,?,?,?,?)"
+				,new Object[] {instance.getCoupon_id(), instance.getCoupon_name(), 
+						instance.getCoupon_type(), instance.getCoupon_discount(), 
+						instance.getPromotion_event_id(), instance.getProduct_category_id()});
 	}
 
 	@Override
@@ -79,6 +82,11 @@ public class CouponDao implements GenericDao<Coupon, Integer>{
 	public void delete(Coupon instance) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getLastId() {
+		int result = jdbcTemplate.queryForObject("select max(coupon_id)+1 from coupon", Integer.class);
+		return result;
 	}
 
 	

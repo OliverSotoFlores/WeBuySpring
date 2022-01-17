@@ -72,10 +72,10 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Coupon</h3>
-                <form action="#">
+                <form action="createCoupon">
                     <label for="c-name">Name</label><br>
                     <input type="text" name="c-name" placeholder="Type coupon name here"><br>
-                    <label for="c-promotion-event">Promotion Event</label><br>
+                    <label for="pe-list">Promotion Event</label><br>
                     <select name="pe-list">
                         <option disabled selected>Select promotion event</option>
                         <option value="1">Black Friday 2022</option>
@@ -83,20 +83,20 @@
                         <option value="3">Thanksgiving 2021</option>
                     </select><br>
                     <label for="c-product-category">Category</label><br>
-                    <select name="categories-list">
+                    <select name="c-product-category">
                         <option disabled selected>Select product category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="kitchen">Kitchen</option>
+                        <option value="1">Electronics</option>
+                        <option value="2">Clothing</option>
+                        <option value="3">Kitchen</option>
                     </select><br>
-                    <label for="p-category">Coupon Type</label><br>
-                    <select name="categories-list">
+                    <label for="coupon-type">Coupon Type</label><br>
+                    <select name="coupon-type">
                         <option disabled selected>Select coupon type</option>
                         <option value="Open">Open</option>
                         <option value="Nopen">Not open</option>
                     </select><br>
-                    <label for="p-price">Coupon discount (%)</label><br>
-                    <input type="number" name="p-price" placeholder="0" min="0"><br>
+                    <label for="c-discount">Coupon discount (%)</label><br>
+                    <input type="number" name="c-discount" placeholder="0" min="0"><br>
                     <button type="submit"><span class="material-icons">add_circle_outline</span> Create</button>
                 </form>
             </div>

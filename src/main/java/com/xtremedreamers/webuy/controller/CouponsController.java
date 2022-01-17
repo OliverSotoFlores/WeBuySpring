@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xtremedreamers.webuy.models.Coupon;
-import com.xtremedreamers.webuy.models.Product;
 import com.xtremedreamers.webuy.persistence.CouponDao;
 
 @Controller
@@ -52,5 +51,12 @@ public class CouponsController {
 			System.out.println("Hubo un error al insertar");
 		}
 		return "redirect:/coupons";
+	}
+		
+	@RequestMapping("/coupons/search")
+	public String ProductSearch(Model model) {
+		Coupon coupon = couponDao.findById(5);
+		model.addAttribute("coupon", coupon);
+		return "coupons";
 	}
 }

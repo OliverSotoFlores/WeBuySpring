@@ -52,7 +52,7 @@ public class CouponsController {
 		couponDao.save(coupon);
 		return "redirect:/coupons";
 	}
-<<<<<<< HEAD
+
 	
 	@RequestMapping("/updateCoupon")
 	public String UpdateCoupon(HttpServletRequest request) {
@@ -80,8 +80,8 @@ public class CouponsController {
 		int coupon_id = (couponDao.getLastId())-1;
 		couponDao.deleteCoupon(coupon_id);
 		return "redirect:/coupons";
-=======
-		
+	}
+	
 	@RequestMapping("/couponSearch")
 	public ResponseEntity<Coupon> ProductSearch(HttpServletRequest request) {
 		Coupon coupon;
@@ -96,6 +96,5 @@ public class CouponsController {
 			return ResponseEntity.badRequest().body(coupon);
 		}
 		
->>>>>>> de7665f68a8114071ace734c872a854c8b9811ee
 	}
 }

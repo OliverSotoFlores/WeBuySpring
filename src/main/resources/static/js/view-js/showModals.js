@@ -29,9 +29,13 @@ function showAddModal(){
 
 function showEditModal(e){
 	
+	// Get clicked edit button
 	var editButton = e.target;
+	
+	// Get its children's hidden input values
 	var elementId = editButton.childNodes[1].value;
 	
+	// Insert hidden values into edit modal form
 	document.getElementById("edit-element-id").value = elementId;
 	
     // Get modal

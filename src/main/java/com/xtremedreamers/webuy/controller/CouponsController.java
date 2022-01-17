@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xtremedreamers.webuy.models.Coupon;
-import com.xtremedreamers.webuy.models.Product;
 import com.xtremedreamers.webuy.persistence.CouponDao;
 
 @Controller

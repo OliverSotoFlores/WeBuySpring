@@ -23,14 +23,14 @@ public class CouponsController {
 
 	@Autowired
 	CouponDao couponDao;
-	
+
 	@RequestMapping("/coupons")
 	public String ProductsList(Model model) {
 		List<Coupon> coupons = couponDao.findAll();
 		model.addAttribute("coupons", coupons);
 		return "coupons";
 	}
-	
+
 	@RequestMapping("/createCoupon")
 	public String CreateCoupons(HttpServletRequest request) {
 		int coupon_id = couponDao.getLastId();
@@ -39,7 +39,7 @@ public class CouponsController {
 		int product_category = Integer.parseInt(request.getParameter("c-product-category"));
 		String coupon_type = request.getParameter("coupon-type");
 		int coupon_discount = Integer.parseInt(request.getParameter("c-discount"));
-		
+
 		Coupon coupon = new Coupon();
 		coupon.setCoupon_id(coupon_id);
 		coupon.setCoupon_name(coupon_name);
@@ -53,7 +53,6 @@ public class CouponsController {
 		return "redirect:/coupons";
 	}
 
-	
 	@RequestMapping("/updateCoupon")
 	public String UpdateCoupon(HttpServletRequest request) {
 		int coupon_id = 5;
@@ -74,14 +73,14 @@ public class CouponsController {
 		couponDao.update(coupon);
 		return "redirect:/coupons";
 	}
-	
+
 	@RequestMapping("/deleteCoupon")
 	public String DeleteCoupon() {
-		int coupon_id = (couponDao.getLastId())-1;
+		int coupon_id = (couponDao.getLastId()) - 1;
 		couponDao.deleteCoupon(coupon_id);
 		return "redirect:/coupons";
 	}
-	
+
 	@RequestMapping("/couponSearch")
 	public ResponseEntity<Coupon> ProductSearch(HttpServletRequest request) {
 		Coupon coupon;
@@ -91,10 +90,10 @@ public class CouponsController {
 			return ResponseEntity
 					.ok()
 					.body(coupon);
-		}catch(EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			coupon = null;
 			return ResponseEntity.badRequest().body(coupon);
 		}
-		
+
 	}
 }

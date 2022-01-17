@@ -13,11 +13,11 @@ create table product_category (
 
 create table product (
     product_id int primary key,
-    product_name varchar(20) not null,
-    product_company varchar(20) not null,
+    product_name varchar(255) not null,
+    product_company varchar(30) not null,
     product_price decimal(20,2) not null,
-    product_description varchar(30),
-    product_image_path varchar(50),
+    product_description varchar(90),
+    product_image_path varchar(255),
     product_category_id int not null,
     foreign key(product_category_id) references product_category(product_category_id)
 );
@@ -105,3 +105,21 @@ insert into coupon values (2, 'C2020', 'Open', 20, 2, 1);
 insert into coupon values (3, 'H2021', 'n_open', 15, 3, 4);
 insert into coupon values (4, 'NY2021', 'Open', 30, 4, 2);
 insert into coupon values (5, 'HS2021', 'Open', 60, 5, 3);
+
+insert into product values (1, "LG TV 4K", "LG", 2000, "Biggest TV on store", "test", 1);
+insert into product values (2, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
+insert into product values (3, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
+insert into product values (4, "White T-Shirt", "Dopp", 10, "Simple fast fashion white t-shirt", "test", 4);
+insert into product values (5, "White T-Shirt", "Dopp", 10, "Simple fast fashion white t-shirt", "test", 4);
+insert into product values (6, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 2", "test", 4);
+insert into product values (7, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 2", "test", 4);
+insert into product values (8, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 2", "test", 4);
+insert into product values (9, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 2", "test", 4);
+insert into product values (10, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 2", "test", 4);
+insert into product values (11, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (12, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (13, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (14, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (15, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (16, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
+insert into product values (17, "White T-Shirt in page 4", "Dopp", 10, "Simple fast fashion white t-shirt in page 4", "test", 4);

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +52,7 @@ public class CouponsController {
 		couponDao.save(coupon);
 		return "redirect:/coupons";
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping("/updateCoupon")
 	public String UpdateCoupon(HttpServletRequest request) {
@@ -77,5 +80,22 @@ public class CouponsController {
 		int coupon_id = (couponDao.getLastId())-1;
 		couponDao.deleteCoupon(coupon_id);
 		return "redirect:/coupons";
+=======
+		
+	@RequestMapping("/couponSearch")
+	public ResponseEntity<Coupon> ProductSearch(HttpServletRequest request) {
+		Coupon coupon;
+		try {
+			coupon = couponDao.findByName(request.getParameter("id"));
+			System.out.println(coupon);
+			return ResponseEntity
+					.ok()
+					.body(coupon);
+		}catch(EmptyResultDataAccessException e) {
+			coupon = null;
+			return ResponseEntity.badRequest().body(coupon);
+		}
+		
+>>>>>>> de7665f68a8114071ace734c872a854c8b9811ee
 	}
 }

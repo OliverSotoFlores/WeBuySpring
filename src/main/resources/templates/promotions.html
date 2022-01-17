@@ -55,7 +55,7 @@
 	                        <span id="p-edit" class="material-icons p-action" onclick="showEditModalPromotion(event)">
 	                        	edit
 	                        	<input type="hidden" id="element-id" th:value="${promotionEvents.promotion_event_id}"/>
-	                        	<input type="hidden" id="element-id" th:value="${promotionEvents.admin_id}"/>
+	                        	<input type="hidden" id="element-admin-id" th:value="${promotionEvents.admin_id}"/>
 	                        </span>
                         </td>
                         <td><a th:href="@{/deletePromotionEvent/{promotion_id}(promotion_id=${promotionEvents.promotion_event_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons p-action">delete</span></a></td>
@@ -98,23 +98,23 @@
                 	<input type="hidden" id="edit-element-id" name="promotional-event-id"/>
                 	<input type="hidden" id="edit-admin-id" name="admin-id"/>
                     <label for="promotion-event-name">Name</label><br>
-                    <input type="text" name="promotion-event-name" placeholder="Type promotion event name here"><br>
+                    <input type="text" id="promo-name" name="promotion-event-name" placeholder="Type promotion event name here"><br>
                     <label for="promotion-event-description">Description</label><br>
-                    <input type="text" name="promotion-event-description" placeholder="Type promotion event description here"><br>
+                    <input type="text" id="promo-desc" name="promotion-event-description" placeholder="Type promotion event description here"><br>
                     <div class="date--container">
                         <label for="promotion-event-start-date">Start date:</label><br>
-                        <input type="date" id="promotion-event-start-date" name="promotion-event-start-date" value="2022-01-01">
+                        <input type="date" id="promo-start-date" name="promotion-event-start-date" value="2022-01-01">
                     </div>
                     <div class="date--container">
                         <label for="promotion-event-end-date">End date:</label><br>
-                        <input type="date" id="promotion-event-end-date" name="promotion-event-end-date" value="2022-01-01">
+                        <input type="date" id="promo-end-date" name="promotion-event-end-date" value="2022-01-01">
                     </div>
                     <label for="promotion-event-status">Status</label><br>
-                    <select name="promotion-event-status">
+                    <select id="status-dropdown" name="promotion-event-status">
                     	<option disabled selected>Select Promotion Event's status</option>
-                    	<option value="valid">Valid</option>
-                    	<option value="expired">Expired</option>
-                    	<option value="cancelled">Cancelled</option>
+                    	<option value="valid">valid</option>
+                    	<option value="expired">expired</option>
+                    	<option value="cancelled">cancelled</option>
                     </select>
                     <button type="submit"><span class="material-icons">edit</span> Update</button>
                 </form>

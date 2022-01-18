@@ -92,24 +92,20 @@
 
                         <nav aria-label="...">
                             <ul class="pagination">
-                                <div>
-                                    <p>NMERO DE PAGIUNAS:</p>
-                                    <p th:text="${paginationData.totalPages}"></p>
-                                </div>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                <li class="page-item" th:classappend="${!paginationData.hasPrevious()} ? disabled">
+                                    <a class="page-link"
+                                        th:href="@{/mainview(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
+                                        tabindex="
+                                        -1">Previous</a>
                                 </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
+                                <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                                    th:classappend="${i==paginationData.currentPage} ? active">
+                                    <a class="page-link" th:text="${i}"
+                                        th:href="@{/mainview(size=${paginationData.pageSize}, page=${i})}">a</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
+                                <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                                    <a class="page-link"
+                                        th:href="@{/mainview(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
                                 </li>
                             </ul>
                         </nav>
@@ -117,7 +113,7 @@
                 </div>
             </div>
         </div>
-        <footer th:insert="headerfooter :: footer"> </footer>
+        <footer th:insert=" headerfooter :: footer"> </footer>
     </div>
     <script type="text/javascript" src="../js/sideBar.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>

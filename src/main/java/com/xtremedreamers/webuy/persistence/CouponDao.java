@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.xtremedreamers.webuy.models.Coupon;
+import com.xtremedreamers.webuy.models.Product;
 
 @Component
 public class CouponDao implements GenericDao<Coupon, Integer> {
@@ -121,14 +122,25 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.queryForObject("select count(*) from coupon", Integer.class);
 	}
 
 	@Override
 	public List<Coupon> getPagination(int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		int skip = (pageNumber - 1) * pageSize;
+		String sql = "select c.coupon_id,"
+				+ "c.coupon_name,"
+				+ "c.coupon_type,"
+				+ "c.coupon_discount,"
+				+ "c.promotion_event_id,"
+				+ "c.product_category_id,"
+				+ "p.promotion_event_name,"
+				+ "pc.category_name "
+				+ "from coupon c "
+				+ "inner join promotion_event p on c.promotion_event_id = p.promotion_event_id "
+				+ "inner join product_category pc on c.product_category_id = pc.product_category_id "
+				+ "limit " + skip + ", " + pageSize;
+		return jdbcTemplate.query(sql, new CouponRowMapper());
 	}
 
 }

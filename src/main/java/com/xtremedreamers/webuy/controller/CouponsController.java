@@ -60,7 +60,7 @@ public class CouponsController {
 
 	@RequestMapping("/updateCoupon")
 	public String UpdateCoupon(HttpServletRequest request) {
-		int coupon_id = 5;
+		int coupon_id = Integer.parseInt(request.getParameter("edit-element-id"));
 		String coupon_name = request.getParameter("c-name");
 		int promotion_event = Integer.parseInt(request.getParameter("pe-list"));
 		int product_category = Integer.parseInt(request.getParameter("c-product-category"));
@@ -77,10 +77,10 @@ public class CouponsController {
 		return "redirect:/coupons";
 	}
 
-	@RequestMapping("/deleteCoupon")
-	public String DeleteCoupon() {
-		int coupon_id = (couponDao.getLastId()) - 1;
-		couponDao.deleteCoupon(coupon_id);
+	@RequestMapping("/deleteCoupon/{coupon_id}")
+	public String DeleteCoupon(@PathVariable int coupon_id) {
+		int id = coupon_id;
+		couponDao.deleteCoupon(id);
 		return "redirect:/coupons";
 	}
 

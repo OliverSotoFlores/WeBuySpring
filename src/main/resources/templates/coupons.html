@@ -55,10 +55,11 @@
                         <td th:text="${coupons.category_name}" />
                         <td th:text="${coupons.promotion_event_name}" />
                         <td th:text="${coupons.coupon_type}" />
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
+                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal(event);">edit
+                        <input type="hidden" id="element-id" th:value="${coupons.coupon_id}"/>
+                         <input type="hidden" id="element-id" th:value="${coupons.coupon_name}"/></span>
                         </td>
-                        <td><span id="p-delete" class="material-icons p-action"><a href="deleteCoupon">delete</a></span>
-                        </td>
+                        <td><a th:href="@{/deleteCoupon/{coupon_id}(coupon_id=${coupons.coupon_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons p-action">delete</span></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -130,8 +131,9 @@
                 <span class="material-icons close">close</span>
                 <h3>Edit Coupon</h3>
                 <form action="updateCoupon">
+                	<input type="hidden" id="edit-element-id" name="edit-element-id"/>
                     <label for="c-name">Name</label><br>
-                    <input type="text" name="c-name" placeholder="Type coupon name here" value="askljdkljas"><br>
+                    <input type="text" id = "c-name" name="c-name" placeholder="Type coupon name here" value=""><br>
                     <label for="pe-list">Promotion Event</label><br>
                     <select name="pe-list">
                         <option disabled>Select promotion event</option>
@@ -160,24 +162,24 @@
         </div>
         <section id="pagination-wrapper">
             <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+                 <ul class="pagination">
+                     <li class="page-item" th:classappend="${!paginationData.hasPrevious()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
+                             tabindex="
+                             -1">Previous</a>
+                     </li>
+                     <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                         th:classappend="${i==paginationData.currentPage} ? active">
+                         <a class="page-link" th:text="${i}"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${i})}">a</a>
+                     </li>
+                     <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
+                     </li>
+                 </ul>
+              </nav>
         </section>
     </div>
     <footer th:insert="headerfooter :: footer"> </footer>

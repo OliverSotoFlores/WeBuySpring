@@ -22,28 +22,40 @@
 	<div class="login-form-container">
 		<h2>Login</h2>
 	</div>
-
-	<div class="login-container">
-		<div class="mb-3 login-form">
-			<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Username">
-			<span class="material-icons webuy-orange login-form-icons">
-				perm_identity
-			</span>
+	<form action="login" method="post">
+		<div class="login-container">
+			<div class="mb-3 login-form">
+				<input type="email" class="form-control" name="email" placeholder="Username" required>
+				<span class="material-icons webuy-orange login-form-icons">
+					perm_identity
+				</span>
+			</div>
+			<div class="mb-3 login-form">
+				<input type="password" class="form-control" name="password" placeholder="Password" required/>
+				<span class="material-icons webuy-orange login-form-icons">
+					lock
+				</span>
+			</div>
+			<span th:text="${session.error}"></span>
+			<button type="submit" class="btn-primary form-control">
+				Login
+				<span class="material-icons login-btn-icon">
+					login
+				</span>
+			</button>
+			<a href="register">Don't have an account yet? Register</a>
 		</div>
-		<div class="mb-3 login-form">
-			<input type="password" class="form-control" placeholder="Password" />
-			<span class="material-icons webuy-orange login-form-icons">
-				lock
-			</span>
-		</div>
-		<button type="submit" class="btn-primary form-control">
-			Login
-			<span class="material-icons login-btn-icon">
-				login
-			</span>
-		</button>
-		<a href="register.html">Don't have an account yet? Register</a>
-	</div>
+	</form>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	<footer th:insert="headerfooter :: footer"> </footer>
 </body>
 

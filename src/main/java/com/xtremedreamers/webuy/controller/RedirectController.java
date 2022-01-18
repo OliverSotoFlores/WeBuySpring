@@ -15,9 +15,4 @@ public class RedirectController {
 	public String getRegister() {
 		return "register";
 	}
-	
-	@RequestMapping("/cart")
-	public String getCart() {
-		return "cart";
-	}
 }

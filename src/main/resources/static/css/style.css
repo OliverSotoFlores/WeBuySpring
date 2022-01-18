@@ -213,7 +213,9 @@
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: space-evenly;
+    column-gap: 30px;
+    align-items: baseline;
+    justify-content: flex-start;
 }
 
 .list-container .product-item{

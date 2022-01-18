@@ -40,12 +40,11 @@ public class ProductsController {
 			@RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(5);
+		int pageSize = size.orElse(8);
 
-		List<Product> listProducts = productDao.getPagination(currentPage, pageSize);
 		PagedList<Product> listProductsMejorado = PagedList.toPagedList(productDao, currentPage, pageSize);
 		model.addAttribute("paginationData", listProductsMejorado.getMetaData());
-		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("listProducts", listProductsMejorado);
 
 		return "mainView";
 	}

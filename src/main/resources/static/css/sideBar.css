@@ -31,10 +31,12 @@ h1 {
 
 .flexible-container {
   flex-shrink: 1;
+  width: 100%;
 }
 
 .main {
   padding: 1rem;
+  padding-left: 2rem;
 }
 
 a {

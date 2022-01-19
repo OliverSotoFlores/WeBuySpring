@@ -9,18 +9,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.xtremedreamers.webuy.models.Cart;
 import com.xtremedreamers.webuy.models.RegisteredUser;
+import com.xtremedreamers.webuy.persistence.CartDao;
 import com.xtremedreamers.webuy.persistence.RegisteredUserDao;
 
 @Controller
 public class RegisteredUserController {
 
 	@Autowired
-	RegisteredUserDao dao;
+	RegisteredUserDao rUDao;
+	
+	@Autowired
+	CartDao cartDao;
 	
 	@PostMapping("/login")
 	public String login(HttpServletRequest request, HttpSession session) {
-		request.getSession(false);
+		request.getSession();
 		if(session.getAttribute("user") != null) {
 			session.removeAttribute("user");
 		}
@@ -30,8 +35,19 @@ public class RegisteredUserController {
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
 		try {
-			RegisteredUser user = dao.findUser(email, pass);
+			RegisteredUser user = rUDao.findUser(email, pass);
 			session.setAttribute("user", user);
+			Cart cart;
+			try {
+				cart = cartDao.findByUser(user);
+				session.setAttribute("cart", cart);
+			} catch (EmptyResultDataAccessException e) {
+				cart = cartDao.createCart(user);
+				if(cart == null) {
+					session.setAttribute("error", "Error creating your cart. Please try again later.");
+					return "redirect:/signin";
+				}
+			}
 			return "redirect:/";
 		}catch(EmptyResultDataAccessException e) {
 			session.setAttribute("error", "Error with provided credentials. Please verify them.");

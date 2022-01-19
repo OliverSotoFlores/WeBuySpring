@@ -27,6 +27,43 @@ public class ProductsController {
 		return "index";
 	}
 
+	// Create a new Product
+/*
+    Check BigDecimal Parse
+*/
+@RequestMapping("/createProduct")
+	public String CreateProduct(HttpServletRequest request) 
+	{
+		int id = productDao.getLastId();
+		String name = request.getParameter("p-name");
+		String company = request.getParameter("p-company");
+		//BigDecimal price = 
+		String description = request.getParameter("p-description");
+		String imagePath = request.getParameter("p-image");
+		int categoryId = request.getParameter("p-category");
+
+		Product product = new Product();
+			product.setProduct_id(id);
+			product.setProduct_name(p-name);
+			product.setProduct_company(p-company);
+			product.setProduct_price(p-price);
+			product.setProduct_description(p-description);
+			product.setProduct_imagePath(p-image);
+			product.setProduct_categoryId(p-category);
+
+			return "redirect:/adminProductList";
+	}
+
+	// Delete a Product
+	@RequestMapping("/deleteProduct")
+	public String DeleteProduct() 
+	{
+		int product_id = (productDao.getLastId()) - 1;
+		productDao.deleteProduct(id);
+
+		return "redirect:/adminProductList";
+	}
+
 	@GetMapping("/products")
 	public String getProducts(Model model) {
 		List<Product> listProducts = productDao.getPagination(1, 5);

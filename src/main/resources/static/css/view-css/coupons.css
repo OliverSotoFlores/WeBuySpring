@@ -109,7 +109,6 @@ input[type="text"].search-input {
   margin: 20px auto;
   margin-bottom: 25px;
   border-radius: 10px;
-  box-shadow: 0px 1px 8px 2px #ccc;
   transform: scale(1.3);
 }
 

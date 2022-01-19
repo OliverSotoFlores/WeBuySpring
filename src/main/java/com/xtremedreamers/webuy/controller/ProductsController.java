@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,23 +50,10 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(@ModelAttribute Product product) {
-		String name = request.getParameter("p-name");
-		String company = request.getParameter("p-company");
-		BigDecimal price = new BigDecimal(request.getParameter("p-price"));
-		String description = request.getParameter("p-description");
-		String imagePath = request.getParameter("p-image");
-		int categoryId = Integer.parseInt(request.getParameter("p-category"));
-
-		Product product = new Product();
-		product.setName(name);
-		product.setCompany(company);
-		product.setPrice(price);
-		product.setDescription(description);
-		product.setImagePath(imagePath);
-		product.setCategoryId(categoryId);
+		System.out.println(product);
 		productDao.save(product);
-
-		return "redirect:/adminProductList";
+		
+		return "redirect:/admin/products";
 	}
 
 	// Delete a Product
@@ -76,7 +64,7 @@ public class ProductsController {
 		int p_id = id;
 		productDao.deleteProduct(p_id);
 
-		return "redirect:/adminProductList";
+		return "redirect:/admin/products";
 	}
 
 	@GetMapping("/products")

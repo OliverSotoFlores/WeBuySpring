@@ -105,6 +105,8 @@ public class PromotionEventsController {
 	public String SearchPromotion(HttpServletRequest request, Model model) {
 		
 		List<PromotionEvent> promotionEvents = promotionEventDao.findByName(request.getParameter("search-bar"));
+		PagedList<PromotionEvent> promotionEventsSearch = PagedList.toPagedList(promotionEvents);
+		model.addAttribute("paginationData", promotionEventsSearch.getMetaData());
 		model.addAttribute("promotionEvents", promotionEvents);
 		System.out.println(promotionEvents);
 		return "promotions";

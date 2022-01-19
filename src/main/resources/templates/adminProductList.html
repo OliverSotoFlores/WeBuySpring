@@ -72,11 +72,11 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Product</h3>
-                <form action="@{/products/new}" th:object="${product}" method="post" enctype="multipart/form-data">
-                    <label for="name">Name</label><br>
-                    <input type="text" name="name" placeholder="Type product name here"><br>
-                    <label for="category">Category</label><br>
-                    <select name="category">
+                <form action="createProduct">
+                    <label for="p-name">Name</label><br>
+                    <input type="text" name="p-name" placeholder="Type product name here"><br>
+                    <label for="p-category">Category</label><br>
+                    <select name="categories-list">
                         <option disabled selected>Select product category</option>
                         <option value="electronics">Electronics</option>
                         <option value="clothing">Clothing</option>

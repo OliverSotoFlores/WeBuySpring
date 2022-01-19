@@ -12,7 +12,7 @@ create table product_category (
 );
 
 create table product (
-    product_id int primary key,
+    product_id int primary key auto_increment,
     product_name varchar(255) not null,
     product_company varchar(30) not null,
     product_price decimal(20,2) not null,

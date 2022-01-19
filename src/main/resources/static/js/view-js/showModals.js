@@ -23,7 +23,7 @@ function showAddModal() {
   };
 }
 
-function editModalAdminProduct(t, id, name) {
+function editModalAdminProduct(t, id, name, description, price, company) {
   let modal = document.getElementById("editModal");
 
   modal.style.display = "block";
@@ -40,6 +40,10 @@ function editModalAdminProduct(t, id, name) {
   };
 
   modal.querySelector("#name").value = name;
+  modal.querySelector("#price").value = price;
+  modal.querySelector("#description").value = description;
+  modal.querySelector("#company").value = company;
+  modal.querySelector("#id").value = +id;
 }
 
 function showAddModalAdminProducts() {

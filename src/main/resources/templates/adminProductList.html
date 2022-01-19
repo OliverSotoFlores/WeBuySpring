@@ -49,7 +49,7 @@
 
                     <span id="p-delete" class="material-icons p-action"
                         onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" th:product-name="${product.name}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'))" class="material-icons p-action">edit</span>
+                    <span id="p-edit" th:product-name="${product.name}" th:product-company="${product.company}" th:product-price="${product.price}" th:product-description="${product.description}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'), this.getAttribute('product-description'), this.getAttribute('product-price'), this.getAttribute('product-company'))" class="material-icons p-action">edit</span>
                 </div>
                 <div class="product-img">
                     <img src="https://via.placeholder.com/150" alt="" />
@@ -99,7 +99,8 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Edit Product</h3>
-                <form action="#">
+                <form th:action="@{/admin/products/edit}" th:object="${product}" method="post">
+                    <input type="hidden" id="id" name="id">
                     <label for="name">Name</label><br>
                     <input id="name" type="text" name="name" placeholder="Type product name here" value="Product name"><br>
                     <label for="category">Category</label><br>
@@ -110,12 +111,12 @@
                         <option value="kitchen">Kitchen</option>
                     </select><br>
                     <label for="company">Brand</label><br>
-                    <input type="text" name="company" placeholder="Type product brand here" value="Brand Name"><br>
+                    <input type="text" id="company" name="company" placeholder="Type product brand here" value="Brand Name"><br>
                     <label for="description">Description</label><br>
-                    <textarea type="text" name="description" rows="3" cols="50"
+                    <textarea type="text" id="description" name="description" rows="3" cols="50"
                         placeholder="Type description here">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus. Phasellus fringilla eleifend velit ut rhoncus.</textarea><br>
                     <label for="price">Price</label><br>
-                    <input type="number" name="price" placeholder="0" min="0" step=".01" value="59.99"><br>
+                    <input type="number" id="price" name="price" placeholder="0" min="0" step=".01" value="59.99"><br>
                     <label for="image">Image</label><br>
                     <input type="file" name="image" accept="image/*"><br>
                     <button type="submit" ><span class="material-icons">edit</span> Update</button>
@@ -125,20 +126,20 @@
         <section id="pagination-wrapper">
             <nav aria-label="...">
                 <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    <li class="page-item" th:classappend="${!paginationData.hasPrevious()} ? disabled">
+                        <a class="page-link"
+                            th:href="@{/admin/products(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
+                            tabindex="
+                            -1">Previous</a>
                     </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
+                    <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                        th:classappend="${i==paginationData.currentPage} ? active">
+                        <a class="page-link" th:text="${i}"
+                            th:href="@{/admin/products(size=${paginationData.pageSize}, page=${i})}">a</a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                    <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                        <a class="page-link"
+                            th:href="@{/admin/products(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
                     </li>
                 </ul>
             </nav>

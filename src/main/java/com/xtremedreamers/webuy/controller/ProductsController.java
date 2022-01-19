@@ -1,7 +1,10 @@
 package com.xtremedreamers.webuy.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +32,6 @@ public class ProductsController {
 	@RequestMapping("/")
 	public String ProductsList() {
 		List<Product> products = productDao.findAll();
-		System.out.println(products);
 		return "index";
 	}
 
@@ -44,27 +46,25 @@ public class ProductsController {
 	/*
 	 * Check BigDecimal Parse
 	 */
-	// @RequestMapping("/createProduct")
-	// public String CreateProduct(HttpServletRequest request) {
-	// int id = productDao.getLastId();
-	// String name = request.getParameter("p-name");
-	// String company = request.getParameter("p-company");
-	// // BigDecimal price = es
-	// String description = request.getParameter("p-description");
-	// String imagePath = request.getParameter("p-image");
-	// int categoryId = request.getParameter("p-category");
+	@RequestMapping("/createProduct")
+	public String CreateProduct(HttpServletRequest request) {
+		String name = request.getParameter("p-name");
+		String company = request.getParameter("p-company");
+		BigDecimal price = new BigDecimal(request.getParameter("p-price"));
+		String description = request.getParameter("p-description");
+		String imagePath = request.getParameter("p-image");
+		int categoryId = Integer.parseInt(request.getParameter("p-category"));
 
-	// Product product = new Product();
-	// product.setProduct_id(id);
-	// product.setProduct_name(p - name);
-	// product.setProduct_company(p - company);
-	// product.setProduct_price(p - price);
-	// product.setProduct_description(p - description);
-	// product.setProduct_imagePath(p - image);
-	// product.setProduct_categoryId(p - category);
+		Product product = new Product();
+		product.setName(name);
+		product.setCompany(company);
+		product.setPrice(price);
+		product.setDescription(description);
+		product.setImagePath(imagePath);
+		product.setCategoryId(categoryId);
 
-	// return "redirect:/adminProductList";
-	// }
+		return "redirect:/adminProductList";
+	}
 
 	// Delete a Product
 	@RequestMapping("/deleteProduct")
@@ -83,10 +83,23 @@ public class ProductsController {
 	}
 
 	@GetMapping("/admin/products")
-	public String getAdminProducts(Model model) {
-		List<Product> listProducts = productDao.getPagination(1, 5);
+	public String getAdminProducts(Model model,
+			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
+
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(8);
+
+		PagedList<Product> listProducts = PagedList.toPagedList(productDao, currentPage, pageSize);
+		model.addAttribute("paginationData", listProducts.getMetaData());
 		model.addAttribute("listProducts", listProducts);
 		return "adminProductList";
+	}
+
+	@PostMapping("/admin/products/edit")
+	public String editProduct(Product product) {
+		System.out.println(product);
+		return "redirect:/admin/products";
 	}
 
 	@RequestMapping(value = "/mainview")
@@ -97,9 +110,9 @@ public class ProductsController {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(8);
 
-		PagedList<Product> listProductsMejorado = PagedList.toPagedList(productDao, currentPage, pageSize);
-		model.addAttribute("paginationData", listProductsMejorado.getMetaData());
-		model.addAttribute("listProducts", listProductsMejorado);
+		PagedList<Product> listProducts = PagedList.toPagedList(productDao, currentPage, pageSize);
+		model.addAttribute("paginationData", listProducts.getMetaData());
+		model.addAttribute("listProducts", listProducts);
 
 		return "mainView";
 	}

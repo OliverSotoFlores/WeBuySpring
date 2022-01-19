@@ -37,19 +37,19 @@
                     </button>
 
                 </form>
-                <a id="p-add" href="#" onclick="showAddModal();"><span
+                <a id="p-add" href="#" onclick="showAddModalAdminProducts();"><span
                         class="material-icons md-36 add-btn">add</span></a>
             </section>
         </section>
 
         <section class="list-container">
 
-            <article class="product-item">
+            <article class="product-item" th:each="product: ${listProducts}">
                 <div class="product-actions">
 
                     <span id="p-delete" class="material-icons p-action"
                         onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
+                    <span id="p-edit" th:product-name="${product.name}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'))" class="material-icons p-action">edit</span>
                 </div>
                 <div class="product-img">
                     <img src="https://via.placeholder.com/150" alt="" />
@@ -58,165 +58,11 @@
                 <div class="product-wrapper">
                     <div class="product-info">
                         <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
+                        <p id="p-name" th:text="${product.name}">Product name</p>
+                        <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
                             Phasellus fringilla eleifend
                             velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
-                    </div>
-                </div>
-            </article>
-            <article class="product-item">
-                <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
-                    <span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                </div>
-                <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
-                        <p id="p-name">Product name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p id="p-brand">Brand Name</p>
+                        <p th:text="${product.company}" id="p-brand">Brand Name</p>
                     </div>
                 </div>
             </article>
@@ -226,25 +72,25 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Product</h3>
-                <form action="#">
-                    <label for="p-name">Name</label><br>
-                    <input type="text" name="p-name" placeholder="Type product name here"><br>
-                    <label for="p-category">Category</label><br>
-                    <select name="categories-list">
+                <form action="@{/products/new}" th:object="${product}" method="post" enctype="multipart/form-data">
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" placeholder="Type product name here"><br>
+                    <label for="category">Category</label><br>
+                    <select name="category">
                         <option disabled selected>Select product category</option>
                         <option value="electronics">Electronics</option>
                         <option value="clothing">Clothing</option>
                         <option value="kitchen">Kitchen</option>
                     </select><br>
-                    <label for="p-brand">Brand</label><br>
-                    <input type="text" name="p-brand" placeholder="Type product brand here"><br>
-                    <label for="p-description">Description</label><br>
-                    <textarea type="text" name="p-description" rows="3" cols="50"
+                    <label for="company">Brand</label><br>
+                    <input type="text" name="company" placeholder="Type product brand here"><br>
+                    <label for="description">Description</label><br>
+                    <textarea type="text" name="description" rows="3" cols="50"
                         placeholder="Type description here"></textarea><br>
-                    <label for="p-price">Price</label><br>
-                    <input type="number" name="p-price" placeholder="0" min="0" step=".01"><br>
-                    <label for="p-image">Image</label><br>
-                    <input type="file" accept="image/*"><br>
+                    <label for="price">Price</label><br>
+                    <input type="number" name="price" placeholder="0" min="0" step=".01"><br>
+                    <label for="image">Image</label><br>
+                    <input type="file" name="image" accept="image/*"><br>
                     <button type="submit"><span class="material-icons">add_circle_outline</span> Create</button>
                 </form>
             </div>
@@ -254,25 +100,25 @@
                 <span class="material-icons close">close</span>
                 <h3>Edit Product</h3>
                 <form action="#">
-                    <label for="p-name">Name</label><br>
-                    <input type="text" name="p-name" placeholder="Type product name here" value="Product name"><br>
-                    <label for="p-category">Category</label><br>
-                    <select name="categories-list">
+                    <label for="name">Name</label><br>
+                    <input id="name" type="text" name="name" placeholder="Type product name here" value="Product name"><br>
+                    <label for="category">Category</label><br>
+                    <select name="category">
                         <option disabled>Select product category</option>
                         <option value="electronics" selected>Electronics</option>
                         <option value="clothing">Clothing</option>
                         <option value="kitchen">Kitchen</option>
                     </select><br>
-                    <label for="p-brand">Brand</label><br>
-                    <input type="text" name="p-brand" placeholder="Type product brand here" value="Brand Name"><br>
-                    <label for="p-description">Description</label><br>
-                    <textarea type="text" name="p-description" rows="3" cols="50"
+                    <label for="company">Brand</label><br>
+                    <input type="text" name="company" placeholder="Type product brand here" value="Brand Name"><br>
+                    <label for="description">Description</label><br>
+                    <textarea type="text" name="description" rows="3" cols="50"
                         placeholder="Type description here">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus. Phasellus fringilla eleifend velit ut rhoncus.</textarea><br>
-                    <label for="p-price">Price</label><br>
-                    <input type="number" name="p-price" placeholder="0" min="0" step=".01" value="59.99"><br>
-                    <label for="p-image">Image</label><br>
-                    <input type="file" accept="image/*"><br>
-                    <button type="submit"><span class="material-icons">edit</span> Update</button>
+                    <label for="price">Price</label><br>
+                    <input type="number" name="price" placeholder="0" min="0" step=".01" value="59.99"><br>
+                    <label for="image">Image</label><br>
+                    <input type="file" name="image" accept="image/*"><br>
+                    <button type="submit" ><span class="material-icons">edit</span> Update</button>
                 </form>
             </div>
         </div>
@@ -301,7 +147,7 @@
     </div>
     <footer th:insert="headerfooter :: footer"> </footer>
     <!-- Modals script -->
-    <script src="../js/view-js/showModals.js"></script>
+    <script th:src="@{/js/view-js/showModals.js}"></script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.xtremedreamers.webuy.models.Coupon;
 import com.xtremedreamers.webuy.models.PromotionEvent;
 
 @Component
@@ -122,14 +123,22 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.queryForObject("select count(*) from promotion_event", Integer.class);
 	}
 
 	@Override
 	public List<PromotionEvent> getPagination(int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		int skip = (pageNumber - 1) * pageSize;
+		String sql = "SELECT promotion_event_id, "
+				+ "promotion_event_name, "
+				+ "promotion_event_description, "
+				+ "promotion_event_start_date, "
+				+ "promotion_event_end_date, "
+				+ "promotion_event_status, "
+				+ "admin_id "
+				+ "FROM promotion_event "
+				+ "limit " + skip + ", " + pageSize;
+		return jdbcTemplate.query(sql, new PromotionRowMapper());
 	}
 
 }

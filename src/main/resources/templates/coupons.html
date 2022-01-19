@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,54 +11,21 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/view-css/coupons.css">
 </head>
 
 <body>
-    <header class="section-header">
-		<section class="header-main bg-white">
-			<div class="container-fluid">
-				<div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-					<div class="col-md-2 d-md-flex justify-content-center logo-wrapper"> <a href="../index.html"><img src="../img/webuy-color.png"></a> </div>
-					<div class="col-md-7">
-						<div class="d-flex form-inputs">
-							<select name="category-search">
-								<option disabled selected>Search by category</option>
-								<option value="electronics">Electronics</option>
-								<option value="clothing">Clothing</option>
-								<option value="kitchen">Kitchen</option>
-							</select>
-							<input type="text" placeholder="Search any product..."><i class="bx bx-search"></i>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex flex-row justify-content-between">
-						<div class="d-flex d-none d-md-flex flex-row align-items-center"> <a href="cart.html"><span class="shop-bag"><i class='bi bi-cart'></i></span></a>
-							<div class="d-flex flex-column ms-2"> <span class="qty">1 Product</span> <span class="fw-bold">$27.90</span> </div>
-						</div>
-						<ul class="navbar-nav d-flex flex-row align-items-center ml-2">
-							<li class="nav-item"> <a href="login.html" class="p-2" data-abc="true"><span>Sign in</span></a> </li>
-							<li class="nav-item"> <a href="register.html" class="p-2" data-abc="true"><span>Register</span></a> </li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-	</header>
+    <header th:insert="headerfooter :: header"> </header>
     <div class="admin-coupons">
 
         <section id="admin-header">
             <h1>Coupon Manager</h1>
             <section class="coupon-actions">
-                <form action="" class="coupon-form">
-                    <input type="text" name="category" placeholder="Sort by category" list="category-list">
-                    <datalist id="category-list">
-                        <option value="Electronics"></option>
-                        <option value="Clothing"></option>
-                        <option value="Kitchen"></option>
-                    </datalist>
-                    <input type="text" name="search-bar" class="search-input" placeholder="Search product..." />
+                <form id="couponSearchForm" action="couponSearch" class="coupon-form">
+                    <input id="searchInput" type="text" name="search-bar" class="search-input"
+                        placeholder="Search coupon code..." />
                     <button type="submit" class="search-btn">
                         <span class="material-icons">
                             search
@@ -76,102 +43,64 @@
                         <th>Coupon Code</th>
                         <th>Discount Percentage</th>
                         <th>Category</th>
-                        <th>Expiry Date</th>
+                        <th>Promotion Event</th>
+                        <th>Coupon type</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="coupons-table-body">
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>40%</td>
-                        <td>Electronics</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
+                    <tr th:each="coupons: ${coupons}">
+                        <td th:text="${coupons.coupon_name}" />
+                        <td th:text="${coupons.coupon_discount}" />
+                        <td th:text="${coupons.category_name}" />
+                        <td th:text="${coupons.promotion_event_name}" />
+                        <td th:text="${coupons.coupon_type}" />
+                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal(event);">edit
+                        <input type="hidden" id="element-id" th:value="${coupons.coupon_id}"/>
+                         <input type="hidden" id="element-id" th:value="${coupons.coupon_name}"/></span>
                         </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>christmas2021</td>
-                        <td>20%</td>
-                        <td>Clothing</td>
-                        <td>12-31-2021</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>loyal4ever</td>
-                        <td>15%</td>
-                        <td></td>
-                        <td></td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>50%</td>
-                        <td>Kitchen</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>blackfriday2022</td>
-                        <td>45%</td>
-                        <td>Clothing</td>
-                        <td>10-29-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>thanksgiving2021</td>
-                        <td>25%</td>
-                        <td>Electronics</td>
-                        <td>11-24-2021</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>itsrainingclothes</td>
-                        <td>20%</td>
-                        <td>Clothing</td>
-                        <td></td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>happynewyear2022</td>
-                        <td>15%</td>
-                        <td>Kitchen</td>
-                        <td>02-01-2022</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
+                        <td><a th:href="@{/deleteCoupon/{coupon_id}(coupon_id=${coupons.coupon_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons p-action">delete</span></a></td>
                     </tr>
                 </tbody>
             </table>
         </section>
+        <div id="couponDataModal" class="modal">
+            <div class="modal-contents">
+                <span class="material-icons close">close</span>
+                <h3>Coupon Information</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="couponNameS">Coupon Name</label>
+                        <input type="text" class="form-control" id="couponNameS" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="couponDiscountS">Coupon Discount %</label>
+                        <input type="text" class="form-control" id="couponDiscountS" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="couponPromotionS">Promotion Event</label>
+                        <input type="text" class="form-control" id="couponPromotionS" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="couponCategoryS">Category</label>
+                        <input type="text" class="form-control" id="couponCategoryS" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="couponTypeS">Coupon Type</label>
+                        <input type="text" class="form-control" id="couponTypeS" disabled>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div id="addModal" class="modal">
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Coupon</h3>
-                <form action="#">
+                <form action="createCoupon">
                     <label for="c-name">Name</label><br>
                     <input type="text" name="c-name" placeholder="Type coupon name here"><br>
-                    <label for="c-promotion-event">Promotion Event</label><br>
+                    <label for="pe-list">Promotion Event</label><br>
                     <select name="pe-list">
                         <option disabled selected>Select promotion event</option>
                         <option value="1">Black Friday 2022</option>
@@ -179,20 +108,20 @@
                         <option value="3">Thanksgiving 2021</option>
                     </select><br>
                     <label for="c-product-category">Category</label><br>
-                    <select name="categories-list">
+                    <select name="c-product-category">
                         <option disabled selected>Select product category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="kitchen">Kitchen</option>
+                        <option value="1">Electronics</option>
+                        <option value="2">Clothing</option>
+                        <option value="3">Kitchen</option>
                     </select><br>
-                    <label for="p-category">Coupon Type</label><br>
-                    <select name="categories-list">
+                    <label for="coupon-type">Coupon Type</label><br>
+                    <select name="coupon-type">
                         <option disabled selected>Select coupon type</option>
                         <option value="Open">Open</option>
-                        <option value="Nopen">Not open</option>
+                        <option value="n_open">Not open</option>
                     </select><br>
-                    <label for="p-price">Coupon discount (%)</label><br>
-                    <input type="number" name="p-price" placeholder="0" min="0"><br>
+                    <label for="c-discount">Coupon discount (%)</label><br>
+                    <input type="number" name="c-discount" placeholder="0" min="0"><br>
                     <button type="submit"><span class="material-icons">add_circle_outline</span> Create</button>
                 </form>
             </div>
@@ -201,10 +130,11 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Edit Coupon</h3>
-                <form action="#">
+                <form action="updateCoupon">
+                	<input type="hidden" id="edit-element-id" name="edit-element-id"/>
                     <label for="c-name">Name</label><br>
-                    <input type="text" name="c-name" placeholder="Type coupon name here" value="blackfriday2022"><br>
-                    <label for="c-promotion-event">Promotion Event</label><br>
+                    <input type="text" id = "c-name" name="c-name" placeholder="Type coupon name here" value=""><br>
+                    <label for="pe-list">Promotion Event</label><br>
                     <select name="pe-list">
                         <option disabled>Select promotion event</option>
                         <option value="1" selected>Black Friday 2022</option>
@@ -212,51 +142,52 @@
                         <option value="3">Thanksgiving 2021</option>
                     </select><br>
                     <label for="c-product-category">Category</label><br>
-                    <select name="categories-list">
+                    <select name="c-product-category">
                         <option disabled>Select product category</option>
-                        <option value="electronics" selected>Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="kitchen">Kitchen</option>
+                        <option value="1" selected>Electronics</option>
+                        <option value="2">Clothing</option>
+                        <option value="3">Kitchen</option>
                     </select><br>
-                    <label for="p-category">Coupon Type</label><br>
-                    <select name="categories-list">
+                    <label for="coupon-type">Coupon Type</label><br>
+                    <select name="coupon-type">
                         <option disabled>Select coupon type</option>
                         <option value="Open">Open</option>
-                        <option value="Nopen" selected>Not open</option>
+                        <option value="n_open" selected>Not open</option>
                     </select><br>
-                    <label for="p-price">Coupon discount (%)</label><br>
-                    <input type="number" name="p-price" placeholder="0" min="0" value="40"><br>
+                    <label for="c-discount">Coupon discount (%)</label><br>
+                    <input type="number" name="c-discount" placeholder="0" min="0" value="40"><br>
                     <button type="submit"><span class="material-icons">edit</span> Update</button>
                 </form>
             </div>
         </div>
         <section id="pagination-wrapper">
             <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+                 <ul class="pagination">
+                     <li class="page-item" th:classappend="${!paginationData.hasPrevious()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
+                             tabindex="
+                             -1">Previous</a>
+                     </li>
+                     <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                         th:classappend="${i==paginationData.currentPage} ? active">
+                         <a class="page-link" th:text="${i}"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${i})}">a</a>
+                     </li>
+                     <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/coupons(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
+                     </li>
+                 </ul>
+              </nav>
         </section>
     </div>
-    <footer>
-        <p>webuy &copy; 2022</p>
-    </footer>
+    <footer th:insert="headerfooter :: footer"> </footer>
     <!-- Modals script -->
     <script src="../js/view-js/showModals.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/coupons.js"></script>
 </body>
 
 </html>

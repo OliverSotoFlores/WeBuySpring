@@ -10,6 +10,7 @@ public class Product {
 	private String description; 
 	private String imagePath; 
 	private int categoryId;
+	
 	public int getId() {
 		return id;
 	}

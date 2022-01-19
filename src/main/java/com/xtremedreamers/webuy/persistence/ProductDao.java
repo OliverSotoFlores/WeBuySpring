@@ -14,16 +14,19 @@ public class ProductDao implements GenericDao<Product, Integer> {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	RowMapper<Product> rowMapper = (rs, rowNum) -> {
 		Product product = new Product();
 		product.setId(rs.getInt(1));
 		product.setName(rs.getString(2));
 		product.setCompany(rs.getString(3));
+		product.setPrice(rs.getBigDecimal(4));
+		product.setDescription(rs.getString(5));
+		product.setImagePath(rs.getString(6));
+		product.setCategoryId(rs.getInt(7));
 		return product;
-		
 	};
-	
+
 	@Override
 	public Product findById(Integer id) {
 		// TODO Auto-generated method stub
@@ -35,8 +38,26 @@ public class ProductDao implements GenericDao<Product, Integer> {
 		String sql = "SELECT product_id, product_name, "
 				+ "product_company, product_price, product_description, "
 				+ "product_image_path, product_category_id FROM product";
-		
+
 		return jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public Integer save(Product instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Product instance) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(Product instance) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -52,21 +73,22 @@ public class ProductDao implements GenericDao<Product, Integer> {
 	}
 
 	@Override
-	public Integer save(Product instance) {
-		// TODO Auto-generated method stub
-		return null;
+	public int count() {
+		String sql = "SELECT count(*) from product";
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
 	}
 
 	@Override
-	public void update(Product instance) {
-		// TODO Auto-generated method stub
-		
-	}
+	public List<Product> getPagination(int pageNumber, int pageSize) {
+		int skip = (pageNumber - 1) * pageSize;
 
-	@Override
-	public void delete(Product instance) {
-		// TODO Auto-generated method stub
-		
+		String sql = "SELECT product_id, product_name, "
+				+ "product_company, product_price, product_description, "
+				+ "product_image_path, product_category_id FROM product LIMIT " + skip + ", " + pageSize;
+
+		List<Product> results = jdbcTemplate.query(sql, rowMapper);
+		return results;
 	}
 
 }

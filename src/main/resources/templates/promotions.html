@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -16,48 +16,20 @@
 </head>
 
 <body>
-    <header class="section-header">
-		<section class="header-main bg-white">
-			<div class="container-fluid">
-				<div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-					<div class="col-md-2 d-md-flex justify-content-center logo-wrapper"> <a href="../index.html"><img src="../img/webuy-color.png"></a> </div>
-					<div class="col-md-7">
-						<div class="d-flex form-inputs">
-							<select name="category-search">
-								<option disabled selected>Search by category</option>
-								<option value="electronics">Electronics</option>
-								<option value="clothing">Clothing</option>
-								<option value="kitchen">Kitchen</option>
-							</select>
-							<input type="text" placeholder="Search any product..."><i class="bx bx-search"></i>
-						</div>
-					</div>
-					<div class="col-md-3 d-flex flex-row justify-content-between">
-						<div class="d-flex d-none d-md-flex flex-row align-items-center"> <a href="cart.html"><span class="shop-bag"><i class='bi bi-cart'></i></span></a>
-							<div class="d-flex flex-column ms-2"> <span class="qty">1 Product</span> <span class="fw-bold">$27.90</span> </div>
-						</div>
-						<ul class="navbar-nav d-flex flex-row align-items-center ml-2">
-							<li class="nav-item"> <a href="login.html" class="p-2" data-abc="true"><span>Sign in</span></a> </li>
-							<li class="nav-item"> <a href="register.html" class="p-2" data-abc="true"><span>Register</span></a> </li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-	</header>
+    <header th:insert="headerfooter :: header"> </header>
     <div class="admin-coupons">
         <section id="admin-header">
             <h1>Promotion Event Manager</h1>
             <section class="coupon-actions">
-                <form action="" class="coupon-form">
-                    <input type="text" name="search-bar" class="search-input" placeholder="Search promotion event..." />
+                <form id="promotionEventSearchForm" action="searchPromotionEvent" class="coupon-form">
+                    <input id="searchInput" type="text" name="search-bar" class="search-input" placeholder="Search promotion event..." />
                     <button type="submit" class="search-btn">
                         <span class="material-icons">
                             search
                         </span>
                     </button>
                 </form>
-                <a href="#" onclick="showAddModal();"><span class="material-icons md-36 add-btn">add</span></a>
+                <a onclick="showAddModal();"><span class="material-icons md-36 add-btn">add</span></a>
             </section>
         </section>
         <section class="coupons-container">
@@ -68,29 +40,25 @@
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Status</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="coupons-table-body">
-                    <tr>
-                        <td>Black friday 2022</td>
-                        <td>Event that happens once a year, 2022 version.</td>
-                        <td>2022-01-01</td>
-                        <td>2022-01-10</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
+                    <tr th:each="promotionEvents: ${promotionEvents}">
+                        <td th:text="${promotionEvents.promotion_event_name}" />
+                        <td th:text="${promotionEvents.promotion_event_description}">
+                        <td th:text="${promotionEvents.promotion_event_start_date}" />
+                        <td th:text="${promotionEvents.promotion_event_end_date}" />
+                        <td th:text="${promotionEvents.promotion_event_status}"/>
+                        <td>
+	                        <span id="p-edit" class="material-icons p-action" onclick="showEditModalPromotion(event)">
+	                        	edit
+	                        	<input type="hidden" id="element-id" th:value="${promotionEvents.promotion_event_id}"/>
+	                        	<input type="hidden" id="element-admin-id" th:value="${promotionEvents.admin_id}"/>
+	                        </span>
                         </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
-                    </tr>
-                    <tr>
-                        <td>Loyalty event</td>
-                        <td>Geared towards clients that have more than 1 year of beign customers.</td>
-                        <td>2022-01-01</td>
-                        <td>2022-01-20</td>
-                        <td><span id="p-edit" class="material-icons p-action" onclick="showEditModal();">edit</span>
-                        </td>
-                        <td><span id="p-delete" class="material-icons p-action"
-                                onclick="confirm('Are you sure you want to delete this coupon?');">delete</span></td>
+                        <td><a th:href="@{/deletePromotionEvent/{promotion_id}(promotion_id=${promotionEvents.promotion_event_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons p-action">delete</span></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -99,19 +67,25 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Promotion Event</h3>
-                <form action="#">
-                    <label for="name">Name</label><br>
-                    <input type="text" name="name" placeholder="Type promotion event name here"><br>
-                    <label for="description">Description</label><br>
-                    <input type="text" name="description" placeholder="Type promotion event description here"><br>
+                <form action="createPromotionEvent">
+                    <label for="promotion-event-name">Name</label><br>
+                    <input type="text" name="promotion-event-name" placeholder="Type promotion event name here"><br>
+                    <label for="promotion-event-description">Description</label><br>
+                    <input type="text" name="promotion-event-description" placeholder="Type promotion event description here"><br>
                     <div class="date--container">
-                        <label for="start">Start date:</label>
-                        <input type="date" id="start" name="start" value="2021-01-01">
+                        <label for="promotion-event-start-date">Start date:</label><br>
+                        <input type="date" id="promotion-event-start-date" name="promotion-event-start-date" value="2022-01-01">
                     </div>
                     <div class="date--container">
-                        <label for="start">End date:</label>
-                        <input type="date" id="start" name="start" value="2021-01-01">
+                        <label for="promotion-event-end-date">End date:</label><br>
+                        <input type="date" id="promotion-event-end-date" name="promotion-event-end-date" value="2022-01-01">
                     </div>
+                    <label for="promotion-event-status">Status</label><br>
+                    <select name="promotion-event-status">
+                    	<option value="valid" selected>Valid</option>
+                    	<option value="expired">Expired</option>
+                    	<option value="cancelled">Cancelled</option>
+                    </select>
                     <button type="submit"><span class="material-icons">add_circle_outline</span> Create</button>
                 </form>
             </div>
@@ -120,21 +94,58 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Edit Promotion Event</h3>
-                <form action="#">
-                    <label for="name">Name</label><br>
-                    <input type="text" name="name" placeholder="Type promotion event name here"><br>
-                    <label for="description">Description</label><br>
-                    <input type="text" name="description" placeholder="Type promotion event description here"><br>
+                <form action="updatePromotionEvent">
+                	<input type="hidden" id="edit-element-id" name="promotional-event-id"/>
+                	<input type="hidden" id="edit-admin-id" name="admin-id"/>
+                    <label for="promotion-event-name">Name</label><br>
+                    <input type="text" id="promo-name" name="promotion-event-name" placeholder="Type promotion event name here"><br>
+                    <label for="promotion-event-description">Description</label><br>
+                    <input type="text" id="promo-desc" name="promotion-event-description" placeholder="Type promotion event description here"><br>
                     <div class="date--container">
-                        <label for="start">Start date:</label>
-                        <input type="date" id="start" name="start" value="2021-01-01">
+                        <label for="promotion-event-start-date">Start date:</label><br>
+                        <input type="date" id="promo-start-date" name="promotion-event-start-date" value="2022-01-01">
                     </div>
                     <div class="date--container">
-                        <label for="start">End date:</label>
-                        <input type="date" id="start" name="start" value="2021-01-01">
+                        <label for="promotion-event-end-date">End date:</label><br>
+                        <input type="date" id="promo-end-date" name="promotion-event-end-date" value="2022-01-01">
                     </div>
+                    <label for="promotion-event-status">Status</label><br>
+                    <select id="status-dropdown" name="promotion-event-status">
+                    	<option disabled selected>Select Promotion Event's status</option>
+                    	<option value="valid">valid</option>
+                    	<option value="expired">expired</option>
+                    	<option value="cancelled">cancelled</option>
+                    </select>
                     <button type="submit"><span class="material-icons">edit</span> Update</button>
                 </form>
+            </div>
+        </div>
+        <div id="promotionDataModal" class="modal">
+            <div class="modal-contents">
+                <span class="material-icons close">close</span>
+                <h3>Promotion Event Information</h3>
+                <form>
+				  <div class="form-group">
+				    <label for="promotionEventNameS">Promotion Event Name</label>
+				    <input type="text" class="form-control" id="promotionEventNameS" disabled>
+				  </div>
+				  <div class="form-group">
+				    <label for="promotionEventDescS">Promotion Event Description</label>
+				    <input type="text" class="form-control" id="promotionEventDescS" disabled>
+				  </div>
+				  <div class="form-group">
+				    <label for="promotionEventStartDateS">Promotion Event Start Date</label>
+				    <input type="text" class="form-control" id="promotionEventStartDateS" disabled>
+				  </div>
+				  <div class="form-group">
+				    <label for="promotionEventEndDateS">Promotion Event End Date</label>
+				    <input type="text" class="form-control" id="promotionEventEndDateS" disabled>
+				  </div>
+				  <div class="form-group">
+				    <label for="promotionEventStatusS">Promotion Event Status</label>
+				    <input type="text" class="form-control" id="promotionEventStatusS" disabled>
+				  </div>
+				</form>
             </div>
         </div>
         <section id="pagination-wrapper">
@@ -159,11 +170,15 @@
             </nav>
         </section>
     </div>
-    <footer>
-        <p>webuy &copy; 2022</p>
-    </footer>
+    <footer th:insert="headerfooter :: footer"> </footer>
     <!-- Modals script -->
     <script src="../js/view-js/showModals.js"></script>
+    
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    
+    <!-- PromotionEvents search function script -->
+    <script src="../js/promotionEvents.js"></script>
 </body>
 
 </html>

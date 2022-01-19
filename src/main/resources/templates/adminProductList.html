@@ -99,16 +99,13 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Edit Product</h3>
-                <form th:action="@{/admin/products/edit}" th:object="${product}" method="post">
+                <form th:action="@{/admin/products/edit}" method="post" th:object="${product}">
                     <input type="hidden" id="id" name="id">
                     <label for="name">Name</label><br>
                     <input id="name" type="text" name="name" placeholder="Type product name here" value="Product name"><br>
                     <label for="category">Category</label><br>
-                    <select name="category">
-                        <option disabled>Select product category</option>
-                        <option value="electronics" selected>Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="kitchen">Kitchen</option>
+                    <select name="category" th:field="*{categoryId}">
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">Clothing</option>
                     </select><br>
                     <label for="company">Brand</label><br>
                     <input type="text" id="company" name="company" placeholder="Type product brand here" value="Brand Name"><br>

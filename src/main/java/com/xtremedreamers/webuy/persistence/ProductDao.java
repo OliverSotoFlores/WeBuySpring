@@ -54,7 +54,12 @@ public class ProductDao implements GenericDao<Product, Integer> {
 	@Override
 	public void update(Product instance) {
 		// TODO Auto-generated method stub
-
+		String sql = "UPDATE product SET product_name=?, product_company=?, product_price=?, product_description=?, product_image_path=?, product_category_id=?"
+				+ " WHERE product_id = ?";
+		int rows = jdbcTemplate.update(sql,
+				new Object[] { instance.getName(), instance.getCompany(), instance.getPrice(),
+						instance.getDescription(), instance.getImagePath(), instance.getCategoryId(),
+						instance.getId() });
 	}
 
 	@Override

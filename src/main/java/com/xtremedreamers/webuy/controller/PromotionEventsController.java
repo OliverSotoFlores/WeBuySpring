@@ -27,6 +27,7 @@ public class PromotionEventsController {
 	public String PromotionEventsList(Model model) {
 		List<PromotionEvent> promotionEvents = promotionEventDao.findAll();
 		model.addAttribute("promotionEvents", promotionEvents);
+		System.out.println(promotionEvents);
 		return "promotions";
 	}
 	
@@ -93,8 +94,15 @@ public class PromotionEventsController {
 	}
 	
 	@RequestMapping("/searchPromotionEvent")
-	public ResponseEntity<PromotionEvent> SearchPromotion(HttpServletRequest request) {
-		PromotionEvent promotionEvent;
+	public String SearchPromotion(HttpServletRequest request, Model model) {
+		
+		List<PromotionEvent> promotionEvents = promotionEventDao.findByName(request.getParameter("search-bar"));
+		model.addAttribute("promotionEvents", promotionEvents);
+		System.out.println(promotionEvents);
+		return "promotions";
+		
+		
+		/*PromotionEvent promotionEvent;
 		try {
 			promotionEvent = promotionEventDao.findByName(request.getParameter("id"));
 			System.out.println(promotionEvent);
@@ -104,7 +112,7 @@ public class PromotionEventsController {
 		}catch(EmptyResultDataAccessException e) {
 			promotionEvent = null;
 			return ResponseEntity.badRequest().body(promotionEvent);
-		}
+		}*/
 	}
 	
 }

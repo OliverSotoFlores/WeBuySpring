@@ -47,8 +47,8 @@ public class ProductsController {
 	/*
 	 * Check BigDecimal Parse
 	 */
-	@RequestMapping("/createProduct")
-	public String CreateProduct(HttpServletRequest request) {
+	@PostMapping("/admin/products/create")
+	public String CreateProduct(@ModelAttribute Product product) {
 		String name = request.getParameter("p-name");
 		String company = request.getParameter("p-company");
 		BigDecimal price = new BigDecimal(request.getParameter("p-price"));
@@ -63,15 +63,18 @@ public class ProductsController {
 		product.setDescription(description);
 		product.setImagePath(imagePath);
 		product.setCategoryId(categoryId);
+		productDao.save(product);
 
 		return "redirect:/adminProductList";
 	}
 
 	// Delete a Product
-	@RequestMapping("/deleteProduct")
-	public String DeleteProduct() {
+	@RequestMapping("/deleteProduct/{id}")
+	public String DeleteProduct(@PathVariable int id) {
 		// int product_id = (productDao.getLastId()) - 1;
 		// productDao.deleteProduct(id);
+		int p_id = id;
+		productDao.deleteProduct(p_id);
 
 		return "redirect:/adminProductList";
 	}

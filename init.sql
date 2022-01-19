@@ -125,3 +125,6 @@ insert into product values (16, "White T-Shirt in page 2", "Dopp", 10, "Simple f
 insert into product values (17, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 4", "test", 4);
 
 insert into registered_user values (1, 'test@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
+insert into registered_user values (2, 'test2@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
+
+insert into shopping_cart values(1, '2022-01-18', 'in_session', 1);

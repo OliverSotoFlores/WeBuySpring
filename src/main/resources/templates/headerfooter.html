@@ -5,12 +5,25 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div th:fragment="admin-header">
+		<nav class="navbar navbar-dark navbar-expand p-0 user-features">
+	        <div class="container-fluid">
+	        	<p></p>
+	            <ul class="navbar-nav d-none d-md-flex ml-auto">
+	                <li class="nav-item"><a class="nav-link" th:href="@{/admin/products}" data-abc="true">Products</a></li>
+	                <li class="nav-item"><a class="nav-link" th:href="@{/coupons}" data-abc="true">Coupons</a></li>
+	                <li class="nav-item"><a class="nav-link" th:href="@{/promotionevents}" data-abc="true">Promotion Events</a></li>
+	            </ul><!-- list-inline // -->
+	        </div> <!-- navbar-collapse .// -->
+	        <!-- container // -->
+	    </nav>
+	</div>
 	<div th:fragment="header">
 		<header class="section-header">
 		    <section class="header-main bg-white">
 		        <div class="container-fluid">
 		            <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-		                <div class="col-md-2 d-md-flex justify-content-center logo-wrapper"> <a th:href="@{/}"><img src="img/webuy-color.png"></a> </div>
+		                <div class="col-md-2 d-md-flex justify-content-center logo-wrapper"> <a th:href="@{/}"><img th:src="@{/img/webuy-color.png}"></a> </div>
 		                <div class="col-md-7">
 		                    <div class="d-flex form-inputs">
 		                        <select name="category-search">

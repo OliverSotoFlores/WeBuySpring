@@ -17,6 +17,7 @@
 
 <body>
     <header th:insert="headerfooter :: header"> </header>
+    <div th:insert="headerfooter :: admin-header"></div>
     <div class="admin-coupons">
         <section id="admin-header">
             <h1>Promotion Event Manager</h1>
@@ -150,24 +151,24 @@
         </div>
         <section id="pagination-wrapper">
             <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
+                 <ul class="pagination">
+                     <li class="page-item" th:classappend="${!paginationData.hasPrevious()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/promotionevents(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
+                             tabindex="
+                             -1">Previous</a>
+                     </li>
+                     <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                         th:classappend="${i==paginationData.currentPage} ? active">
+                         <a class="page-link" th:text="${i}"
+                             th:href="@{/promotionevents(size=${paginationData.pageSize}, page=${i})}">a</a>
+                     </li>
+                     <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                         <a class="page-link"
+                             th:href="@{/promotionevents(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
+                     </li>
+                 </ul>
+              </nav>
         </section>
     </div>
     <footer th:insert="headerfooter :: footer"> </footer>
@@ -178,7 +179,7 @@
     <script src="../js/bootstrap.min.js"></script>
     
     <!-- PromotionEvents search function script -->
-    <script src="../js/promotionEvents.js"></script>
+   
 </body>
 
 </html>

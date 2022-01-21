@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.xtremedreamers.webuy.models.Coupon;
 import com.xtremedreamers.webuy.models.PromotionEvent;
 
 @Component
@@ -32,10 +33,10 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 
 		return promo;
 	}
-
-	public PromotionEvent findByName(String name) {
-
-		String query = "SELECT promotion_event_id, "
+	
+	public List<PromotionEvent> findByName(String name) {
+		System.out.println(name);
+		String sql = "SELECT promotion_event_id, "
 				+ "promotion_event_name, "
 				+ "promotion_event_description, "
 				+ "promotion_event_start_date, "
@@ -43,11 +44,11 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 				+ "promotion_event_status, "
 				+ "admin_id "
 				+ "FROM promotion_event "
-				+ "WHERE promotion_event_name LIKE '%?%'";
-
-		PromotionEvent promo = jdbcTemplate.queryForObject(query, new Object[] { name }, new PromotionRowMapper());
-
-		return promo;
+				+ "WHERE promotion_event_name like '%"+name+"%'";
+		System.out.println(sql);
+		
+		
+		return jdbcTemplate.query(sql, new PromotionRowMapper());
 	}
 
 	@Override
@@ -122,14 +123,22 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.queryForObject("select count(*) from promotion_event", Integer.class);
 	}
 
 	@Override
 	public List<PromotionEvent> getPagination(int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+		int skip = (pageNumber - 1) * pageSize;
+		String sql = "SELECT promotion_event_id, "
+				+ "promotion_event_name, "
+				+ "promotion_event_description, "
+				+ "promotion_event_start_date, "
+				+ "promotion_event_end_date, "
+				+ "promotion_event_status, "
+				+ "admin_id "
+				+ "FROM promotion_event "
+				+ "limit " + skip + ", " + pageSize;
+		return jdbcTemplate.query(sql, new PromotionRowMapper());
 	}
 
 }

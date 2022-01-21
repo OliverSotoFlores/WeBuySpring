@@ -1,6 +1,7 @@
 package com.xtremedreamers.webuy.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.xtremedreamers.webuy.models.PromotionEvent;
 import com.xtremedreamers.webuy.persistence.PromotionEventDao;
+import com.xtremedreamers.webuy.shared.PagedList;
 
 
 
@@ -24,9 +27,15 @@ public class PromotionEventsController {
 	PromotionEventDao promotionEventDao;
 	
 	@RequestMapping("/promotionevents")
-	public String PromotionEventsList(Model model) {
-		List<PromotionEvent> promotionEvents = promotionEventDao.findAll();
+	public String PromotionEventsList(Model model,
+			@RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(6);
+		PagedList<PromotionEvent> promotionEvents = PagedList.toPagedList(promotionEventDao, currentPage, pageSize);
+		model.addAttribute("paginationData", promotionEvents.getMetaData());
 		model.addAttribute("promotionEvents", promotionEvents);
+		System.out.println(promotionEvents);
 		return "promotions";
 	}
 	
@@ -93,8 +102,15 @@ public class PromotionEventsController {
 	}
 	
 	@RequestMapping("/searchPromotionEvent")
-	public ResponseEntity<PromotionEvent> SearchPromotion(HttpServletRequest request) {
-		PromotionEvent promotionEvent;
+	public String SearchPromotion(HttpServletRequest request, Model model) {
+		
+		List<PromotionEvent> promotionEvents = promotionEventDao.findByName(request.getParameter("search-bar"));
+		model.addAttribute("promotionEvents", promotionEvents);
+		System.out.println(promotionEvents);
+		return "promotions";
+		
+		
+		/*PromotionEvent promotionEvent;
 		try {
 			promotionEvent = promotionEventDao.findByName(request.getParameter("id"));
 			System.out.println(promotionEvent);
@@ -104,7 +120,7 @@ public class PromotionEventsController {
 		}catch(EmptyResultDataAccessException e) {
 			promotionEvent = null;
 			return ResponseEntity.badRequest().body(promotionEvent);
-		}
+		}*/
 	}
 	
 }

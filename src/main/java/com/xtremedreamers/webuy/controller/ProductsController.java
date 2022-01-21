@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,27 +48,7 @@ public class ProductsController {
 	/*
 	 * Check BigDecimal Parse
 	 */
-	@PostMapping("/admin/products/create")
-	public String CreateProduct(@ModelAttribute Product product) {
-		String name = request.getParameter("p-name");
-		String company = request.getParameter("p-company");
-		BigDecimal price = new BigDecimal(request.getParameter("p-price"));
-		String description = request.getParameter("p-description");
-		String imagePath = request.getParameter("p-image");
-		int categoryId = Integer.parseInt(request.getParameter("p-category"));
-
-		Product product = new Product();
-		product.setName(name);
-		product.setCompany(company);
-		product.setPrice(price);
-		product.setDescription(description);
-		product.setImagePath(imagePath);
-		product.setCategoryId(categoryId);
-		productDao.save(product);
-
-		return "redirect:/adminProductList";
-	}
-
+	
 	// Delete a Product
 	@RequestMapping("/deleteProduct/{id}")
 	public String DeleteProduct(@PathVariable int id) {
@@ -123,5 +104,15 @@ public class ProductsController {
 		model.addAttribute("listProducts", listProducts);
 
 		return "mainView";
+	}
+	
+	@RequestMapping("/mainview/details/{product_id}")
+	public String productDetails(Model model,
+				@PathVariable int product_id) {
+		
+		List<Product> product = productDao.findById(product_id);
+		System.out.println(product);
+		model.addAttribute("product", product);
+		return "productDetails";
 	}
 }

@@ -28,9 +28,14 @@ public class ProductDao implements GenericDao<Product, Integer> {
 	};
 
 	@Override
-	public Product findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> findById(Integer id) {
+		String sql = "SELECT p.product_id, p.product_name, "
+				+ "p.product_company, p.product_price, p.product_description, "
+				+ "p.product_image_path, pc.product_category_id FROM product p "
+				+ "INNER JOIN product_category pc ON p.product_category_id = pc.product_category_id "
+				+ "WHERE product_id = " + id;
+		
+		return jdbcTemplate.query(sql, rowMapper);
 	}
 
 	@Override

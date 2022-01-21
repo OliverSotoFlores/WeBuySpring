@@ -23,7 +23,7 @@ public class CategoryDao implements GenericDao<Category, Integer> {
     };
 
     @Override
-    public Category findById(Integer id) {
+    public List<Category> findById(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }

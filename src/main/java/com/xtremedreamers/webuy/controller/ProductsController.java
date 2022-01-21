@@ -48,7 +48,13 @@ public class ProductsController {
 	/*
 	 * Check BigDecimal Parse
 	 */
-	
+	@PostMapping("/admin/products/create")
+	public String CreateProduct(@ModelAttribute Product product) {
+		productDao.save(product);
+
+		return "redirect:/adminProductList";
+	}
+
 	// Delete a Product
 	@RequestMapping("/deleteProduct/{id}")
 	public String DeleteProduct(@PathVariable int id) {

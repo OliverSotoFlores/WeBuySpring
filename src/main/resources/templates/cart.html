@@ -20,45 +20,29 @@
         <div class="cart-items-container">
             <h1>My cart</h1>
             <form>
-                <div class="module-border-wrap">
-                    <div class="module">
-                        <div class="left-div">
-                            <img src="../img/pc.png" alt="PC image" class="img-cart" />
-                        </div>
-                        <div class="center-div">
-                            <span class="description">Name: PC Gamer 1</span>
-                            <br />
-                            <label for="item1" class="form-label">Quantity:</label>
-                            <input type="text" class="form-control" id="item1">
-                        </div>
-                        <div class="right-div">
-                            <span class="description">Price: $13.95</span>
-                            <br />
-                            <button class="btn-remove">Remove</button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="module-border-wrap">
-                    <div class="module">
-                        <div class="left-div">
-                            <img src="../img/pc.png" alt="PC image" class="img-cart" />
-                        </div>
-                        <div class="center-div">
-                            <span class="description">Name: PC Gamer 2</span>
-                            <br />
-                            <label for="item1" class="form-label">Quantity:</label>
-                            <input type="text" class="form-control" id="item1">
-                        </div>
-                        <div class="right-div">
-                            <span class="description">Price: $13.95</span>
-                            <br />
-                            <button class="btn-remove">Remove</button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
+	            <div th:each="details: ${details}">
+		            <div class="module-border-wrap" >
+	                    <div class="module">
+	                        <div class="left-div">
+	                            <img src="../img/pc.png" alt="PC image" class="img-cart" />
+	                        </div>
+	                        <div class="center-div">
+	                            <span class="description" th:text="${details.productName}"></span>
+	                            <br />
+	                            <label for="item1" class="form-label">Quantity: </label>
+	                            <input type="text" class="form-control" id="item1">
+	                        </div>
+	                        <div class="right-div">
+	                            <span class="description">Price: $13.95</span>
+	                            <br />
+	                            <button class="btn-remove">Remove</button>
+	                        </div>
+	                    </div>
+	                </div>
+	                <br>
+	            </div>
+                
+                
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="mb-3">

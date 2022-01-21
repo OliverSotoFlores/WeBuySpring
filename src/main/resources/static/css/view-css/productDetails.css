@@ -12,11 +12,13 @@
 }
 
 .price-label{
+	font-weight: bold;
+	color: #e85923;
     font-size: 20px;
 }
 
 .price-number{
-    color: var(--first-color);
+    color: #e85923;
 }
 
 .btn-custom{

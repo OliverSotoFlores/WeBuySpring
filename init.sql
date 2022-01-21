@@ -62,7 +62,7 @@ create table shopping_cart(
 );
 
 create table shopping_product_details (
-    shopping_product_details_id int primary key,
+    shopping_product_details_id int primary key auto_increment,
     quantity int not null,
     shopping_cost decimal(20,2),
     cost_after_applying_coupon decimal(20,2),

@@ -27,8 +27,10 @@ public class CartController {
 		if (cart == null) {
 			return "redirect:/signin";
 		}
+
 		List<CartDetails> details = dao.findByCartID(cart.getId());
 		model.addAttribute("details",details);
+
 		return "cart";
 	}
 }

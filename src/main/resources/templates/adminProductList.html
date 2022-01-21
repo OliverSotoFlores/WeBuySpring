@@ -47,9 +47,8 @@
 
             <article class="product-item" th:each="product: ${listProducts}">
                 <div class="product-actions">
-
-                    <span id="p-delete" class="material-icons p-action"
-                        onclick="confirm('Are you sure you want to delete this product?');">delete</span>
+                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" onclick="confirm('Are you sure you want to delete this product?');">
+                    <span id="p-delete" class="material-icons p-action">delete</span></a>
                     <span id="p-edit" th:product-name="${product.name}" th:product-company="${product.company}" th:product-price="${product.price}" th:product-description="${product.description}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'), this.getAttribute('product-description'), this.getAttribute('product-price'), this.getAttribute('product-company'))" class="material-icons p-action">edit</span>
                 </div>
                 <div class="product-img">

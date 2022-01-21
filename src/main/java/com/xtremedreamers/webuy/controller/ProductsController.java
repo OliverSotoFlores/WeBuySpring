@@ -49,20 +49,6 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(@ModelAttribute Product product) {
-		String name = request.getParameter("p-name");
-		String company = request.getParameter("p-company");
-		BigDecimal price = new BigDecimal(request.getParameter("p-price"));
-		String description = request.getParameter("p-description");
-		String imagePath = request.getParameter("p-image");
-		int categoryId = Integer.parseInt(request.getParameter("p-category"));
-
-		Product product = new Product();
-		product.setName(name);
-		product.setCompany(company);
-		product.setPrice(price);
-		product.setDescription(description);
-		product.setImagePath(imagePath);
-		product.setCategoryId(categoryId);
 		productDao.save(product);
 
 		return "redirect:/adminProductList";

@@ -1,6 +1,6 @@
 #admin-header {
     padding: 20px;
-    background-color: #0734b8;
+    padding-top: 0px;
     color: white;
 }
 
@@ -36,7 +36,7 @@ p {
 }
 
 .list-actions{
-    margin: 30px;
+    margin-bottom: 30px;
     margin-left: 10px;
 }
 
@@ -60,16 +60,19 @@ p {
 }
 
 .add-btn{
-    bottom: 30px;
-    right: 30px;
-    position: fixed;
-    z-index: 100;
-    border-radius: 100%;
+	display: inline-flex;
+    text-decoration: none;
+    font-size: 26px;
+	margin: 20px 0px;
+    border-radius: 5px;
     padding: 20px;
     color: white;
     background-color: #e85923;
     transition: all 300ms;
     cursor: pointer;
+}
+.add-btn span{
+	padding-right: 5px;
 }
 .add-btn:hover{
     background-color: white;

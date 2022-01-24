@@ -20,8 +20,9 @@
     <div th:insert="headerfooter :: admin-header"></div>
     <div class="admin-coupons">
         <section id="admin-header">
-            <h1>Promotion Event Manager</h1>
             <section class="coupon-actions">
+            	<a id="p-add" href="#" class="add-btn" onclick="showAddModalAdminProducts();"><span
+	                        class="material-icons md-36">add_circle_outline</span>New promotion event</a>
                 <form id="promotionEventSearchForm" action="searchPromotionEvent" class="coupon-form">
                     <input id="searchInput" type="text" name="search-bar" class="search-input" placeholder="Search promotion event..." />
                     <button type="submit" class="search-btn">
@@ -30,7 +31,6 @@
                         </span>
                     </button>
                 </form>
-                <a onclick="showAddModal();"><span class="material-icons md-36 add-btn">add</span></a>
             </section>
         </section>
         <section class="coupons-container">

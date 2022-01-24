@@ -1,11 +1,9 @@
 package com.xtremedreamers.webuy.controller;
 
-import java.net.http.HttpRequest;
-import java.util.List;
+
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.xtremedreamers.webuy.models.Coupon;
+import com.xtremedreamers.webuy.persistence.CategoryDao;
 import com.xtremedreamers.webuy.persistence.CouponDao;
+import com.xtremedreamers.webuy.persistence.PromotionEventDao;
 import com.xtremedreamers.webuy.shared.PagedList;
 
 @Controller
@@ -25,6 +25,12 @@ public class CouponsController {
 
 	@Autowired
 	CouponDao couponDao;
+	
+	@Autowired
+	PromotionEventDao promotionDao;
+	
+	@Autowired
+	CategoryDao categoryDao;
 
 	@RequestMapping("/coupons")
 	public String ProductsList(Model model, 
@@ -35,11 +41,13 @@ public class CouponsController {
 		PagedList<Coupon> coupons = PagedList.toPagedList(couponDao, currentPage, pageSize);
 		model.addAttribute("paginationData", coupons.getMetaData());
 		model.addAttribute("coupons", coupons);
+		model.addAttribute("promotions", promotionDao.findAll());
+		model.addAttribute("categories", categoryDao.findAll());
 		return "coupons";
 	}
 
 	@RequestMapping("/createCoupon")
-	public String CreateCoupons(HttpServletRequest request) {
+	public ResponseEntity<String> CreateCoupons(HttpServletRequest request) {
 		int coupon_id = couponDao.getLastId();
 		String coupon_name = request.getParameter("c-name");
 		int promotion_event = Integer.parseInt(request.getParameter("pe-list"));
@@ -54,8 +62,15 @@ public class CouponsController {
 		coupon.setProduct_category_id(product_category);
 		coupon.setCoupon_type(coupon_type);
 		coupon.setCoupon_discount(coupon_discount);
-		couponDao.save(coupon);
-		return "redirect:/coupons";
+		
+		try {
+			couponDao.save(coupon);
+			return ResponseEntity
+					.ok()
+					.body("OK");
+		} catch (EmptyResultDataAccessException e) {
+			return ResponseEntity.badRequest().body("Error");
+		}
 	}
 
 	@RequestMapping("/updateCoupon")
@@ -89,7 +104,6 @@ public class CouponsController {
 		Coupon coupon;
 		try {
 			coupon = couponDao.findByName(request.getParameter("id"));
-			System.out.println(coupon);
 			return ResponseEntity
 					.ok()
 					.body(coupon);

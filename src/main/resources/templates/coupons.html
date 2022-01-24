@@ -17,15 +17,15 @@
 </head>
 
 <body>
-    <header th:insert="headerfooter :: header"> </header>
-    <div th:insert="headerfooter :: admin-header"></div>
+    <header th:insert="headerfooter :: superUser-header"> </header>
     <div class="admin-coupons">
 
         <section id="admin-header">
             <section class="coupon-actions">
-            	<a id="p-add" href="#" class="add-btn" onclick="showAddCoupon();"><span
-	                        class="material-icons md-36">add_circle_outline</span>New coupon</a>
-                <form id="couponSearchForm" action="couponSearch" class="coupon-form" autocomplete="off">
+
+            	<a id="p-add" href="#" class="add-btn" onclick="showAddModalAdminProducts();"><span
+	                        class="material-icons md-36">add_circle_outline</span>New</a>
+                <form id="couponSearchForm" action="couponSearch" class="coupon-form">
                     <input id="searchInput" type="text" name="search-bar" class="search-input"
                         placeholder="Search coupon code..." />
                     <button type="submit" class="search-btn">

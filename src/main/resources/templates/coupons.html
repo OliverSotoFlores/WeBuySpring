@@ -22,8 +22,9 @@
     <div class="admin-coupons">
 
         <section id="admin-header">
-            <h1>Coupon Manager</h1>
             <section class="coupon-actions">
+            	<a id="p-add" href="#" class="add-btn" onclick="showAddModalAdminProducts();"><span
+	                        class="material-icons md-36">add_circle_outline</span>New coupon</a>
                 <form id="couponSearchForm" action="couponSearch" class="coupon-form">
                     <input id="searchInput" type="text" name="search-bar" class="search-input"
                         placeholder="Search coupon code..." />
@@ -34,7 +35,6 @@
                     </button>
 
                 </form>
-                <a href="#" onclick="showAddModal();"><span class="material-icons md-36 add-btn">add</span></a>
             </section>
         </section>
         <section class="coupons-container">

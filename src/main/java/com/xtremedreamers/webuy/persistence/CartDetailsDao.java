@@ -15,7 +15,7 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public CartDetails findById(Integer id) {
+	public List<CartDetails> findById(Integer id) {
 		return null;
 	}
 	

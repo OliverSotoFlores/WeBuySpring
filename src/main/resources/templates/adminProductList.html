@@ -21,8 +21,9 @@
     <div th:insert="headerfooter :: admin-header"></div>
     <div class="admin-product-list">
         <section id="admin-header">
-            <h1>Product Manager</h1>
             <section class="list-actions">
+            	<a id="p-add" href="#" class="add-btn" onclick="showAddModalAdminProducts();"><span
+                        class="material-icons md-36">add_circle_outline</span>New product</a>
                 <form action="" class="list-form">
                     <input type="text" name="category" placeholder="Sort by category" list="category-list">
                     <datalist id="category-list">
@@ -38,8 +39,6 @@
                     </button>
 
                 </form>
-                <a id="p-add" href="#" onclick="showAddModalAdminProducts();"><span
-                        class="material-icons md-36 add-btn">add</span></a>
             </section>
         </section>
 

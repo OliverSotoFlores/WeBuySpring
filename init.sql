@@ -128,6 +128,7 @@ insert into registered_user values (1, 'test@gmail.com', 'test123', 'Test Subjec
 insert into registered_user values (2, 'test2@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
 
 insert into shopping_cart values(1, '2022-01-18', 'in_session', 1);
+insert into shopping_cart values(2, '2022-01-18', 'in_session', 2);
 
 insert into shopping_product_details values (1, 1, 2000, 2000, 1, 1);
 insert into shopping_product_details values (2, 1, 1500, 1500, 2, 1);

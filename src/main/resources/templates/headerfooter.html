@@ -8,12 +8,13 @@
 	<div th:fragment="admin-header">
 		<nav class="navbar navbar-dark navbar-expand p-0 user-features">
 	        <div class="container-fluid">
-	        	<p></p>
-	            <ul class="navbar-nav d-none d-md-flex ml-auto">
+	            <ul class="navbar-nav d-none d-md-flex mr-auto">
 	                <li class="nav-item"><a class="nav-link" th:href="@{/admin/products}" data-abc="true">Products</a></li>
-	                <li class="nav-item"><a class="nav-link" th:href="@{/coupons}" data-abc="true">Coupons</a></li>
 	                <li class="nav-item"><a class="nav-link" th:href="@{/promotionevents}" data-abc="true">Promotion Events</a></li>
-	            </ul><!-- list-inline // -->
+	                <li class="nav-item"><a class="nav-link" th:href="@{/coupons}" data-abc="true">Coupons</a></li>
+	            </ul>
+	            <p></p>
+	            <!-- list-inline // -->
 	        </div> <!-- navbar-collapse .// -->
 	        <!-- container // -->
 	    </nav>
@@ -32,7 +33,6 @@
 		                            <option value="clothing">Clothing</option>
 		                            <option value="kitchen">Kitchen</option>
 		                        </select>
-		                        <input type="text" placeholder="Search any product..."><i class="bx bx-search"></i>
 		                    </div>
 		                </div>
 		                <div class="col-md-3 d-flex flex-row justify-content-between">

@@ -20,38 +20,8 @@
     <div>
         <header th:insert="headerfooter :: header"> </header>
         <div class="content d-flex">
-            <div class="l-navbar" id="nav-bar"
-                style="background: rgb(7,51,184);
-                                                      background: linear-gradient(rgba(7,51,184,1) 0%, rgba(122,123,186,1) 100%);">
-                <nav class="nav">
-                    <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
-                                class="nav_logo-name">Categories</span> </a>
-                        <div class="nav_list">
-                            <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 1</span> </a>
-                            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 2</span> </a>
-                            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 3</span> </a>
-                            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 4</span> </a>
-                            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 5</span> </a>
-                            <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
-                                    class="nav_name">Category 6</span> </a>
-                        </div>
-                    </div>
-                    <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">About
-                            Us</span>
-                    </a>
-                </nav>
-            </div>
             <!--Container Main start-->
             <div class="flexible-container">
-                <header class="header" id="header">
-                    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle" onclick="sideBarMenu()"></i>
-                    </div>
-                </header>
                 <div class="main">
                     <section class="list-container">
                         <article class="product-item" th:each="product: ${listProducts}">
@@ -61,7 +31,7 @@
 	                            </div>
 	                            <div class="product-wrapper">
 	                                <div class="product-info">
-	                                    <strong id="p-price">$59.99</strong>
+	                                    <strong id="p-price">$<span th:text="${product.price}"></span></strong>
 	                                    <p id="p-name" th:text="${product.name}">Product name</p>
 	                                    <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur
 	                                        adipiscing elit. Curabitur non molestie

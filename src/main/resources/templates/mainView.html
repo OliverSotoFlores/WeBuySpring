@@ -2,50 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Webuy</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/global.css">
-<link rel="stylesheet" type="text/css"
-	href="../css/view-css/adminProductList.css">
-<link rel="stylesheet" href="../css/sideBar.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webuy</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
+    <link rel="stylesheet" type="text/css" href="../css/view-css/productDetails.css">
+    <!--  --><link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
     <div>
-        <header th:insert="headerfooter :: header"> </header>
-        <div class="content d-flex">
+
+		<header th:insert="headerfooter :: normal-header"> </header>
             <!--Container Main start-->
             <div class="flexible-container">
                 <div class="main">
                     <section class="list-container">
-                        <article class="product-item" th:each="product: ${listProducts}">
-                        	<a th:href="@{/mainview/details/{product_id}(product_id=${product.id})}">
-	                            <div class="product-img">
-	                                <img src="https://via.placeholder.com/150" alt="" />
-	                            </div>
-	                            <div class="product-wrapper">
-	                                <div class="product-info">
-	                                    <strong id="p-price">$<span th:text="${product.price}"></span></strong>
-	                                    <p id="p-name" th:text="${product.name}">Product name</p>
-	                                    <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur
-	                                        adipiscing elit. Curabitur non molestie
-	                                        lectus.
-	                                        Phasellus fringilla eleifend
-	                                        velit ut rhoncus.</p>
-	                                    <p id="p-brand" th:text="${product.company}">Brand Name</p>
-	                                </div>
-	                            </div>
-                            </a>
+
+                        <article class="product-item" th:each="product: ${listProducts}" th:attr="data-id=${product.id}">
+                            <div class="product-img">
+                                <img src="https://via.placeholder.com/150" alt="" />
+                            </div>
+                            <div class="product-wrapper">
+                                <div class="product-info">
+                                    <strong id="p-price" th:text="'$' + ${product.price}"></strong>
+                                    <p id="p-name" th:text="${product.name}"></p>
+                                    <p th:text="${product.description}"></p>
+                                    <p id="p-brand" th:text="${product.company}"></p>
+                                </div>
+                            </div>
                         </article>
 					</section>
 					<section id="pagination-wrapper">
@@ -58,30 +49,29 @@
 									th:href="@{/mainview(size=${paginationData.pageSize}, page=${paginationData.currentPage-1})}"
 									tabindex="
                                         -1">Previous</a>
-								</li>
-								<li
-									th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}"
-									class="page-item"
-									th:classappend="${i==paginationData.currentPage} ? active">
-									<a class="page-link" th:text="${i}"
-									th:href="@{/mainview(size=${paginationData.pageSize}, page=${i})}">a</a>
-								</li>
-								<li class="page-item"
-									th:classappend="${!paginationData.hasNext()} ? disabled">
-									<a class="page-link"
-									th:href="@{/mainview(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
-								</li>
-							</ul>
-						</nav>
-					</section>
-				</div>
-			</div>
-		</div>
-		<footer th:insert=" headerfooter :: footer"> </footer>
-	</div>
-	<script type="text/javascript" src="../js/sideBar.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+                                </li>
+                                <li th:each="i: ${#numbers.sequence(1, paginationData.totalPages )}" class="page-item"
+                                    th:classappend="${i==paginationData.currentPage} ? active">
+                                    <a class="page-link" th:text="${i}"
+                                        th:href="@{/mainview(size=${paginationData.pageSize}, page=${i})}">a</a>
+                                </li>
+                                <li class="page-item" th:classappend="${!paginationData.hasNext()} ? disabled">
+                                    <a class="page-link"
+                                        th:href="@{/mainview(size=${paginationData.pageSize}, page=${paginationData.currentPage+1})}">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <footer th:insert=" productmodal :: modal-addCart"> </footer>
+        <footer th:insert=" headerfooter :: footer"> </footer>
+    </div>
+    <script type="text/javascript" src="../js/sideBar.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/product.js"></script>
 </body>
 
 </html>

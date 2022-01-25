@@ -216,161 +216,108 @@ input[type="text"].search-input{
     padding-top: 5px;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 101;
-    padding-top: 28px;
-    padding-bottom: 28px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #0733b8;
+  --first-color-light: #ec6f43;
+  --white-color: #f7f6fb;
+  --body-font: "Nunito", sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
 }
 
-.modal-contents{
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatefromtop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatefromtop;
-    animation-duration: 0.4s;
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 
-@-webkit-keyframes animatefromtop {
-    from {
-        top: -300px; 
-        opacity: 0;
-    }
-    to {
-        top: 0;
-        opacity: 1;
-    }
+h1 {
+  margin: 0;
+  padding: 0;
 }
 
-@keyframes animatefromtop {
-    from {
-        top: -300px;
-        opacity: 0;
-    }
-    to {
-        top: 0;
-        opacity: 1;
-    }
+.content {
+  position: relative;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.flexible-container {
+  flex-shrink: 1;
+  width: 100%;
 }
 
-.close:hover,
-.close:focus{
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.main {
+  padding: 1rem;
+  padding-left: 2rem;
 }
 
-.modal-contents h3 {
-    display: block;
-    width: 32%;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #ccc;
+a {
+  text-decoration: none;
 }
 
-.modal-contents label{
-    color: #888;
-    font-size: 15px;
+.header {
+  width: 100%;
+  height: var(--header-height);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background-color: var(--white-color);
+  z-index: var(--z-fixed);
+  transition: 0.5s;
 }
 
-.modal-contents input[type="text"],
-.modal-contents input[type="number"],
-.modal-contents textarea{
-    width: 100%;
-    background: transparent;
-    outline: none;
-    border: none;
-    border-radius: 0px;
-    padding: 8px 0px;
-    color: #4e4e4e;
-    border-bottom: 3px solid #aaa;
-    margin-bottom: 15px;
-    transition: all 400ms;
+.header_toggle {
+  color: var(--first-color);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-.modal-contents input[type="text"]:focus,
-.modal-contents input[type="number"]:focus,
-.modal-contents textarea:focus{
-    color: black;
-    border-bottom: 3px solid #ec6f43;
+.header_img {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-.modal-contents select{
-    padding: 5px;
-    margin-bottom: 15px;
-    margin-top: 8px;
-    border-radius: 5px;
-    color: #4e4e4e;
-    transition: all 400ms;
+.header_img img {
+  width: 40px;
 }
 
-.modal-contents select:focus{
-    border: 1px solid #ec6f43;
-    color: black;
+.number{
+	margin:100px;
 }
-
-.modal-contents input[type="file"]{
-    margin-top: 8px;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.modal-contents button[type="submit"]{
-    width: 100%;
+.minus, .plus{
+	cursor:pointer;
+	color:black;
+	font-weight: bold;
+	width:20px;
+	height:20px;
+	background:#f2f2f2;
+	border-radius:4px;
+	border:1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
     text-align: center;
-    font-size: 20px;
-    line-height: 22px;
-    padding: 20px 0px;
-    color: white;
-    margin-top: 10px;
-    background: linear-gradient(128deg, rgba(7,52,184,1) 0%, rgba(122,123,186,1) 100%);
 }
 
-.modal-contents span{
-    display: inline-flex;
-    vertical-align: top;
-}
-
-#editModal .modal-contents button[type="submit"]{
-    line-height: 24px;
-}
-
-@media screen and (max-width: 768px) {
-    .list-container .product-item{
-        flex-basis: 250px;
-    }
-
-    .product-info{
-        overflow: hidden;
-        line-height: 1.3rem;
-    }
-
-    .product-wrapper{
-        padding: 3px;
-    }
-
-    #p-price {
-        font-size: 20px;
-    }
+#quantity{
+	height:34px;
+    width: 100px;
+    text-align: center;
+    font-size: 26px;
+	border:1px solid #ddd;
+	border-radius:4px;
+    display: inline-block;
+    vertical-align: middle;
 }

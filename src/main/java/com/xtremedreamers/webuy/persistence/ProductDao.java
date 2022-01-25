@@ -69,7 +69,7 @@ public class ProductDao implements GenericDao<Product, Integer> {
 	}
 
 	public void deleteProduct(int id) {
-		jdbcTemplate.update("delete from product where id = " + id);
+		jdbcTemplate.update("delete from product where product_id = " + id);
 	}
 
 	@Override

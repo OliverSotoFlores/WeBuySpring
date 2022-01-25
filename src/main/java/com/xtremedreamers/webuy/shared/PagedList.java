@@ -20,6 +20,10 @@ public class PagedList<T> extends ArrayList<T> {
         var items = dao.getPagination(pageNumber, pageSize);
         return new PagedList<T>(items, count, pageNumber, pageSize);
     }
+    
+    public static <T> PagedList<T> toPagedList(List<T> items){
+    	return new PagedList<T>(items, items.size(), 1, 8);
+    }
 
     public MetaData getMetaData() {
         return metaData;

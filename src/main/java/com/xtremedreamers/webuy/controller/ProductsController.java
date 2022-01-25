@@ -50,9 +50,10 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(@ModelAttribute Product product) {
-		productDao.save(product);
 
-		return "redirect:/adminProductList";
+		productDao.save(product);
+		
+		return "redirect:/admin/products";
 	}
 
 	// Delete a Product
@@ -63,7 +64,7 @@ public class ProductsController {
 		int p_id = id;
 		productDao.deleteProduct(p_id);
 
-		return "redirect:/adminProductList";
+		return "redirect:/admin/products";
 	}
 
 	@GetMapping("/products")

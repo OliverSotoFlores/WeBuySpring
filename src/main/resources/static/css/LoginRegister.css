@@ -96,12 +96,11 @@ nav {
 
 .login-container a{
     text-decoration: none;
-    color: white;
+    color: #0734b8;
 }
 
 .login-container a:hover{
-    text-decoration: none;
-    color: #0734b8;
+    text-decoration: underline;
 }
 
 
@@ -154,12 +153,11 @@ nav {
 
 .register-container a{
     text-decoration: none;
-    color: white;
+    color: #0734b8;
 }
 
 .register-container a:hover{
-    text-decoration: none;
-    color: #0734b8;
+    text-decoration: underline;
 }
 
 

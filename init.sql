@@ -90,8 +90,8 @@ insert into admin values (6, 'Hazzim', 'hazzim@gmail.com', 'pass123');
 
 insert into product_category values (1, 'Electronics', 'Electronics category');
 insert into product_category values (2, 'Videogames', 'Videogames category');
-insert into product_category values (3, 'Cooking', 'Cooking category');
-insert into product_category values (4, 'Cloths', 'Cloths category');
+insert into product_category values (3, 'Kitchen', 'Kitchen category');
+insert into product_category values (4, 'Clothing', 'Clothing category');
 insert into product_category values (5, 'Toys', 'Toys category');
 
 insert into promotion_event values (1, 'Christmas2021', 'Christmas of 2021', '2021-12-21', '2022-01-21', 'valid', 1);

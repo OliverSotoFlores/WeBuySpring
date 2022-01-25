@@ -1,6 +1,7 @@
 package com.xtremedreamers.webuy.controller;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,7 +101,7 @@ public class CouponsController {
 	}
 
 	@RequestMapping("/couponSearch")
-	public ResponseEntity<Coupon> ProductSearch(HttpServletRequest request) {
+	public ResponseEntity<Coupon> CouponSearch(HttpServletRequest request) {
 		Coupon coupon;
 		try {
 			coupon = couponDao.findByName(request.getParameter("id"));
@@ -112,5 +113,19 @@ public class CouponsController {
 			return ResponseEntity.badRequest().body(coupon);
 		}
 
+	}
+	
+	@RequestMapping("/availablecoupons")
+	public ResponseEntity<List<Coupon>> ProductSearch(HttpServletRequest request) {
+		List<Coupon> coupons;
+		coupons = couponDao.findCouponsByCategory(Integer.parseInt(request.getParameter("id")));
+		if(coupons.size()>0) {
+			return ResponseEntity
+					.ok()
+					.body(coupons);
+		}
+		else {
+			return ResponseEntity.badRequest().body(coupons);
+		}
 	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,9 +53,10 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(@ModelAttribute Product product) {
-		productDao.save(product);
 
-		return "redirect:/adminProductList";
+		productDao.save(product);
+		
+		return "redirect:/admin/products";
 	}
 
 	// Delete a Product
@@ -65,7 +67,7 @@ public class ProductsController {
 		int p_id = id;
 		productDao.deleteProduct(p_id);
 
-		return "redirect:/adminProductList";
+		return "redirect:/admin/products";
 	}
 
 	@GetMapping("/products")
@@ -114,13 +116,12 @@ public class ProductsController {
 		return "mainView";
 	}
 	
-	@RequestMapping("/mainview/details/{product_id}")
-	public String productDetails(Model model,
-				@PathVariable int product_id) {
-		
-		List<Product> product = productDao.findById(product_id);
-		System.out.println(product);
-		model.addAttribute("product", product);
-		return "productDetails";
+	@RequestMapping("/productdetails")
+	public ResponseEntity<List<Product>> productDetails(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<Product> product = productDao.findById(id);
+		return ResponseEntity
+				.ok()
+				.body(product);
 	}
 }

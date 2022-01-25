@@ -141,4 +141,10 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 		return jdbcTemplate.query(sql, new PromotionRowMapper());
 	}
 
+	@Override
+	public List<PromotionEvent> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

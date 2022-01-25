@@ -15,6 +15,8 @@ public interface GenericDao<T, K extends Serializable> {
 	int count();
 
 	List<T> getPagination(int pageNumber, int pageSize);
+	
+	List<T> getPagination(int pageNumber, int pageSize, String sortByName);
 
 	K save(T instance);
 

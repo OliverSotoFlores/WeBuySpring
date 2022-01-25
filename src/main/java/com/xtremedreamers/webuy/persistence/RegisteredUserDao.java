@@ -84,4 +84,10 @@ public class RegisteredUserDao implements GenericDao<RegisteredUser, Integer>{
 		
 	}
 
+	@Override
+	public List<RegisteredUser> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

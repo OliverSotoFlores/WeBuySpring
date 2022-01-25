@@ -20,6 +20,12 @@ public class PagedList<T> extends ArrayList<T> {
         var items = dao.getPagination(pageNumber, pageSize);
         return new PagedList<T>(items, count, pageNumber, pageSize);
     }
+    
+    public static <T> PagedList<T> toPagedList(GenericDao<T, Integer> dao, int pageNumber, int pageSize, String sortByName) {
+    	int count = dao.count();
+    	var items = dao.getPagination(pageNumber, pageSize, sortByName);
+    	return new PagedList<T>(items, count, pageNumber, pageSize);
+    }
 
     public MetaData getMetaData() {
         return metaData;

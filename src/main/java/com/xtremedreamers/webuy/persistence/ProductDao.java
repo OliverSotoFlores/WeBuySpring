@@ -37,6 +37,16 @@ public class ProductDao implements GenericDao<Product, Integer> {
 		
 		return jdbcTemplate.query(sql, rowMapper);
 	}
+	
+	public List<Product> findByCategory(String category_name){
+		String sql = "SELECT p.product_id, p.product_name, "
+				+ "p.product_company, p.product_price, p.product_description, "
+				+ "p.product_image_path, pc.product_category_id FROM product p "
+				+ "INNER JOIN product_category pc ON p.product_category_id = pc.product_category_id "
+				+ "WHERE pc.category_name = " + category_name;
+		
+		return jdbcTemplate.query(sql, rowMapper);
+	}
 
 	@Override
 	public List<Product> findAll() {
@@ -103,6 +113,21 @@ public class ProductDao implements GenericDao<Product, Integer> {
 		String sql = "SELECT product_id, product_name, "
 				+ "product_company, product_price, product_description, "
 				+ "product_image_path, product_category_id FROM product LIMIT " + skip + ", " + pageSize;
+
+		List<Product> results = jdbcTemplate.query(sql, rowMapper);
+		return results;
+	}
+
+	@Override
+	public List<Product> getPagination(int pageNumber, int pageSize, String sortByName) {
+		int skip = (pageNumber - 1) * pageSize;
+
+		String sql = "SELECT product_id, product_name, "
+				+ "p.product_company, p.product_price, p.product_description, "
+				+ "p.product_image_path, p.product_category_id FROM product p "
+				+ "INNER JOIN product_category pc ON p.product_category_id = pc.product_category_id "
+				+ "WHERE pc.category_name = '" + sortByName + "' "
+				+ "LIMIT " + skip + ", " + pageSize;
 
 		List<Product> results = jdbcTemplate.query(sql, rowMapper);
 		return results;

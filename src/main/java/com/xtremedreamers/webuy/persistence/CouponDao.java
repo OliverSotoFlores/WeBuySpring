@@ -143,4 +143,10 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 		return jdbcTemplate.query(sql, new CouponRowMapper());
 	}
 
+	@Override
+	public List<Coupon> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

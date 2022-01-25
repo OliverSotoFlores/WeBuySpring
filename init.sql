@@ -66,7 +66,7 @@ create table shopping_product_details (
     quantity int not null,
     shopping_cost decimal(20,2),
     cost_after_applying_coupon decimal(20,2),
-    product_id int not null unique,
+    product_id int not null,
     foreign key(product_id) references product(product_id),
     shopping_cart_id int not null,
     foreign key (shopping_cart_id) references shopping_cart(shopping_cart_id)

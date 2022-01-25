@@ -23,7 +23,7 @@ public class RegisteredUserController {
 	@Autowired
 	CartDao cartDao;
 	
-	@PostMapping("/login")
+	@PostMapping("/index")
 	public String login(HttpServletRequest request, HttpSession session) {
 		request.getSession();
 		if(session.getAttribute("user") != null) {
@@ -48,7 +48,7 @@ public class RegisteredUserController {
 					return "redirect:/signin";
 				}
 			}
-			return "redirect:/";
+			return "index";
 		}catch(EmptyResultDataAccessException e) {
 			session.setAttribute("error", "Error with provided credentials. Please verify them.");
 			return "redirect:/signin";

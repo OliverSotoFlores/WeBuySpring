@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="modal-addCart">
+		<div class="modal" id="modalAddCart" tabindex="-1">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 style="color:black">Add to cart?</h4>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="card mb-3 card-custom">
+		            <div class="row g-0">
+		                <div class="col-md-4 d-flex justify-content-center">
+		                    <img src="http://placecorgi.com/320" class="img-fluid rounded-start img-custom" alt="...">
+		                </div>
+		                <div class="col-md-8">
+		                    <div class="card-body">
+		                        <h5 style="color:black"></h5>
+		                        <p class="price-label">Price: $<span class="price-number">50</span></p>
+		                        <p class="card-text" style="color:black">This is a wider card with supporting text below as a natural lead-in to
+		                            additional content. This content is a little bit longer.</p>
+		                            <div class="number">
+										<span class="minus">-</span>
+										<input id="quantity" type="text" value="1"/>
+										<span class="plus">+</span>
+									</div>
+
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Add</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

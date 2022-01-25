@@ -62,7 +62,7 @@ create table shopping_cart(
 );
 
 create table shopping_product_details (
-    shopping_product_details_id int primary key,
+    shopping_product_details_id int primary key auto_increment,
     quantity int not null,
     shopping_cost decimal(20,2),
     cost_after_applying_coupon decimal(20,2),
@@ -90,8 +90,8 @@ insert into admin values (6, 'Hazzim', 'hazzim@gmail.com', 'pass123');
 
 insert into product_category values (1, 'Electronics', 'Electronics category');
 insert into product_category values (2, 'Videogames', 'Videogames category');
-insert into product_category values (3, 'Cooking', 'Cooking category');
-insert into product_category values (4, 'Cloths', 'Cloths category');
+insert into product_category values (3, 'Kitchen', 'Kitchen category');
+insert into product_category values (4, 'Clothing', 'Clothing category');
 insert into product_category values (5, 'Toys', 'Toys category');
 
 insert into promotion_event values (1, 'Christmas2021', 'Christmas of 2021', '2021-12-21', '2022-01-21', 'valid', 1);
@@ -128,3 +128,8 @@ insert into registered_user values (1, 'test@gmail.com', 'test123', 'Test Subjec
 insert into registered_user values (2, 'test2@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
 
 insert into shopping_cart values(1, '2022-01-18', 'in_session', 1);
+insert into shopping_cart values(2, '2022-01-18', 'in_session', 2);
+
+insert into shopping_product_details values (1, 1, 2000, 2000, 1, 1);
+insert into shopping_product_details values (2, 1, 1500, 1500, 2, 1);
+insert into shopping_product_details values (3, 1, 15, 15, 4, 2);

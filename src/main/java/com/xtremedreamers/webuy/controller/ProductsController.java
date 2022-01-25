@@ -50,7 +50,7 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(@ModelAttribute Product product) {
-		System.out.println(product);
+
 		productDao.save(product);
 		
 		return "redirect:/admin/products";
@@ -111,5 +111,15 @@ public class ProductsController {
 		model.addAttribute("listProducts", listProducts);
 
 		return "mainView";
+	}
+	
+	@RequestMapping("/mainview/details/{product_id}")
+	public String productDetails(Model model,
+				@PathVariable int product_id) {
+		
+		List<Product> product = productDao.findById(product_id);
+		System.out.println(product);
+		model.addAttribute("product", product);
+		return "productDetails";
 	}
 }

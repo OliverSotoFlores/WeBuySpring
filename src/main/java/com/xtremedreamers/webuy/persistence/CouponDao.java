@@ -16,7 +16,7 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public Coupon findById(Integer id) {
+	public List<Coupon> findById(Integer id) {
 		// TODO Auto-generated method stub
 		String query = "select c.coupon_id,"
 				+ "c.coupon_name,"
@@ -31,7 +31,7 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 				+ "inner join product_category pc on c.product_category_id = pc.product_category_id "
 				+ "WHERE c.coupon_id = ?";
 		Coupon c = jdbcTemplate.queryForObject(query, new Object[] { id }, new CouponRowMapper());
-		return c;
+		return (List<Coupon>) c;
 	}
 
 	public Coupon findByName(String name) {

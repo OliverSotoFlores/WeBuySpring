@@ -17,7 +17,7 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public PromotionEvent findById(Integer id) {
+	public List<PromotionEvent> findById(Integer id) {
 		// TODO Auto-generated method stub
 		String query = "SELECT promotion_event_id, "
 				+ "promotion_event_name, "
@@ -31,7 +31,7 @@ public class PromotionEventDao implements GenericDao<PromotionEvent, Integer> {
 
 		PromotionEvent promo = jdbcTemplate.queryForObject(query, new Object[] { id }, new PromotionRowMapper());
 
-		return promo;
+		return (List<PromotionEvent>) promo;
 	}
 	
 	public List<PromotionEvent> findByName(String name) {

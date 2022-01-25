@@ -15,7 +15,7 @@ public class RegisteredUserDao implements GenericDao<RegisteredUser, Integer>{
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public RegisteredUser findById(Integer id) {
+	public List<RegisteredUser> findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

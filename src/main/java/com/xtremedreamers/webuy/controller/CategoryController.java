@@ -25,7 +25,7 @@ public class CategoryController {
 	@Autowired
 	CategoryDao categoryDao;
 	
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String categoryList(Model model) {
 		List<Category> categories = categoryDao.findAll();
 		model.addAttribute("categories", categories);

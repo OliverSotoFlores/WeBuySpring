@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +31,6 @@ public class ProductsController {
 
 	@Autowired
 	CategoryDao categoryDao;
-
-	@RequestMapping("/")
-	public String ProductsList() {
-		List<Product> products = productDao.findAll();
-		return "index";
-	}
 
 	@PostMapping("/products/new")
 	public String createProduct(Model model) {
@@ -113,13 +108,12 @@ public class ProductsController {
 		return "mainView";
 	}
 	
-	@RequestMapping("/mainview/details/{product_id}")
-	public String productDetails(Model model,
-				@PathVariable int product_id) {
-		
-		List<Product> product = productDao.findById(product_id);
-		System.out.println(product);
-		model.addAttribute("product", product);
-		return "productDetails";
+	@RequestMapping("/productdetails")
+	public ResponseEntity<List<Product>> productDetails(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<Product> product = productDao.findById(id);
+		return ResponseEntity
+				.ok()
+				.body(product);
 	}
 }

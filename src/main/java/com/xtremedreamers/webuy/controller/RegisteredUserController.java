@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.xtremedreamers.webuy.models.Cart;
@@ -53,5 +54,17 @@ public class RegisteredUserController {
 			session.setAttribute("error", "Error with provided credentials. Please verify them.");
 			return "redirect:/signin";
 		}
+	}
+	
+	@GetMapping("/logout")
+	public String logout( HttpSession session) {
+		
+		if(session.getAttribute("user") != null) {
+			session.removeAttribute("user");
+		}
+		if(session.getAttribute("cart") != null) {
+			session.removeAttribute("cart");
+		}
+		return "redirect:/signin";
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,13 @@ public class ProductsController {
 
 	@Autowired
 	CategoryDao categoryDao;
+
+	@RequestMapping("/")
+	public String ProductsList(HttpServletRequest request, HttpSession session) {
+		request.setAttribute("session", session.getAttribute("user"));
+		List<Product> products = productDao.findAll();
+		return "index";
+	}
 
 	@PostMapping("/products/new")
 	public String createProduct(Model model) {

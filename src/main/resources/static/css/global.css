@@ -23,14 +23,10 @@ footer{
     padding: 10px;
 }
 
-.user-features {
-	background-color: rgba(7,52,184,1);
-	border-bottom: 1px solid rgba(0,0,0,0.3);
-	box-shadow: 1px 7px 20px 1px rgba(0,0,0,0.3);
-}
+
 
 .user-features .nav-item .nav-link{
-	color: white;
+	color: black;
 }
 
 .user-features .nav-item .nav-link:hover{

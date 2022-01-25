@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,8 @@ public class ProductsController {
 	CategoryDao categoryDao;
 
 	@RequestMapping("/")
-	public String ProductsList() {
+	public String ProductsList(HttpServletRequest request, HttpSession session) {
+		request.setAttribute("session", session.getAttribute("user"));
 		List<Product> products = productDao.findAll();
 		return "index";
 	}

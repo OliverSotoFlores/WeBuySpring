@@ -22,14 +22,26 @@
 		                <div class="col-md-8">
 		                    <div class="card-body">
 		                        <h5 style="color:black"></h5>
-		                        <p class="price-label">Price: $<span class="price-number">50</span></p>
-		                        <p class="card-text" style="color:black">This is a wider card with supporting text below as a natural lead-in to
-		                            additional content. This content is a little bit longer.</p>
-		                            <div class="number">
-										<span class="minus">-</span>
-										<input id="quantity" type="text" value="1"/>
-										<span class="plus">+</span>
-									</div>
+		                        <p class="price-label">Price: $
+		                        <span id="priceDetails" class="price-number"></span>
+		                        <span id="arrowPrice" class="price-number" hidden>=> $</span> 
+		                        <span id="newPriceDetails" class="price-number" hidden></span>
+		                        </p>
+		                        <p class="card-text" style="color:black" id="descriptionDetails"></p>
+		                        <div class="form-floating">
+								  <select class="form-select" id="promotionCodeSelect" aria-label="Promotion code">
+								    
+								  </select>
+								  <label for="promotionCodeSelect" style="color:black">Promotion code</label>
+								</div>
+	                            <div class="number">
+	                            	<span style="color:black; display: block;">Quantity:</span>
+									<span class="minus">-</span>
+									<input id="quantity" type="text" value="1"/>
+									<span class="plus">+</span>
+								</div>
+								
+								<p class="price-label">Total: $<span id="totalPriceDetails" class="price-number"></span></p>
 
 		                    </div>
 		                </div>

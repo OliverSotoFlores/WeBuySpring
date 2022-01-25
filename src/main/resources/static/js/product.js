@@ -1,6 +1,40 @@
 $(".product-item").click(function(){
-	$("#modalAddCart").modal("show");
-	$(this).data("id");
+	let id = $(this).data("id");
+	let categoryId = $(this).data("idcategory");
+	let $sR = $("#promotionCodeSelect").empty();
+	$.ajax({
+		url: 'productdetails',
+        data: {id:id},
+        contentType: 'application/json; charset=utf-8',
+        success: function (data, textStatus, xhr) {
+			$.each(data, function(index, item){
+				$("#priceDetails").text(item.price);
+				$("#descriptionDetails").text(item.description);
+				setTotal(item.price);
+			});
+			$.ajax({
+				url: 'availablecoupons',
+		        data: {id:categoryId},
+		        contentType: 'application/json; charset=utf-8',
+		        success: function (data, textStatus, xhr) {
+					$.each(data, function (index, value){
+						if(index == 0){
+							$sR.append($("<option></option>").attr({"value":0,
+																"data-discount":0}).text("No promotion"));
+						}
+						$sR.append($("<option></option>").attr({"value":value.coupon_id,
+																"data-discount":value.coupon_discount}).text(value.coupon_name + " - " + value.coupon_discount + "%"));
+					});
+		        },error: function (data, textStatus, xhr) {
+					$sR.append($("<option></option>").attr({"value":0,
+															"data-discount":0}).text("No promotions available"));
+				}
+			});
+            $("#modalAddCart").modal("show");
+        },
+	});
+	
+	
 });
 
 $('.minus').click(function () {
@@ -8,12 +42,62 @@ $('.minus').click(function () {
 	var count = parseInt($input.val()) - 1;
 	count = count < 1 ? 1 : count;
 	$input.val(count);
+	multiplyQuantity(count);
 	$input.change();
 	return false;
 });
 $('.plus').click(function () {
 	var $input = $(this).parent().find('input');
-	$input.val(parseInt($input.val()) + 1);
+	var newVal = parseInt($input.val()) + 1;
+	$input.val(newVal);
+	multiplyQuantity(newVal)
 	$input.change();
 	return false;
 });
+
+$("#promotionCodeSelect").change(function(){
+	let option = $('option:selected', this).data('discount');
+	$("#quantity").val(1);
+	if(option>0){
+		$("#priceDetails").addClass("line-through");
+		let originalPrice = $("#priceDetails").text();
+		let newPrice = originalPrice-((option / 100)*originalPrice);
+		$("#newPriceDetails").text(newPrice);
+		setTotal(newPrice);
+		$("#arrowPrice").prop("hidden",false);
+		$("#newPriceDetails").prop("hidden",false);
+	}else{
+		setTotal($("#priceDetails").text());
+		removeLineThrough();
+		eraseNewPrice();
+	}
+});
+
+$("#modalAddCart").on('hidden.bs.modal',function(){
+	removeLineThrough();
+	eraseNewPrice();
+});
+
+function eraseNewPrice(){
+	$("#newPriceDetails").text("");
+	$("#arrowPrice").prop("hidden",true);
+	$("#newPriceDetails").prop("hidden",true);
+}
+function removeLineThrough(){
+	if($("#priceDetails").hasClass("line-through")){
+		$("priceSign").removeClass("line-through");
+		$("#priceDetails").removeClass("line-through");
+	}
+}
+function multiplyQuantity(q){
+	if(! $("#priceDetails").hasClass("line-through")){
+		setTotal($("#priceDetails").text()*q);
+	}else{
+		setTotal($("#newPriceDetails").text()*q);
+	}
+	
+}
+
+function setTotal(total){
+	$("#totalPriceDetails").text(total);
+}

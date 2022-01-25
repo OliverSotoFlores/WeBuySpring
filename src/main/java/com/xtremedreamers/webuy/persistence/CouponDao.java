@@ -51,6 +51,23 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 		Coupon c = jdbcTemplate.queryForObject(query, new Object[] { name }, new CouponRowMapper());
 		return c;
 	}
+	
+	public List<Coupon> findCouponsByCategory(int id){
+		String query = "select c.coupon_id,"
+				+ "c.coupon_name,"
+				+ "c.coupon_type,"
+				+ "c.coupon_discount,"
+				+ "c.promotion_event_id,"
+				+ "c.product_category_id,"
+				+ "p.promotion_event_name,"
+				+ "pc.category_name "
+				+ "from coupon c "
+				+ "inner join promotion_event p on c.promotion_event_id = p.promotion_event_id "
+				+ "inner join product_category pc on c.product_category_id = pc.product_category_id "
+				+ "WHERE c.product_category_id = "+ id + " "
+				+ "AND c.coupon_type = 'open'";
+		return jdbcTemplate.query(query, new CouponRowMapper());
+	}
 
 	@Override
 	public List<Coupon> findAll() {

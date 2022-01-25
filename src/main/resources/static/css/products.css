@@ -295,7 +295,8 @@ a {
 }
 
 .number{
-	margin:100px;
+	margin-top:20px;
+	margin-bottom:20px;
 }
 .minus, .plus{
 	cursor:pointer;
@@ -312,12 +313,16 @@ a {
 }
 
 #quantity{
-	height:34px;
+	height:30px;
     width: 100px;
     text-align: center;
-    font-size: 26px;
+    font-size: 22px;
 	border:1px solid #ddd;
 	border-radius:4px;
     display: inline-block;
     vertical-align: middle;
+}
+
+.line-through{
+	text-decoration: line-through;
 }

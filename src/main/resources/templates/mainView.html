@@ -48,9 +48,23 @@
 	            	</nav>
             	</div>
                 <div class="main">
+                    <div class="col-8">
+                        <section class="list-actions">
+                            <form action="" class="list-form">
+                                <input type="text" name="search-bar" class="search-input"
+                                    placeholder="Search product..." />
+                                <button type="submit" class="search-btn">
+                                    <span class="material-icons">
+                                        search
+                                    </span>
+                                </button>
+                            </form>
+                        </section>
+                    </div>
+                    <div class="col-4"></div>
                     <section class="list-container">
+                        <article class="product-item" th:each="product: ${listProducts}" th:attr="data-id=${product.id}, data-idcategory=${product.categoryId}">
 
-                        <article class="product-item" th:each="product: ${listProducts}" th:attr="data-id=${product.id}">
                             <div class="product-img">
                                 <img src="https://via.placeholder.com/150" alt="" />
                             </div>

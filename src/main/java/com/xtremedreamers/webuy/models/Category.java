@@ -4,6 +4,7 @@ public class Category {
     private int id;
     private String name;
     private String description;
+    private String imagePath;
 
     public int getId() {
         return id;
@@ -28,5 +29,18 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imagePath="+ imagePath +"]";
+	}
 
 }

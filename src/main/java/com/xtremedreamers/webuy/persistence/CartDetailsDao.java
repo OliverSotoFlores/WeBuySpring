@@ -80,5 +80,11 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<CartDetails> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

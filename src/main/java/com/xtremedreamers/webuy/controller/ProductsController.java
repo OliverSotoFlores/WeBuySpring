@@ -33,6 +33,7 @@ public class ProductsController {
 	@Autowired
 	CategoryDao categoryDao;
 
+
 	@RequestMapping("/")
 	public String ProductsList(HttpServletRequest request, HttpSession session) {
 		request.setAttribute("session", session.getAttribute("user"));

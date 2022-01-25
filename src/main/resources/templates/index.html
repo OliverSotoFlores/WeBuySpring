@@ -28,46 +28,12 @@
 				<h3>Featured categories</h3>
 			</div>
 			<ul>
-				<li>
-					<a href="#">
+				<li th:each="category: ${categories}" th:attr="data-id=${category.id}">
+					<a th:href="@{/mainview/{category_name}(category_name=${category.name})}">
 						<span class="featured-category">
-							<span class="material-icons md-48">headphones</span>
+							<span class="material-icons md-48" th:text="${category.imagePath}">category_image</span>
 						</span>
-						<h5>Electronics</h5>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="featured-category">
-							<span class="material-icons md-48">checkroom</span>
-						</span>
-						<h5>Clothing</h5>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="featured-category">
-							<span class="material-icons md-48">blender</span>
-						</span>
-						<h5>Kitchen</h5>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="featured-category">
-							<span class="featured-category">
-								<span class="material-icons md-48">computer</span>
-							</span>
-						</span>
-						<h5>Personal Computers</h5>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="featured-category">
-							<span class="material-icons md-48">smart_toy</span>
-						</span>
-						<h5>Toys</h5>
+						<h5 th:text="${category.name}">Category Name</h5>
 					</a>
 				</li>
 			</ul>

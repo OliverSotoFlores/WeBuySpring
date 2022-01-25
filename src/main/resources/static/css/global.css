@@ -32,3 +32,22 @@ footer{
 .user-features .nav-item .nav-link:hover{
 	color: #ec6f43;
 }
+
+#breadcrumb-container {
+	margin-left: 2.55rem;
+    margin-top: 1.25rem;
+    font-size: 20px;
+}
+
+.breadcrumb-link {
+	text-decoration: none;
+	color: #e85923;
+}
+
+.breadcrumb-link:hover {
+	color: #ec6f43;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+}

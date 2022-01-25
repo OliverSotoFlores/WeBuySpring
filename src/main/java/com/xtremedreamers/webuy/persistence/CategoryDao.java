@@ -19,6 +19,7 @@ public class CategoryDao implements GenericDao<Category, Integer> {
         category.setId(rs.getInt(1));
         category.setName(rs.getString(2));
         category.setDescription(rs.getString(3));
+        category.setImagePath(rs.getString(4));       
         return category;
     };
 
@@ -30,7 +31,7 @@ public class CategoryDao implements GenericDao<Category, Integer> {
 
     @Override
     public List<Category> findAll() {
-        String sql = "SELECT product_category_id, category_name, category_description from product_category";
+        String sql = "SELECT product_category_id, category_name, category_description, category_image_path from product_category";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
@@ -75,5 +76,11 @@ public class CategoryDao implements GenericDao<Category, Integer> {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public List<Category> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -8,7 +8,8 @@ create table admin(
 create table product_category (
     product_category_id int primary key,
     category_name varchar(15) not null unique,
-    category_description varchar(30)
+    category_description varchar(30),
+    category_image_path varchar(255)
 );
 
 create table product (
@@ -88,11 +89,11 @@ insert into admin values (4, 'Carlos', 'carlos@gmail.com', 'pass123');
 insert into admin values (5, 'Alejandro', 'alejandro@gmail.com', 'pass123');
 insert into admin values (6, 'Hazzim', 'hazzim@gmail.com', 'pass123');
 
-insert into product_category values (1, 'Electronics', 'Electronics category');
-insert into product_category values (2, 'Videogames', 'Videogames category');
-insert into product_category values (3, 'Kitchen', 'Kitchen category');
-insert into product_category values (4, 'Clothing', 'Clothing category');
-insert into product_category values (5, 'Toys', 'Toys category');
+insert into product_category values (1, 'Electronics', 'Electronics category','headphones');
+insert into product_category values (2, 'Videogames', 'Videogames category', 'sports_esports');
+insert into product_category values (3, 'Kitchen', 'Kitchen category', 'blender');
+insert into product_category values (4, 'Clothing', 'Clothing category', 'checkroom');
+insert into product_category values (5, 'Toys', 'Toys category', 'smart_toy');
 
 insert into promotion_event values (1, 'Christmas2021', 'Christmas of 2021', '2021-12-21', '2022-01-21', 'valid', 1);
 insert into promotion_event values (2, 'Christmas2020', 'Christmas of 2020', '2020-12-21', '2021-01-21', 'expired', 1);

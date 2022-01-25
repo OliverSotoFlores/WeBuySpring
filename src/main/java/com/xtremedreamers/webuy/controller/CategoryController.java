@@ -35,15 +35,11 @@ public class CategoryController {
 	@RequestMapping("/mainview/{category_name}")
 	public String categorySearch(
 			Model model,
-			@RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size,
 			@PathVariable String category_name) {
-		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(8);
+		String category = category_name;
 
-		PagedList<Product> listSortedProducts = PagedList.toPagedList(productDao, currentPage, pageSize, category_name);
-		System.out.println(listSortedProducts);
-		model.addAttribute("paginationData", listSortedProducts.getMetaData());
+		List<Product> listSortedProducts = productDao.findByCategory(category_name);
+		model.addAttribute("category_name", category);
 		model.addAttribute("listProducts", listSortedProducts);
 		
 		return "mainView";

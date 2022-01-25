@@ -43,7 +43,7 @@ public class ProductDao implements GenericDao<Product, Integer> {
 				+ "p.product_company, p.product_price, p.product_description, "
 				+ "p.product_image_path, pc.product_category_id FROM product p "
 				+ "INNER JOIN product_category pc ON p.product_category_id = pc.product_category_id "
-				+ "WHERE pc.category_name = " + category_name;
+				+ "WHERE pc.category_name = '" + category_name + "'";
 		
 		return jdbcTemplate.query(sql, rowMapper);
 	}

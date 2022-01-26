@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="modal-add">
+		<div class="modal fade" id="addPromotionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Create New Promotion Event</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <form action="createPromotionEvent" autocomplete="off">
+			      <div class="modal-body">
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="promotion-event-name" name="promotion-event-name" placeholder="Type promotion event name here">
+							  <label for="promotion-event-name">Name</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="promotion-event-description" name="promotion-event-description" placeholder="Type promotion event description here">
+							  <label for="promotion-event-description">Description</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="date" class="form-control" id="promotion-event-start-date" name="promotion-event-start-date"  value="2022-01-01">
+							  <label for="promotion-event-start-date">Start date</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="date" class="form-control" id="promotion-event-end-date" name="promotion-event-end-date" value="2022-01-01">
+							  <label for="promotion-event-end-date">End date</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="form-floating mb-3">
+								<select class="form-select" id="promotion-event-status" name="promotion-event-status" aria-label="Promotion Event">
+								    <option disabled selected>Select coupon type</option>
+		                			<option value="valid" selected>Valid</option>
+			                    	<option value="expired">Expired</option>
+			                    	<option value="cancelled">Cancelled</option>
+							  	</select>
+							  	<label for="promotion-event-status">Status</label>
+							</div>
+			      		</div>
+				      </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary" >Create</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	
+	<div th:fragment="modal-edit">
+		<div class="modal fade" id="editPromotionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Edit Promotion Event</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <form action="updatePromotionEvent" autocomplete="off">
+			      <div class="modal-body">
+			      	<input type="hidden" id="edit-element-id" name="promotional-event-id"/>
+                	<input type="hidden" id="edit-admin-id" name="admin-id"/>
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="promo-name" name="promotion-event-name" placeholder="Type promotion event name here">
+							  <label for="promotion-event-name">Name</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="promo-desc" name="promotion-event-description" placeholder="Type promotion event description here">
+							  <label for="promotion-event-description">Description</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="date" class="form-control" id="promo-start-date" name="promotion-event-start-date"  value="2022-01-01">
+							  <label for="promotion-event-start-date">Start date</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="date" class="form-control" id="promo-end-date" name="promotion-event-end-date" value="2022-01-01">
+							  <label for="promotion-event-end-date">End date</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="form-floating mb-3">
+								<select class="form-select" id="status-dropdown" name="promotion-event-status" aria-label="Promotion Event">
+								    <option disabled selected>Select coupon type</option>
+		                			<option value="valid" selected>Valid</option>
+			                    	<option value="expired">Expired</option>
+			                    	<option value="cancelled">Cancelled</option>
+							  	</select>
+							  	<label for="promotion-event-status">Status</label>
+							</div>
+			      		</div>
+				      </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary" >Create</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	<div th:fragment="modal-details">
+		<div class="modal fade" id="couponDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Coupon Details</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+			      <div class="row">
+		      		<div class="col-md-6">
+		      			<div class="form-floating mb-3">
+						  <input type="text" class="form-control" id="couponNameS" placeholder="Coupon name" disabled>
+						  <label for="couponNameS">Coupon name</label>
+						</div>
+		      		</div>
+		      		<div class="col-md-6">
+		      			<div class="form-floating">
+							<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="couponDiscountS" placeholder="Coupon name" disabled>
+							  <label for="couponDiscountS">Coupon Discount %</label>
+							</div>
+						</div>
+		      		</div>
+			      </div>
+			      <div class="row">
+		      		<div class="col-md-6">
+		      			<div class="form-floating mb-3">
+						  <input type="text" class="form-control" id="couponPromotionS" placeholder="Coupon name" disabled>
+						  <label for="couponPromotionS">Promotion Event</label>
+						</div>
+		      		</div>
+		      		<div class="col-md-6">
+		      			<div class="form-floating mb-3">
+						  <input type="text" class="form-control" id="couponCategoryS" placeholder="Coupon name" disabled>
+						  <label for="couponCategoryS">Category</label>
+						</div>
+		      		</div>
+			      </div>
+			      <div class="row">
+		      		<div class="col-md-12">
+		      			<div class="form-floating mb-3">
+						  <input type="text" class="form-control" id="couponTypeS" placeholder="Coupon Discount" disabled>
+						  <label for="couponTypeS">Coupon Type</label>
+						</div>
+		      		</div>
+			      </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	<div th:fragment="modal-noData">
+		<div class="modal" id="modalNoCouponData" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Error</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>No data found with provided coupon</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	<div th:fragment="modal-errorCoupon">
+		<div class="modal" id="modalError" tabindex="-1">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Error</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Coupon name already exists, please try with another name.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>

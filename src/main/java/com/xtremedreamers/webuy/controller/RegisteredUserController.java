@@ -49,7 +49,7 @@ public class RegisteredUserController {
 					return "redirect:/signin";
 				}
 			}
-			return "index";
+			return "redirect:/home";
 		}catch(EmptyResultDataAccessException e) {
 			session.setAttribute("error", "Error with provided credentials. Please verify them.");
 			return "redirect:/signin";

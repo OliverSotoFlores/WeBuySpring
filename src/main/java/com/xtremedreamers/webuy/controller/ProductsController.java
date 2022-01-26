@@ -33,14 +33,6 @@ public class ProductsController {
 	@Autowired
 	CategoryDao categoryDao;
 
-
-	@RequestMapping("/")
-	public String ProductsList(HttpServletRequest request, HttpSession session) {
-		request.setAttribute("session", session.getAttribute("user"));
-		List<Product> products = productDao.findAll();
-		return "index";
-	}
-
 	@PostMapping("/products/new")
 	public String createProduct(Model model) {
 		List<Category> categories = categoryDao.findAll();

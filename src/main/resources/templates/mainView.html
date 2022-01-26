@@ -25,7 +25,7 @@
             	<div id="breadcrumb-container">
 	            	<nav aria-label="breadcrumb">
 	            		<ol class="breadcrumb">
-	            			<li class="breadcrumb-item"><a th:href="@{/}" class="breadcrumb-link">Home</a></li>
+	            			<li class="breadcrumb-item"><a th:href="@{/home}" class="breadcrumb-link">Home</a></li>
 	            			<li th:if="${#httpServletRequest.requestURI == '/mainview'}"
 	            				th:classappend="${#httpServletRequest.requestURI == '/mainview'} ? active" 
 	            				th:attrappend="aria-current=${#httpServletRequest.requestURI == '/mainview'} ? 'page'" 

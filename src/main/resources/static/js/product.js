@@ -8,6 +8,9 @@ $(".product-item").click(function(){
         contentType: 'application/json; charset=utf-8',
         success: function (data, textStatus, xhr) {
 			$.each(data, function(index, item){
+				$("#productID").val(item.id);
+				$("#headerModalDetails").text(item.name);
+				$("#headerModalCompany").text("Company: " + item.company);
 				$("#priceDetails").text(item.price);
 				$("#descriptionDetails").text(item.description);
 				setTotal(item.price);
@@ -71,6 +74,20 @@ $("#promotionCodeSelect").change(function(){
 		removeLineThrough();
 		eraseNewPrice();
 	}
+});
+
+$("#btnAddCart").click(function(){
+	
+	let id = $("#productID").val();
+	let q = $("#quantity").val();
+	let oPrice = $("#priceDetails").text();
+	let fPrice = $("#totalPriceDetails").text();
+	
+	$("#formID").val(id);
+	$("#formQuantity").val(q);
+	$("#formOriginal").val(oPrice);
+	$("#formFinal").val(fPrice);
+	$("#formAddProduct").submit();
 });
 
 $("#modalAddCart").on('hidden.bs.modal',function(){

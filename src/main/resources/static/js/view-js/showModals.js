@@ -102,7 +102,7 @@ function showEditModal(e) {
 function showEditModalPromotion(e) {
   // Get clicked edit button
   var editButton = e.target;
-
+  alert("A");
   // Get its children's hidden input values
   var elementId = editButton.childNodes[1].value;
   var elementAdminId = editButton.childNodes[3].value;

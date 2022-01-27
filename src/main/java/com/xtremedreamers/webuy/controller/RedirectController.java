@@ -15,6 +15,10 @@ public class RedirectController {
 	public String getLogin() {
 		return "login";
 	}
+	@RequestMapping("/signinadmin")
+	public String getLoginAdmin() {
+		return "loginadmin";
+	}
 	
 	@RequestMapping("/register")
 	public String getRegister() {

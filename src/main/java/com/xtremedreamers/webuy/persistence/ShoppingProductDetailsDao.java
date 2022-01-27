@@ -96,4 +96,10 @@ public class ShoppingProductDetailsDao implements GenericDao<ShoppingProductDeta
 		
 	}
 
+	@Override
+	public List<ShoppingProductDetails> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

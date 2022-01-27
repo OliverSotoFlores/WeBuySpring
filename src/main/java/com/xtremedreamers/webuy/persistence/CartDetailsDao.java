@@ -66,7 +66,19 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 	@Override
 	public Integer save(CartDetails instance) {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "INSERT INTO shopping_product_details ("
+				+ "quantity, "
+				+ "shopping_cost, "
+				+ "cost_after_applying_coupon, "
+				+ "product_id, "
+				+ "shopping_cart_id) VALUES (?, ?, ?, ?, ?)";
+		return jdbcTemplate.update(query, new Object[] { 
+				instance.getQuantity(), 
+				instance.getShoppingCost(), 
+				instance.getCostCoupon(),
+				instance.getProductId(), 
+				instance.getShoppingCartId() 
+				});
 	}
 
 	@Override
@@ -79,6 +91,12 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 	public void delete(CartDetails instance) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<CartDetails> getPagination(int pageNumber, int pageSize, String sortByName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

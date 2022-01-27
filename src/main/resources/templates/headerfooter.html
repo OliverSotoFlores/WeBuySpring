@@ -77,17 +77,23 @@
 						</div>
 						<div class="col-md-3 d-flex flex-row justify-content-between">
 							<div class="d-flex d-none d-md-flex flex-row align-items-center">
-								<a th:href="@{cart}"><span class="shop-bag"><i
+								<a th:href="@{/cart}"><span class="shop-bag"><i
 										class='bi bi-cart'></i></span></a>
 								<div class="d-flex flex-column ms-2">
 									<span class="qty">1 Product</span> <span class="fw-bold">$27.90</span>
 								</div>
 							</div>
-							<ul class="navbar-nav d-flex flex-row align-items-center ml-2">
+							<ul th:if="${session.user == null}" class="navbar-nav d-flex flex-row align-items-center ml-2">
 								<li class="nav-item"><a th:href="@{/signin}" class="p-2"
 									data-abc="true"><span>Sign in</span></a></li>
 								<li class="nav-item"><a th:href="@{/register}" class="p-2"
 									data-abc="true"><span>Register</span></a></li>
+							</ul>
+							<ul th:unless="${session.user == null}" class="navbar-nav d-flex flex-row align-items-center ml-2">
+								<li class="nav-item"><a th:href="@{/logout}" class="p-2"
+									data-abc="true"><span th:text="${session.user.fullname}"></span></a></li>
+								<li class="nav-item"><a th:href="@{/logout}" class="p-2"
+									data-abc="true"><span>Log out</span></a></li>
 							</ul>
 						</div>
 					</div>

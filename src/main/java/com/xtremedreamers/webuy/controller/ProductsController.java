@@ -1,9 +1,13 @@
 package com.xtremedreamers.webuy.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.function.ServerRequest;
 
 import com.xtremedreamers.webuy.models.Category;
 import com.xtremedreamers.webuy.models.Product;
@@ -49,8 +55,17 @@ public class ProductsController {
 	 * Check BigDecimal Parse
 	 */
 	@PostMapping("/admin/products/create")
-	public String CreateProduct(@ModelAttribute Product product) {
-
+	public String CreateProduct(HttpServletRequest request, @ModelAttribute Product product, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+		/*String path = "C:\\Users\\a844017\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\productimg";
+		System.out.println(path);
+		String filename = "file"+System.currentTimeMillis()+ multipartFile.getOriginalFilename();
+		multipartFile.transferTo(new File("C:\\Users\\a844017\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\productimg" + multipartFile.getOriginalFilename() ));
+		String route = path+filename;
+		product.setImagePath(route);*/
+		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
+		String path = "C:\\Users\\a844017\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\productimg\\";
+		multipartFile.transferTo(new File(path + filename));
+		product.setImagePath("../productimg/"+filename);
 		productDao.save(product);
 		
 		return "redirect:/admin/products";
@@ -89,6 +104,8 @@ public class ProductsController {
 		model.addAttribute("paginationData", listProducts.getMetaData());
 		model.addAttribute("listProducts", listProducts);
 		model.addAttribute("product", new Product());
+		
+
 		return "adminProductList";
 	}
 

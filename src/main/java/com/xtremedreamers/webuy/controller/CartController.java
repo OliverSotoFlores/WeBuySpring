@@ -77,7 +77,8 @@ public class CartController {
 		if (cart == null) {
 			return "redirect:/signin";
 		}
-		session.setAttribute("cart", cartDao.completePurchase(cart.getId(), user));
+		double totalPrice = (double) session.getAttribute("cartPrice");
+		session.setAttribute("cart", cartDao.completePurchase(cart.getId(), user, totalPrice));
 		session.setAttribute("cartProductsQuantity", 0);
 		session.setAttribute("cartPrice", 0);
 		return "redirect:/cart";

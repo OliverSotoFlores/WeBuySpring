@@ -43,12 +43,23 @@ public class RegisteredUserController {
 			try {
 				cart = cartDao.findByUser(user);
 				session.setAttribute("cart", cart);
+				
+				int cartProducts = cartDao.getProductsCount(cart.getId());
+				double cartPrice = cartDao.getProductsTotal(cart.getId());
+				session.setAttribute("cartProductsQuantity", cartProducts);
+				session.setAttribute("cartPrice", cartPrice);
 			} catch (EmptyResultDataAccessException e) {
 				cart = cartDao.createCart(user);
+				session.setAttribute("cart", cart);
+				session.setAttribute("cartProductsQuantity", 0);
+				session.setAttribute("cartPrice", 0);
 				if(cart == null) {
 					session.setAttribute("error", "Error creating your cart. Please try again later.");
 					return "redirect:/signin";
 				}
+			} catch(NullPointerException e) {
+				session.setAttribute("cartProductsQuantity", 0);
+				session.setAttribute("cartPrice", 0);
 			}
 			return "redirect:/home";
 		}catch(EmptyResultDataAccessException e) {

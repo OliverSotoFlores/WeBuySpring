@@ -30,6 +30,10 @@ public class Cart {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", date=" + date + ", status=" + status + ", userId=" + userId + "]";
+	}
 	
 	
 }

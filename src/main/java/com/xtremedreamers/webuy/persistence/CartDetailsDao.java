@@ -26,6 +26,7 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 				+ "d.cost_after_applying_coupon,"
 				+ "d.product_id,"
 				+ "p.product_name,"
+				+ "p.product_image_path,"
 				+ "d.shopping_cart_id "
 				+ "from shopping_product_details d "
 				+ "INNER JOIN product p on p.product_id = d.product_id "

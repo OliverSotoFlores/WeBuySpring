@@ -18,7 +18,8 @@ public class CartDetailsRowMapper implements RowMapper<CartDetails> {
 		cartDetails.setCostCoupon(rs.getBigDecimal(4));
 		cartDetails.setProductId(rs.getInt(5));
 		cartDetails.setProductName(rs.getString(6));
-		cartDetails.setShoppingCartId(rs.getInt(7));
+		cartDetails.setProductImage(rs.getString(7));
+		cartDetails.setShoppingCartId(rs.getInt(8));
 		return cartDetails;
 	}
 

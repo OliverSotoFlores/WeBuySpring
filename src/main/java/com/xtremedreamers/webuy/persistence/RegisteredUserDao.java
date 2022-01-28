@@ -68,8 +68,12 @@ public class RegisteredUserDao implements GenericDao<RegisteredUser, Integer>{
 
 	@Override
 	public Integer save(RegisteredUser instance) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "INSERT INTO registered_user (user_email, user_password, user_fullname, user_address, user_contact_number) "
+				+ "VALUES (?,?,?,?,?)";
+		
+		return jdbcTemplate.update(sql, new Object[] { instance.getEmail(), instance.getPassword(), instance.getFullname(),
+				instance.getAddress(), instance.getNumber() });
 	}
 
 	@Override

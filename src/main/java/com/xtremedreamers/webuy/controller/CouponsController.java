@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,7 +37,11 @@ public class CouponsController {
 	@RequestMapping("/coupons")
 	public String ProductsList(Model model, 
 			@RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size) {
+			@RequestParam("size") Optional<Integer> size,
+			HttpSession session) {
+		if (session.getAttribute("admin") == null) {
+			return "redirect:/signinadmin";
+		}
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(6);
 		PagedList<Coupon> coupons = PagedList.toPagedList(couponDao, currentPage, pageSize);

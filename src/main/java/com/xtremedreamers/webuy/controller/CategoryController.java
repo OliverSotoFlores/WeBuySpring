@@ -31,6 +31,10 @@ public class CategoryController {
 		model.addAttribute("categories", categories);
 		return "index";
 	}
+	@RequestMapping("/homeadmin")
+	public String homeadmin() {
+		return "index";
+	}
 	
 	@RequestMapping("/mainview/{category_name}")
 	public String categorySearch(

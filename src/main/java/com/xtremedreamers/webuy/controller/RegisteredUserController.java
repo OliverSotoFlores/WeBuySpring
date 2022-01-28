@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.xtremedreamers.webuy.models.Cart;
@@ -66,5 +67,45 @@ public class RegisteredUserController {
 			session.removeAttribute("cart");
 		}
 		return "redirect:/signin";
+	}
+	
+	@PostMapping("/registeruser")
+	public String register(
+			@ModelAttribute RegisteredUser registeredUser, 
+			HttpServletRequest request, 
+			HttpSession session) {
+		
+		request.getSession();
+		if(session.getAttribute("user") != null) {
+			session.removeAttribute("user");
+		}
+		if(session.getAttribute("error") != null) {
+			session.removeAttribute("error");
+		}
+		
+		rUDao.save(registeredUser);
+		
+		String email = request.getParameter("email");
+		String pass = request.getParameter("password");
+		try {
+			RegisteredUser user = rUDao.findUser(email, pass);
+			session.setAttribute("user", user);
+			Cart cart;
+			try {
+				cart = cartDao.findByUser(user);
+				session.setAttribute("cart", cart);
+			} catch (EmptyResultDataAccessException e) {
+				cart = cartDao.createCart(user);
+				if(cart == null) {
+					session.setAttribute("error", "Error creating your cart. Please try again later.");
+					return "redirect:/register";
+				}
+			}
+			return "redirect:/home";
+		}catch(EmptyResultDataAccessException e) {
+			session.setAttribute("error", "Error with provided credentials. Please verify them.");
+			return "redirect:/register";
+		}
+		
 	}
 }

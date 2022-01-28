@@ -46,7 +46,7 @@ create table coupon (
 );
 
 create table registered_user (
-    user_id int primary key,
+    user_id int primary key auto_increment,
     user_email varchar(25) not null unique,
     user_password varchar(30) not null,
     user_fullname varchar(20) not null,

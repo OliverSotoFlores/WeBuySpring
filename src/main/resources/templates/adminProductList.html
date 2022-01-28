@@ -59,12 +59,12 @@
                     <span id="p-edit" th:product-name="${product.name}" th:product-company="${product.company}" th:product-price="${product.price}" th:product-description="${product.description}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'), this.getAttribute('product-description'), this.getAttribute('product-price'), this.getAttribute('product-company'))" class="material-icons p-action">edit</span>
                 </div>
                 <div class="product-img">
-                    <img src="https://via.placeholder.com/150" alt="" />
+                    <img th:src="${product.imagePath}" alt="" />
                 </div>
 
                 <div class="product-wrapper">
                     <div class="product-info">
-                        <strong id="p-price">$59.99</strong>
+                        <strong id="p-price">$</strong><strong id="p-price" th:text="${product.price}">$$</strong>
                         <p id="p-name" th:text="${product.name}">Product name</p>
                         <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
                             Phasellus fringilla eleifend
@@ -79,7 +79,7 @@
             <div class="modal-contents">
                 <span class="material-icons close">close</span>
                 <h3>Create New Product</h3>
-                <form th:action="@{/admin/products/create}" method="post" th:object="${product}">
+                <form th:action="@{/admin/products/create}" method="post" th:object="${product}" enctype="multipart/form-data">
                     <label for="name">Name</label><br>
                     <input type="text" name="name" placeholder="Type product name here"><br>
                     <label for="p-category">Category</label><br>

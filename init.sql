@@ -13,7 +13,7 @@ create table product_category (
 );
 
 create table product (
-    product_id int primary key auto_increment,
+    product_id int primary key auto_increment not null,
     product_name varchar(255) not null,
     product_company varchar(30) not null,
     product_price decimal(20,2) not null,
@@ -107,7 +107,7 @@ insert into coupon values (3, 'H2021', 'n_open', 15, 3, 4);
 insert into coupon values (4, 'NY2021', 'Open', 30, 4, 2);
 insert into coupon values (5, 'HS2021', 'Open', 60, 5, 3);
 
-insert into product values (1, "LG TV 4K", "LG", 2000, "Biggest TV on store", "test", 1);
+/*insert into product values (1, "LG TV 4K", "LG", 2000, "Biggest TV on store", "test", 1);
 insert into product values (2, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
 insert into product values (3, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
 insert into product values (4, "White T-Shirt", "Dopp", 10, "Simple fast fashion white t-shirt", "test", 4);
@@ -124,7 +124,7 @@ insert into product values (14, "White T-Shirt in page 2", "Dopp", 10, "Simple f
 insert into product values (15, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
 insert into product values (16, "White T-Shirt in page 2", "Dopp", 10, "Simple fast fashion white t-shirt in page 3", "test", 4);
 insert into product values (17, "White T-Shirt in page 3", "Dopp", 10, "Simple fast fashion white t-shirt in page 4", "test", 4);
-
+*/
 insert into registered_user values (1, 'test@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
 insert into registered_user values (2, 'test2@gmail.com', 'test123', 'Test Subject', 'Mexico', '123456789');
 

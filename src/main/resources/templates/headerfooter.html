@@ -90,7 +90,7 @@
 								<a th:href="@{/cart}"><span class="shop-bag"><i
 										class='bi bi-cart'></i></span></a>
 								<div class="d-flex flex-column ms-2">
-									<span class="qty">1 Product</span> <span class="fw-bold">$27.90</span>
+									<span class="qty" th:text="${session.cartProductsQuantity} + ' item(s)'"></span> <span class="fw-bold" th:text="'$'+${session.cartPrice}"></span>
 								</div>
 							</div>
 							<ul th:if="${session.user == null}" class="navbar-nav d-flex flex-row align-items-center ml-2">

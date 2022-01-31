@@ -1,10 +1,13 @@
 package com.xtremedreamers.webuy.controller;
 
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,12 +46,23 @@ public class RegisteredUserController {
 			try {
 				cart = cartDao.findByUser(user);
 				session.setAttribute("cart", cart);
+				
+				int cartProducts = cartDao.getProductsCount(cart.getId());
+				double cartPrice = cartDao.getProductsTotal(cart.getId());
+				session.setAttribute("cartProductsQuantity", cartProducts);
+				session.setAttribute("cartPrice", cartPrice);
 			} catch (EmptyResultDataAccessException e) {
 				cart = cartDao.createCart(user);
+				session.setAttribute("cart", cart);
+				session.setAttribute("cartProductsQuantity", 0);
+				session.setAttribute("cartPrice", 0);
 				if(cart == null) {
 					session.setAttribute("error", "Error creating your cart. Please try again later.");
 					return "redirect:/signin";
 				}
+			} catch(NullPointerException e) {
+				session.setAttribute("cartProductsQuantity", 0);
+				session.setAttribute("cartPrice", 0);
 			}
 			return "redirect:/home";
 		}catch(EmptyResultDataAccessException e) {
@@ -82,30 +96,31 @@ public class RegisteredUserController {
 		if(session.getAttribute("error") != null) {
 			session.removeAttribute("error");
 		}
-		
-		rUDao.save(registeredUser);
-		
-		String email = request.getParameter("email");
-		String pass = request.getParameter("password");
 		try {
-			RegisteredUser user = rUDao.findUser(email, pass);
-			session.setAttribute("user", user);
-			Cart cart;
-			try {
-				cart = cartDao.findByUser(user);
-				session.setAttribute("cart", cart);
-			} catch (EmptyResultDataAccessException e) {
-				cart = cartDao.createCart(user);
-				if(cart == null) {
-					session.setAttribute("error", "Error creating your cart. Please try again later.");
-					return "redirect:/register";
-				}
-			}
-			return "redirect:/home";
-		}catch(EmptyResultDataAccessException e) {
-			session.setAttribute("error", "Error with provided credentials. Please verify them.");
+			rUDao.createUser(registeredUser);
+		}catch(DuplicateKeyException e) {
+			session.setAttribute("error", "Email already exists. Please, try another one.");
 			return "redirect:/register";
 		}
+		String email = request.getParameter("email");
+		String pass = request.getParameter("password");
+		RegisteredUser user = rUDao.findUser(email, pass);
+		session.setAttribute("user", user);
+		Cart cart;
+		try {
+			cart = cartDao.findByUser(user);
+		} catch (EmptyResultDataAccessException e) {
+			cart = cartDao.createCart(user);
+			if(cart == null) {
+				session.setAttribute("error", "Error creating your cart. Please try again later.");
+				return "redirect:/register";
+			}
+		}
+		session.setAttribute("cart", cart);
+		session.setAttribute("cartProductsQuantity", 0);
+		session.setAttribute("cartPrice", 0);
+		return "redirect:/home";
+		
 		
 	}
 }

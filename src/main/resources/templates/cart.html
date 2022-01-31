@@ -45,7 +45,7 @@
 		            <div class="module-border-wrap" >
 	                    <div class="module">
 	                        <div class="left-div">
-	                            <img src="../img/pc.png" alt="PC image" class="img-cart" />
+	                            <img th:src="${details.productImage}" class="img-cart" alt="Product image"/>
 	                        </div>
 	                        <div class="center-div">
 	                            <span class="description" th:text="${details.productName}"></span>
@@ -73,7 +73,7 @@
                     <div class="col-sm-3">
                         <div class="mb-3">
                             <label for="totalPrice" class="form-label">Total Price</label>
-                            <input type="text" class="form-control" placeholder="" id="totalPrice" disabled />
+                            <input type="text" class="form-control" placeholder="" id="totalPrice" disabled th:value="'$'+${session.cartPrice}"/>
                         </div>
                         <br />
                         <button type="button" class="btn btn-custom">Purchase</button>

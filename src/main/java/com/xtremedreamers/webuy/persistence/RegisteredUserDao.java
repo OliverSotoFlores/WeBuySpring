@@ -1,8 +1,10 @@
 package com.xtremedreamers.webuy.persistence;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -67,7 +69,16 @@ public class RegisteredUserDao implements GenericDao<RegisteredUser, Integer>{
 	}
 
 	@Override
-	public Integer save(RegisteredUser instance) {
+	public Integer save(RegisteredUser instance){
+		
+		String sql = "INSERT INTO registered_user (user_email, user_password, user_fullname, user_address, user_contact_number) "
+				+ "VALUES (?,?,?,?,?)";
+		
+		return jdbcTemplate.update(sql, new Object[] { instance.getEmail(), instance.getPassword(), instance.getFullname(),
+				instance.getAddress(), instance.getNumber() });
+	}
+	
+	public Integer createUser(RegisteredUser instance) throws DuplicateKeyException{
 		
 		String sql = "INSERT INTO registered_user (user_email, user_password, user_fullname, user_address, user_contact_number) "
 				+ "VALUES (?,?,?,?,?)";

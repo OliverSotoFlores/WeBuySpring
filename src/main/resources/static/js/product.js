@@ -9,6 +9,7 @@ $(".product-item").click(function(){
         success: function (data, textStatus, xhr) {
 			$.each(data, function(index, item){
 				$("#productID").val(item.id);
+				$("#imgDetails").prop("src", item.imagePath);
 				$("#headerModalDetails").text(item.name);
 				$("#headerModalCompany").text("Company: " + item.company);
 				$("#priceDetails").text(item.price);

@@ -36,6 +36,7 @@
 			</div>
 			<div class="mb-3">
 				<input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
+				<span th:text="${session.error}" style="color:red;"></span>
 			</div>
 			<div class="mb-3">
 				<input type="text" class="form-control" id="address" name="address" placeholder="Address" required />

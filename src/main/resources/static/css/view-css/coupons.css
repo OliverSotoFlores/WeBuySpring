@@ -14,21 +14,56 @@ h1 {
   border-bottom: 1px solid #ccc;
 }
 
-.material-icons.md-18 {
-  font-size: 18px;
-}
-.material-icons.md-24 {
-  font-size: 24px;
-}
-.material-icons.md-36 {
-  font-size: 36px;
-}
-.material-icons.md-48 {
-  font-size: 48px;
+.coupons-table {
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 1.2em;
+	width: 100%;
+	box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.15);
 }
 
+.coupons-table-head {
+	border: none;
+}
+
+.coupons-table-head tr {
+	font-size: 1.4rem;
+	background-color: #e85923;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.coupons-table-head th {
+	padding: 1.4rem;
+}
+
+.coupons-table-body th,
+.coupons-table-body td {
+	padding: 12px 15px;
+	text-align: center;
+}
+
+.coupons-table-body tr {
+	border-bottom: thin solid #ddd;
+}
+
+.coupons-table-body tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+
+.coupons-table-body tr:last-of-type {
+	border-bottom: 2px solid #e85923;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+
 .coupon-actions {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   margin-left: 10px;
 }
 
@@ -37,15 +72,16 @@ datalist {
   outline: none;
 }
 
-input[type="text"] {
-  border-radius: 5px;
-  padding: 0px 14px;
-  outline: none;
+input[type="text"]{
+    border-radius: 5px 0px 0px 5px;
+    padding: 0px 14px;
+    outline: none;
 }
 
-input[type="text"].search-input {
-  border-radius: 5px 0px 0px 5px;
-  flex-grow: 2;
+input[type="text"].search-input{
+    padding: 17px;
+    font-size: 1.8rem;
+    flex-grow: 1;
 }
 
 .coupon-form {
@@ -55,6 +91,7 @@ input[type="text"].search-input {
 
 .search-btn {
   color: white;
+  flex-grow: 0.03;
   background-color: #e85923;
   border-radius: 0px 5px 5px 0px;
   padding-top: 5px;

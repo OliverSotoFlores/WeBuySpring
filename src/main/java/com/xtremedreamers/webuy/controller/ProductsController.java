@@ -59,7 +59,7 @@ public class ProductsController {
 		String route = path+filename;
 		product.setImagePath(route);*/
 		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
-		String path = "C:\\Users\\a843643\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\img\\";
+		String path = "C:\\Users\\a844920\\eclipse-workspace\\WeBuySpring\\WeBuySpring\\src\\main\\resources\\static\\img\\";
 		multipartFile.transferTo(new File(path + filename));
 		product.setImagePath("../img/"+filename);
 		productDao.save(product);
@@ -95,7 +95,7 @@ public class ProductsController {
 			return "redirect:/signinadmin";
 		}
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(8);
+		int pageSize = size.orElse(10);
 
 		List<Category> categories = categoryDao.findAll();
 		model.addAttribute("categories", categories);
@@ -121,7 +121,7 @@ public class ProductsController {
 			@RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(8);
+		int pageSize = size.orElse(10);
 
 		PagedList<Product> listProducts = PagedList.toPagedList(productDao, currentPage, pageSize);
 		model.addAttribute("paginationData", listProducts.getMetaData());

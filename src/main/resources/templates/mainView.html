@@ -56,13 +56,13 @@
 	            	</nav>
             	</div>
                 <div class="main">
-                    <div class="col-8">
+                    <div class="col-12">
                         <section class="list-actions">
                             <form action="" class="list-form">
                                 <input type="text" name="search-bar" class="search-input"
                                     placeholder="Search product..." />
                                 <button type="submit" class="search-btn">
-                                    <span class="material-icons">
+                                    <span class="material-icons md-36">
                                         search
                                     </span>
                                 </button>
@@ -70,22 +70,45 @@
                         </section>
                     </div>
                     <div class="col-4"></div>
-                    <section class="list-container">
-                        <article class="product-item" th:each="product: ${listProducts}" th:attr="data-id=${product.id}, data-idcategory=${product.categoryId}">
+                    
+					<section class="list-container">
 
-                            <div class="product-img">
-                                <img th:src="${product.imagePath}" alt="" height="150" width="150"/>
-                            </div>
-                            <div class="product-wrapper">
-                                <div class="product-info">
-                                    <strong id="p-price" th:text="'$' + ${product.price}"></strong>
-                                    <p id="p-name" th:text="${product.name}"></p>
-                                    <p th:text="${product.description}"></p>
-                                    <p id="p-brand" th:text="${product.company}"></p>
-                                </div>
-                            </div>
-                        </article>
-					</section>
+			            <article id="product" class="product-item" th:each="product: ${listProducts}" th:attr="data-id=${product.id}, data-idcategory=${product.categoryId}">
+                    <div class="card-face face-1">
+                      <div class="top-part">
+                        <p id="p-name" class="hide" th:text="${product.name}">Product name</p>
+                        <p th:text="${product.company}" class="hide" id="p-brand">Brand Name</p>
+                      </div>
+                      <div class="bottom-part">
+                          <h2 class="p-price hide"><span>$</span><strong class="p-price hide" th:text="${product.price}">$$</strong></h2>
+                          <div class="arrow-container hide">
+                            <span class="material-icons right-arrow">east</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="card-face face-2">
+                      <div class="top-part">
+                        <div class="top-header">
+                          <p id="p-name" class="hide" th:text="${product.name}">Product name</p>
+                          <p th:text="${product.description}" class="hide" id="product-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
+                                          Phasellus fringilla eleifend
+                                          velit ut rhoncus.</p>
+                        </div>
+                      </div>
+                      <div class="buy-wrap">
+                        <a class="buy hide">
+                          View <span class="material-icons md-18">visibility</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="image-wrapper">
+                      <div class="product-img">
+                          <img th:src="${product.imagePath}" alt="" class="p-image" />
+                      </div>
+                    </div>
+			            </article>
+			
+			        </section>
 					<section id="pagination-wrapper" th:if="${#httpServletRequest.requestURI == '/mainview'}">
 
 						<nav aria-label="...">

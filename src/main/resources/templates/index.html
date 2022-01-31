@@ -27,12 +27,14 @@
 <body>
 	<header th:insert="headerfooter :: normal-header"> </header>
 	<section id="banner-container">
-		<h2>200 x 1920</h2>
+		<h1>Your favorite products</h1>
+		<h1 class="second-paragraph">just one <a th:href="@{mainview}" class="banner-link">click</a> away</h1>
+		<img src="../img/banner1.png" class="home-banner" />
 	</section>
 	<section id="featured-section">
 		<article class="featured-container">
 			<div class="featured-header">
-				<h3>Featured categories</h3>
+				<h3>Search categories</h3>
 			</div>
 			<ul>
 				<li th:each="category: ${categories}" th:attr="data-id=${category.id}">
@@ -49,31 +51,13 @@
 	<section id="product-section" class="col-11">
 		<article class="featured-container">
 			<div class="featured-header">
-				<h3>Featured products</h3>
+				<h3>Search all products</h3>
 				<div class="header-link">
 					<a th:href="@{mainview}">
 						<p>See all</p><span class="material-icons">navigate_next</span>
 					</a>
 				</div>
 			</div>
-			<section class="list-container">
-				<article class="product-item" th:each="product: ${listProducts}">
-					<a th:href="@{productdetails}" class="product-link">
-						<div class="product-img">
-							<img src="https://via.placeholder.com/150" alt="" />
-						</div>
-
-						<div class="product-wrapper">
-							<div class="product-info">
-								<strong id="p-price">$59.99</strong>
-								<p id="p-name" th:text="${product.name}"></p>
-								<p th:text="${product.description}"></p>
-								<p id="p-brand" th:text="${product.description}">Brand Name</p>
-							</div>
-						</div>
-					</a>
-				</article>
-			</section>
 		</article>
 	</section>
 	<footer th:insert="headerfooter :: footer"> </footer>

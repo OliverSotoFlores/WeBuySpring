@@ -106,8 +106,8 @@ insert into coupon values (2, 'C2020', 'Open', 20, 2, 1);
 insert into coupon values (3, 'H2021', 'n_open', 15, 3, 4);
 insert into coupon values (4, 'NY2021', 'Open', 30, 4, 2);
 insert into coupon values (5, 'HS2021', 'Open', 60, 5, 3);
-
-/*insert into product values (1, "LG TV 4K", "LG", 2000, "Biggest TV on store", "test", 1);
+/*
+insert into product values (1, "LG TV 4K", "LG", 2000, "Biggest TV on store", "test", 1);
 insert into product values (2, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
 insert into product values (3, "LG TV 2K", "LG", 1500, "Medium sized smart TV", "test", 1);
 insert into product values (4, "White T-Shirt", "Dopp", 10, "Simple fast fashion white t-shirt", "test", 4);

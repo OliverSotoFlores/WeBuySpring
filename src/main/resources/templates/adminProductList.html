@@ -33,12 +33,6 @@
             	<a id="p-add" href="#" class="add-btn" onclick="showAddModalAdminProducts();"><span
                         class="material-icons md-36">add_circle_outline</span>New</a>
                 <form action="" class="list-form">
-                    <input type="text" name="category" placeholder="Sort by category" list="category-list">
-                    <datalist id="category-list">
-                        <option value="Electronics"></option>
-                        <option value="Clothing"></option>
-                        <option value="Kitchen"></option>
-                    </datalist>
                     <input type="text" name="search-bar" class="search-input" placeholder="Search product..." />
                     <button type="submit" class="search-btn">
                         <span class="material-icons">
@@ -52,26 +46,39 @@
 
         <section class="list-container">
 
-            <article class="product-item" th:each="product: ${listProducts}">
-                <div class="product-actions">
-                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" onclick="confirm('Are you sure you want to delete this product?');">
-                    <span id="p-delete" class="material-icons p-action">delete</span></a>
-                    <span id="p-edit" th:product-name="${product.name}" th:product-company="${product.company}" th:product-price="${product.price}" th:product-description="${product.description}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'), this.getAttribute('product-description'), this.getAttribute('product-price'), this.getAttribute('product-company'))" class="material-icons p-action">edit</span>
+            <article id="product" class="product-item" th:each="product: ${listProducts}">
+                <div class="card-face face-1">
+                	<div class="top-part">
+                		<p id="p-name" class="hide" th:text="${product.name}">Product name</p>
+                		<p th:text="${product.company}" class="hide" id="p-brand">Brand Name</p>
+                	</div>
+					<div class="bottom-part">
+                        <h2 class="p-price hide"><span>$</span><strong class="p-price hide" th:text="${product.price}">$$</strong></h2>
+                        <div class="arrow-container hide">
+                        	<span class="material-icons right-arrow">east</span>
+                        </div>
+					</div>
                 </div>
-                <div class="product-img">
-                    <img th:src="${product.imagePath}" alt="" />
-                </div>
-
-                <div class="product-wrapper">
-                    <div class="product-info">
-                        <strong id="p-price">$</strong><strong id="p-price" th:text="${product.price}">$$</strong>
-                        <p id="p-name" th:text="${product.name}">Product name</p>
-                        <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
-                            Phasellus fringilla eleifend
-                            velit ut rhoncus.</p>
-                        <p th:text="${product.company}" id="p-brand">Brand Name</p>
-                    </div>
-                </div>
+				<div class="card-face face-2">
+					<div class="top-part">
+						<div class="top-header">
+							<p id="p-name" class="hide" th:text="${product.name}">Product name</p>
+							<p th:text="${product.description}" class="hide" id="product-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non molestie lectus.
+	                            Phasellus fringilla eleifend
+	                            velit ut rhoncus.</p>
+                        </div>
+					</div>
+					<div class="product-actions">
+	                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" onclick="confirm('Are you sure you want to delete this product?');">
+	                    <span id="p-delete" class="material-icons p-action hide">delete</span></a>
+	                    <span id="p-edit" th:product-name="${product.name}" th:product-company="${product.company}" th:product-price="${product.price}" th:product-description="${product.description}" th:product-id="${product.id}" th:onclick="editModalAdminProduct(this, this.getAttribute('product-id'), this.getAttribute('product-name'), this.getAttribute('product-description'), this.getAttribute('product-price'), this.getAttribute('product-company'))" class="material-icons p-action hide">edit</span>
+	                </div>
+				</div>
+                <div class="image-wrapper">
+               		<div class="product-img">
+                    	<img th:src="${product.imagePath}" alt="" class="p-image" />
+                	</div>
+               	</div>
             </article>
 
         </section>

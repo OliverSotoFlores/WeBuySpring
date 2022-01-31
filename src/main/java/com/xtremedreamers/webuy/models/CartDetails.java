@@ -10,6 +10,7 @@ public class CartDetails {
 	private BigDecimal costCoupon;
 	private int productId;
 	private String productName;
+	private String productImage;
 	private int shoppingCartId;
 	public int getId() {
 		return id;
@@ -58,6 +59,12 @@ public class CartDetails {
 		return "CartDetails [id=" + id + ", quantity=" + quantity + ", shoppingCost=" + shoppingCost + ", costCoupon="
 				+ costCoupon + ", productId=" + productId + ", productName=" + productName + ", shoppingCartId="
 				+ shoppingCartId + "]";
+	}
+	public String getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
 	
 	

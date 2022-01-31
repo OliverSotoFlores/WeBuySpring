@@ -74,7 +74,7 @@ create table shopping_product_details (
 );
 
 create table payment(
-    payment_id int primary key,
+    payment_id int primary key auto_increment,
     open_coupon int,
     shopping_final_amount decimal(20,2),
     payment_status enum('complete','in_negotiation') not null,

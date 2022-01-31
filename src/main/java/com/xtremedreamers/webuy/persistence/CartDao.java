@@ -51,6 +51,42 @@ public class CartDao implements GenericDao<Cart, Integer>{
 		return null;
 	}
 	
+	public Cart completePurchase(int cartId, RegisteredUser user, double totalPrice) {
+		String updateQuery = "UPDATE shopping_cart SET cart_status = 'complete' WHERE shopping_cart_id = ?";
+		int updateResult = jdbcTemplate.update(updateQuery, 
+				new Object[] {cartId});
+		if(updateResult>0) {
+			String insertQuery = "INSERT INTO payment(shopping_final_amount,"
+													+ "payment_status,"
+													+ "shopping_cart_id) VALUES (?,?,?)";
+			int insertResult = jdbcTemplate.update(insertQuery, 
+					new Object[] {totalPrice, "complete", cartId});
+			if(insertResult>0) {
+				Cart cart = new Cart();
+				LocalDate today = LocalDate.now();
+				cart.setId(getLastId());
+				cart.setDate(today.toString());
+				cart.setStatus("in_session");
+				cart.setUserId(user.getId());
+				String sql = "INSERT INTO shopping_cart VALUES (?, ?, ?, ?)";
+				int result = jdbcTemplate.update(sql, 
+						new Object[] {cart.getId(),
+									cart.getDate(),
+									cart.getStatus(),
+									cart.getUserId()});
+				if(result>0)
+					return cart;
+				return null;
+			}else {
+				return null;
+			}
+			
+		}else {
+			return null;
+		}
+		
+	}
+	
 	public int getLastId() {
 		return jdbcTemplate.queryForObject("select max(shopping_cart_id)+1 from shopping_cart", Integer.class);
 	}
@@ -71,6 +107,20 @@ public class CartDao implements GenericDao<Cart, Integer>{
 	public List<Cart> find(String queryName, String[] paramNames, Object[] bindValues) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public int getProductsCount(int cartId) {
+		return jdbcTemplate.queryForObject(
+				"select sum(quantity) from shopping_product_details where shopping_cart_id = ?",
+				new Object[] {cartId}, 
+				Integer.class);
+	}
+	
+	public double getProductsTotal(int cartId) {
+		return jdbcTemplate.queryForObject(
+				"select sum(cost_after_applying_coupon) from shopping_product_details where shopping_cart_id = ?",
+				new Object[] {cartId}, 
+				Double.class);
 	}
 
 	@Override

@@ -84,4 +84,18 @@ public class CartController {
 		return "redirect:/cart";
 		
 	}
+
+	@RequestMapping("/checkout")
+	public String checkout() {
+		/*request.getSession(false);
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			return "redirect:/signin";
+		}
+
+		List<CartDetails> details = dao.findByCartID(cart.getId());
+		model.addAttribute("details",details);*/
+
+		return "checkout";
+	}
 }

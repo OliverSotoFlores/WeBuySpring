@@ -87,16 +87,48 @@
 }
 
 #banner-container {
-  height: 200px;
-  background: #888;
-  width: 100%;
-  color: white;
-  text-align: center;
-  margin-bottom: 30px;
+	background: linear-gradient(128deg, rgba(7, 52, 184, 0.2), rgba(7, 52, 184, 0.6));
+  	width: 100%;
+  	box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 10%);
+    margin-bottom: 46px;
+    height: 510px;
+    position: relative;
 }
 
-#banner-container h2 {
-  line-height: 200px;
+.background-banner {
+	width: 100%;
+}
+
+.home-banner {
+	width: 35%;
+    position: absolute;
+    right: 58%;
+    top: 8%;
+    z-index: 3;
+}
+
+#banner-container h1 {
+    position: absolute;
+    color: black;
+    font-size: 4.4rem;
+    top: 31%;
+    left: 45%;
+}
+
+#banner-container h1.second-paragraph {
+	font-size: 2.4rem;
+    left: 46%;
+    top: 48%;
+}
+
+.banner-link {
+	text-decoration: none;
+	color: #ec6f43;
+}
+
+.banner-link:hover {
+	text-decoration: none;
+	color: #e85923;
 }
 
 #featured-section {

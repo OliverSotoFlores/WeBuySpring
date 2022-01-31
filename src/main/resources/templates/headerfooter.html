@@ -37,8 +37,16 @@
 							<ul class="navbar-nav d-flex flex-row align-items-center ml-2">
 								<li class="nav-item"><a class="p-2"
 									data-abc="true"><span th:text="${session.admin.admin_name}"></span></a></li>
-								<li class="nav-item"><a th:href="@{/adminlogout}" class="p-2"
-									data-abc="true"><span>Log out</span></a></li>
+								<li class="nav-item logout-btn">
+									<div class="logout-cube">
+										<div class="cube-face logout-face-1">
+										</div>
+										<div class="cube-face logout-face-2">
+										</div>
+										<a th:href="@{/adminlogout}" class="p-2 logout-link"
+											data-abc="true"><span>Log out</span></a>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -75,9 +83,9 @@
 							class="col-md-2 d-md-flex justify-content-center logo-wrapper">
 							<a th:href="@{/}"><img th:src="@{/img/webuy-color.png}"></a>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-6">
 						</div>
-						<div class="col-md-3 d-flex flex-row justify-content-between">
+						<div class="col-md-4 d-flex flex-row justify-content-between">
 							<div class="d-flex d-none d-md-flex flex-row align-items-center">
 								<a th:href="@{/cart}"><span class="shop-bag"><i
 										class='bi bi-cart'></i></span></a>
@@ -86,16 +94,40 @@
 								</div>
 							</div>
 							<ul th:if="${session.user == null}" class="navbar-nav d-flex flex-row align-items-center ml-2">
-								<li class="nav-item"><a th:href="@{/signin}" class="p-2"
-									data-abc="true"><span>Sign in</span></a></li>
-								<li class="nav-item"><a th:href="@{/register}" class="p-2"
-									data-abc="true"><span>Register</span></a></li>
+								
+								<li class="nav-item logout-btn">
+									<div class="logout-cube">
+										<div class="cube-face logout-face-1">
+										</div>
+										<div class="cube-face logout-face-2">
+										</div>
+										<a th:href="@{/signin}" class="p-2 signin-link"
+											data-abc="true"><span>Sign in</span></a>
+									</div>
+								</li>
+								<li class="nav-item logout-btn">
+									<div class="logout-cube">
+										<div class="cube-face logout-face-1">
+										</div>
+										<div class="cube-face logout-face-2">
+										</div>
+										<a th:href="@{/register}" class="p-2 register-link"
+											data-abc="true"><span>Register</span></a>
+									</div>
+								</li>
 							</ul>
 							<ul th:unless="${session.user == null}" class="navbar-nav d-flex flex-row align-items-center ml-2">
-								<li class="nav-item"><a th:href="@{/logout}" class="p-2"
-									data-abc="true"><span th:text="${session.user.fullname}"></span></a></li>
-								<li class="nav-item"><a th:href="@{/logout}" class="p-2"
-									data-abc="true"><span>Log out</span></a></li>
+								<li class="nav-item username">Welcome, <span th:text="${session.user.fullname}"></span></li>
+								<li class="nav-item logout-btn">
+									<div class="logout-cube">
+										<div class="cube-face logout-face-1">
+										</div>
+										<div class="cube-face logout-face-2">
+										</div>
+										<a th:href="@{/logout}" class="p-2 logout-link"
+											data-abc="true"><span>Log out</span></a>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</div>

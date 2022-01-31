@@ -33,7 +33,7 @@
                 <form id="promotionEventSearchForm" action="searchPromotionEvent" class="coupon-form">
                     <input id="searchInput" type="text" name="search-bar" class="search-input" placeholder="Search promotion event..." />
                     <button type="submit" class="search-btn">
-                        <span class="material-icons">
+                        <span class="material-icons md-36">
                             search
                         </span>
                     </button>
@@ -41,7 +41,7 @@
             </section>
         </section>
         <section class="coupons-container">
-            <table class="coupons-table table table-striped col-12">
+            <table class="coupons-table">
                 <thead class="coupons-table-head">
                     <tr>
                         <th>Name</th>
@@ -60,13 +60,13 @@
                         <td th:text="${promotionEvents.promotion_event_end_date}" />
                         <td th:text="${promotionEvents.promotion_event_status}"/>
                         <td>
-	                        <span id="p-edit" class="material-icons p-action" onclick="editPromotion(event);">
+	                        <span id="p-edit" class="material-icons md-36 p-action" onclick="editPromotion(event);">
 	                        	edit
 	                        	<input type="hidden" id="element-id" th:value="${promotionEvents.promotion_event_id}"/>
 	                        	<input type="hidden" id="element-admin-id" th:value="${promotionEvents.admin_id}"/>
 	                        </span>
                         </td>
-                        <td><a th:href="@{/deletePromotionEvent/{promotion_id}(promotion_id=${promotionEvents.promotion_event_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons p-action">delete</span></a></td>
+                        <td><a th:href="@{/deletePromotionEvent/{promotion_id}(promotion_id=${promotionEvents.promotion_event_id})}" onclick="confirm('Are you sure you want to delete this coupon?');"><span id="p-delete" class="material-icons md-36 p-action">delete</span></a></td>
                     </tr>
                 </tbody>
             </table>

@@ -363,14 +363,15 @@ datalist{
 }
 
 input[type="text"]{
-    border-radius: 5px;
+    border-radius: 5px 0px 0px 5px;
     padding: 0px 14px;
     outline: none;
 }
 
 input[type="text"].search-input{
-    border-radius: 5px 0px 0px 5px;
-    flex-grow: 2;
+    padding: 17px;
+    font-size: 1.8rem;
+    flex-grow: 1;
 }
 
 .list-form{
@@ -380,6 +381,7 @@ input[type="text"].search-input{
 
 .search-btn{
     color: white;
+    flex-grow: 0.03;
     background-color: #e85923;
     border-radius: 0px 5px 5px 0px;
     padding-top: 5px;

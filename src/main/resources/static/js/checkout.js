@@ -3,7 +3,7 @@
 $(function(){
 
     console.log("Its working");
-    
+
     var cards = [{
       nome: "mastercard",
       colore: "#0061A8",

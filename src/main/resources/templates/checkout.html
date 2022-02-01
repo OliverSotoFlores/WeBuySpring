@@ -5,7 +5,7 @@
 	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
 
 	<meta charset="UTF-8">
-	<title>Webuy | Register</title>
+	<title>Webuy | Checkout</title>
 	<link rel="stylesheet" href="../css/checkout.css" />
 	<link rel="stylesheet" href="../css/global.css" />
 	<link rel="stylesheet" href="../css/style.css">
@@ -14,7 +14,7 @@
 	<!-- Bootstrap CSS only -->
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" th:href="@{../static/img/apple-touch-icon.png}">
 	<link rel="shortcut icon" type="image/png" sizes="32x32" th:href="@{../static/img/favicon-32x32.png}">
@@ -25,12 +25,15 @@
 	<meta name="theme-color" content="#ffffff">
 	
 </head>
-
-<body class="body-checkout">
-	<div class="row">
+<body>
+	<header th:insert="headerfooter :: login-header"></header>
+	<div class="row body-checkout">
 		<div class="col-md-4 order-md-2 mb-4">
 		  <h4 class="d-flex justify-content-between align-items-center mb-3">
 			<span class="text-muted">Your cart</span>
+			<span class="cart-icon material-icons-outlined">
+				shopping_cart
+			</span>
 			<span class="badge badge-secondary badge-pill">3</span>
 		  </h4>
 		  <ul class="list-group mb-3">
@@ -47,7 +50,7 @@
 			  <strong>$20</strong>
 			</li>
 		  </ul>
-		  <form class="card p-2">
+		  <form class="card p-2 redeem-code">
 			<div class="input-group">
 			  <input type="text" class="form-control" placeholder="Promo code">
 			  <div class="input-group-append">
@@ -152,42 +155,6 @@
 				<label class="custom-control-label" for="paypal">PayPal</label>
 			  </div>
 			</div>
-			<!--
-
-			<div class="row">
-			<div class="col-md-6 mb-3">
-				<label for="cc-name">Name on card</label>
-				<input type="text" class="form-control" id="cc-name" placeholder="" required>
-				<small class="text-muted">Full name as displayed on card</small>
-				<div class="invalid-feedback">
-				  Name on card is required
-				</div>
-			  </div>
-			  <div class="col-md-6 mb-3">
-				<label for="cc-number">Credit card number</label>
-				<input type="text" class="form-control" id="cc-number" placeholder="" required>
-				<div class="invalid-feedback">
-				  Credit card number is required
-				</div>
-			  </div>
-			</div>
-			<div class="row">
-			  <div class="col-md-3 mb-3">
-				<label for="cc-expiration">Expiration</label>
-				<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-				<div class="invalid-feedback">
-				  Expiration date required
-				</div>
-			  </div>
-			  <div class="col-md-3 mb-3">
-				<label for="cc-cvv">CVV</label>
-				<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-				<div class="invalid-feedback">
-				  Security code required
-				</div>
-			  </div>
-
-			-->
 			<div>
 				<div class="row">
 					<!--<div class="tips">
@@ -215,13 +182,13 @@
 						</div>
 						<div class="col2">
 							<label>Card Number</label>
-							<input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-							<label>Cardholder's name</label>
-							<input class="inputname" type="text" placeholder=""/>
-							<label>Expiration date</label>
-							<input class="expire" type="text" placeholder="MM / YYYY"/>
+							<input class="form-control number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+							<label>Cardholder's Name</label>
+							<input class="form-control inputname" type="text" placeholder=""/>
+							<label>Expiration Date</label>
+							<input class="form-control expire" type="text" placeholder="MM / YYYY"/>
 							<label>Security Number</label>
-							<input class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+							<input class="form-control ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 						</div>
 					</div>
 				</div>
@@ -231,6 +198,9 @@
 		  </form>
 		</div>
 	  </div>
+
+	  <!-- Footer -->
+	  <footer th:insert="headerfooter :: footer"> </footer>
 </body>
 
 </html>

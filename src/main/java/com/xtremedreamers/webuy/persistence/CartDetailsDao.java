@@ -84,13 +84,25 @@ public class CartDetailsDao implements GenericDao<CartDetails, Integer>{
 
 	@Override
 	public void update(CartDetails instance) {
-		// TODO Auto-generated method stub
+		String query = "UPDATE shopping_product_details SET "
+				+ "quantity = ?, "
+				+ "cost_after_applying_coupon = ? "
+				+ "WHERE shopping_product_details_id = ?";
+		jdbcTemplate.update(query, new Object[] { 
+				instance.getQuantity(), 
+				instance.getCostCoupon(),
+				instance.getId()
+				});
 		
 	}
 
 	@Override
 	public void delete(CartDetails instance) {
-		// TODO Auto-generated method stub
+		String query = "DELETE FROM shopping_product_details "
+				+ "WHERE shopping_product_details_id = ?";
+		jdbcTemplate.update(query, new Object[] { 
+				instance.getId()
+				});
 		
 	}
 

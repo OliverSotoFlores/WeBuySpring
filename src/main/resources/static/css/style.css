@@ -87,7 +87,9 @@
 }
 
 #banner-container {
-	background-image: linear-gradient(128deg, rgba(7, 52, 184, 0.2), rgba(7, 52, 184, 0.6));
+	background-image: url("../img/banner.png");
+	background-repeat: no-repeat;
+	background-size: cover;
   	width: 100%;
   	box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 10%);
     margin-bottom: 46px;
@@ -110,15 +112,19 @@
 #banner-container h1 {
     position: absolute;
     color: black;
-    font-size: 4.4rem;
-    top: 31%;
-    left: 45%;
+    text-transform: uppercase;
+    font-size: 3.2rem;
+    top: 72%;
+    left: 51%;
+}
+
+#banner-container h1 > span {
+    color: #0734b8;
 }
 
 #banner-container h1.second-paragraph {
-	font-size: 2.4rem;
-    left: 46%;
-    top: 48%;
+    top: 84%;
+    left: 55%;
 }
 
 .banner-link {
@@ -127,7 +133,7 @@
 }
 
 .banner-link:hover {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #e85923;
 }
 

@@ -26,24 +26,24 @@ var nQuantity;
 
 $('.minus').click(function () {
 	if(clickedID == null){
-		$(this).closest('.module').find('.right-div').find('.saveChanges').prop("hidden", false);
-		$(this).closest('.module').find('.right-div').find('.cancelChanges').prop("hidden", false);
-		$(this).closest('.module').find('.right-div').find('.deleteProduct').prop("hidden", true);
-		clickedID = $(this).closest(".module-border-wrap").data("detid");
-		var cost = $(this).closest(".module-border-wrap").data("cost");
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.saveChanges').prop("hidden", false);
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.cancelChanges').prop("hidden", false);
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.deleteProduct').prop("hidden", true);
+		clickedID = $(this).closest(".product-container").data("detid");
+		var cost = $(this).closest(".product-container").data("cost");
 		var quantity = $(this).parent().find('input').val();
 		oPrice = cost/quantity;
 		substracion($(this).parent().find('input'));
-		updatePrice($(this).closest('.module').find('.right-div').find('.oPrice'), 
+		updatePrice($(this).closest('.product-wrapper').find('.product-actions').find('.product-price').find('.oPrice'), 
 					($(this).parent().find('input').val()*oPrice)
 					);
 	}else{
-		if(clickedID == $(this).closest(".module-border-wrap").data("detid")){
-			$(this).closest('.module').find('.right-div').find('.saveChanges').prop("hidden", false);
-			$(this).closest('.module').find('.right-div').find('.cancelChanges').prop("hidden", false);
-			$(this).closest('.module').find('.right-div').find('.deleteProduct').prop("hidden", true);
+		if(clickedID == $(this).closest(".product-container").data("detid")){
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.saveChanges').prop("hidden", false);
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.cancelChanges').prop("hidden", false);
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.deleteProduct').prop("hidden", true);
 			substracion($(this).parent().find('input'));
-			updatePrice($(this).closest('.module').find('.right-div').find('.oPrice'), 
+			updatePrice($(this).closest('.product-wrapper').find('.product-actions').find('.product-price').find('.oPrice'), 
 						($(this).parent().find('input').val()*oPrice)
 						);
 		}else{
@@ -54,24 +54,24 @@ $('.minus').click(function () {
 });
 $('.plus').click(function () {
 	if(clickedID == null){
-		$(this).closest('.module').find('.right-div').find('.saveChanges').prop("hidden", false);
-		$(this).closest('.module').find('.right-div').find('.cancelChanges').prop("hidden", false);
-		$(this).closest('.module').find('.right-div').find('.deleteProduct').prop("hidden", true);
-		clickedID = $(this).closest(".module-border-wrap").data("detid");
-		var cost = $(this).closest(".module-border-wrap").data("cost");
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.saveChanges').prop("hidden", false);
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.cancelChanges').prop("hidden", false);
+		$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.deleteProduct').prop("hidden", true);
+		clickedID = $(this).closest(".product-container").data("detid");
+		var cost = $(this).closest(".product-container").data("cost");
 		var quantity = $(this).parent().find('input').val();
 		oPrice = cost/quantity;
 		addition($(this).parent().find('input'));
-		updatePrice($(this).closest('.module').find('.right-div').find('.oPrice'), 
+		updatePrice($(this).closest('.product-wrapper').find('.product-actions').find('.product-price').find('.oPrice'), 
 									($(this).parent().find('input').val()*oPrice)
 									);
 	}else{
-		if(clickedID == $(this).closest(".module-border-wrap").data("detid")){
-			$(this).closest('.module').find('.right-div').find('.saveChanges').prop("hidden", false);
-			$(this).closest('.module').find('.right-div').find('.cancelChanges').prop("hidden", false);
-			$(this).closest('.module').find('.right-div').find('.deleteProduct').prop("hidden", true);
+		if(clickedID == $(this).closest(".product-container").data("detid")){
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.saveChanges').prop("hidden", false);
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.cancelChanges').prop("hidden", false);
+			$(this).closest('.product-wrapper').find('.product-actions').find('.product-buttons').find('.deleteProduct').prop("hidden", true);
 			addition($(this).parent().find('input'));
-			updatePrice($(this).closest('.module').find('.right-div').find('.oPrice'), 
+			updatePrice($(this).closest('.product-wrapper').find('.product-actions').find('.product-price').find('.oPrice'), 
 						($(this).parent().find('input').val()*oPrice)
 						);
 		}else{
@@ -82,8 +82,8 @@ $('.plus').click(function () {
 
 $('.saveChanges').click(function(){
 	$(this).prop("hidden", true);
-	$(this).closest('.right-div').find('.deleteProduct').prop("hidden", false);
-	$(this).closest('.right-div').find('.cancelChanges').prop("hidden", true);
+	$(this).closest('.product-buttons').find('.deleteProduct').prop("hidden", false);
+	$(this).closest('.product-buttons').find('.cancelChanges').prop("hidden", true);
 	$("#idProductDetail").val(clickedID);
 	$("#quantityProductDetail").val(nQuantity);
 	$("#priceProductDetail").val(nPrice);
@@ -92,24 +92,24 @@ $('.saveChanges').click(function(){
 });
 
 $(".cancelChanges").click(function(){
-	var cost = $(this).closest(".module-border-wrap").data("cost");
-	var quantity = $(this).closest(".module-border-wrap").data("quantity");
-	$(this).closest(".module").find('.quantity').val(quantity);
-	$(this).closest(".right-div").find('.oPrice').text("Price: $" + cost);
+	var cost = $(this).closest(".product-container").data("cost");
+	var quantity = $(this).closest(".product-container").data("quantity");
+	$(this).closest(".product-wrapper").find('.quantity').val(quantity);
+	$(this).closest(".product-wrapper").find('.oPrice').text(cost);
 	$(this).prop("hidden", true);
-	$(this).closest('.right-div').find('.deleteProduct').prop("hidden", false);
-	$(this).closest('.right-div').find('.saveChanges').prop("hidden", true);
+	$(this).closest('.product-buttons').find('.deleteProduct').prop("hidden", false);
+	$(this).closest('.product-buttons').find('.saveChanges').prop("hidden", true);
 });
 
 $(".deleteProduct").click(function(){
-	$("#idProductDetailDelete").val($(this).closest(".module-border-wrap").data("detid"));
+	$("#idProductDetailDelete").val($(this).closest(".product-container").data("detid"));
 	$("#delete").submit();
 });
 
 
 function updatePrice(clicked, price){
 	nPrice = price;
-	clicked.text("Price: $" + price);
+	clicked.text(price);
 }
 
 function substracion(input){

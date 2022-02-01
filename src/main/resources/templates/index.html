@@ -27,9 +27,11 @@
 <body>
 	<header th:insert="headerfooter :: normal-header"> </header>
 	<section id="banner-container">
-		<h1>Your favorite products</h1>
-		<h1 class="second-paragraph">just one <a th:href="@{mainview}" class="banner-link">click</a> away</h1>
-		<img src="../img/banner1.png" class="home-banner" />
+		<div class="banner-filter">
+			<h1>Your favorite products</h1>
+			<h1 class="second-paragraph">just one <a th:href="@{mainview}" class="banner-link">click</a> away</h1>
+			<img src="../img/banner1.png" class="home-banner" />
+		</div>
 	</section>
 	<section id="featured-section">
 		<article class="featured-container">

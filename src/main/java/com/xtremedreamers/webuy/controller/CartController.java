@@ -69,6 +69,50 @@ public class CartController {
 		
 	}
 	
+	@PostMapping("/updateCart")
+	public String updateCart(HttpServletRequest request, HttpSession session) {
+		request.getSession(false);
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			return "redirect:/signin";
+		}
+		int id = Integer.parseInt(request.getParameter("id"));
+		int q = Integer.parseInt(request.getParameter("quantity"));
+		double price = Double.parseDouble(request.getParameter("price"));
+		
+		CartDetails details= new CartDetails(); 
+		details.setId(id);
+		details.setQuantity(q);
+		details.setCostCoupon(BigDecimal.valueOf(price));
+		dao.update(details);
+		int cartProducts = cartDao.getProductsCount(cart.getId());
+		double cartPrice = cartDao.getProductsTotal(cart.getId());
+		session.setAttribute("cartProductsQuantity", cartProducts);
+		session.setAttribute("cartPrice", cartPrice);
+		return "redirect:/cart";
+		
+	}
+	
+	@PostMapping("/deleteCart")
+	public String deleteCart(HttpServletRequest request, HttpSession session) {
+		request.getSession(false);
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			return "redirect:/signin";
+		}
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		CartDetails details= new CartDetails(); 
+		details.setId(id);
+		dao.delete(details);
+		int cartProducts = cartDao.getProductsCount(cart.getId());
+		double cartPrice = cartDao.getProductsTotal(cart.getId());
+		session.setAttribute("cartProductsQuantity", cartProducts);
+		session.setAttribute("cartPrice", cartPrice);
+		return "redirect:/cart";
+		
+	}
+	
 	@GetMapping("/purchase")
 	public String purchaseProductsCart(HttpServletRequest request, HttpSession session) {
 		request.getSession(false);
@@ -83,5 +127,19 @@ public class CartController {
 		session.setAttribute("cartPrice", 0);
 		return "redirect:/cart";
 		
+	}
+
+	@RequestMapping("/checkout")
+	public String checkout() {
+		/*request.getSession(false);
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			return "redirect:/signin";
+		}
+
+		List<CartDetails> details = dao.findByCartID(cart.getId());
+		model.addAttribute("details",details);*/
+
+		return "checkout";
 	}
 }

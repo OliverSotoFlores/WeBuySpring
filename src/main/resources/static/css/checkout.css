@@ -182,7 +182,7 @@ html {
 }
 
 .card {
-    position: relative;
+    position: absolute;
     width: 420px;
     height: 250px;
     margin-bottom: 10px;
@@ -229,7 +229,7 @@ img {
     font-size: 26px;
     font-weight: 500;
     letter-spacing: -1px;
-    top: 110px;
+    top: 120px;
     color: var(--text-color);
     word-spacing: 3px;
     transition: color 0.5s;
@@ -270,6 +270,12 @@ img {
     font-size: 8px;
     white-space: pre;
     margin-top: 8px;
+}
+
+.wb-logo {
+    position: absolute;
+    width: 150px !important;
+    right: 15px;
 }
         
 .fullname {
@@ -316,8 +322,8 @@ img {
 }
 
 .chip {
-    bottom: 45px;
-    left: 10px;
+    bottom: 150px;
+    left: 50px;
 }
 
 .disclaimer {
@@ -402,9 +408,8 @@ label {
     background: #ddd;
 }
 
-.payment-btn {
-    text-align: center;
-}
+
+
 
 
 /* Footer */

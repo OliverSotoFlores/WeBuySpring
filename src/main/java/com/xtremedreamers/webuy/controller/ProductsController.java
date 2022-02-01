@@ -110,7 +110,11 @@ public class ProductsController {
 	}
 
 	@PostMapping("/admin/products/edit")
-	public String editProduct(@ModelAttribute Product product) {
+	public String editProduct(HttpServletRequest request, @ModelAttribute Product product, @RequestParam("image") MultipartFile multipartFile) throws IOException{
+		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
+		String path = "C:\\Users\\a843643\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\img\\";
+		multipartFile.transferTo(new File(path + filename));
+		product.setImagePath("../img/"+filename);
 		productDao.update(product);
 		return "redirect:/admin/products";
 	}
@@ -138,4 +142,5 @@ public class ProductsController {
 				.ok()
 				.body(product);
 	}
+
 }

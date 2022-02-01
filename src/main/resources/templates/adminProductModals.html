@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="modal-add">
+		<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Create New Product</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <form th:action="@{/admin/products/create}" method="post" th:object="${product}" enctype="multipart/form-data">
+			      <div class="modal-body">
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="p-name" name="name" placeholder="Product Name" style="color:black">
+							  <label for="c-name">Product Name</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating">
+								<select class="form-select" id="category" name="category" aria-label="Category" th:field="*{categoryId}">
+								    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+							  	</select>
+							  	<label for="category">Product Category</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="company" name="company" placeholder="Product Brand">
+							  <label for="company">Product Brand</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="number" class="form-control" id="price" name="price" placeholder="0" min="0" step=".01">
+							  <label for="price">Product Price</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="mb-3">
+							  <label for="image" class="form-label">Product Image</label>
+							  <input class="form-control" type="file" id="image" name="image" accept="image/*">
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="form-floating mb-3">
+							  <textarea class="form-control" placeholder="Leave a product description" id="description"  name="description" style="height: 100px"></textarea>
+							  <label for="description">Product Description</label>
+							</div>
+			      		</div>
+				      </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary" >Create</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	
+	<div th:fragment="modal-edit">
+		<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <form th:action="@{/admin/products/edit}" method="post" th:object="${product}" enctype="multipart/form-data">
+			      <div class="modal-body">
+			       <input type="hidden" id="id" name="id">
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="e-name" name="name" placeholder="Product Name" style="color:black">
+							  <label for="e-name">Product Name</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating">
+								<select class="form-select" id="e-category" name="category" aria-label="Category" th:field="*{categoryId}">
+								    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+							  	</select>
+							  	<label for="e-category">Product Category</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="text" class="form-control" id="e-company" name="company" placeholder="Product Brand">
+							  <label for="e-company">Product Brand</label>
+							</div>
+			      		</div>
+			      		<div class="col-md-6">
+			      			<div class="form-floating mb-3">
+							  <input type="number" class="form-control" id="e-price" name="price" placeholder="0" min="0" step=".01">
+							  <label for="e-price">Product Price</label>
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="mb-3">
+							  <label for="e-image" class="form-label">Product Image</label>
+							  <input class="form-control" type="file" id="e-image" name="image" accept="image/*">
+							</div>
+			      		</div>
+				      </div>
+				      <div class="row">
+			      		<div class="col-md-12">
+			      			<div class="form-floating mb-3">
+							  <textarea class="form-control" placeholder="Leave a product description" id="e-description"  name="description" style="height: 100px"></textarea>
+							  <label for="e-description">Product Description</label>
+							</div>
+			      		</div>
+				      </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary" >Save</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+	
+</body>
+</html>

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<!-- JS Script -->
+	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
+
 	<meta charset="UTF-8">
-	<title>Webuy | Register</title>
+	<title>Webuy | Checkout</title>
 	<link rel="stylesheet" href="../css/checkout.css" />
 	<link rel="stylesheet" href="../css/global.css" />
 	<link rel="stylesheet" href="../css/style.css">
@@ -11,7 +14,7 @@
 	<!-- Bootstrap CSS only -->
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" th:href="@{../static/img/apple-touch-icon.png}">
 	<link rel="shortcut icon" type="image/png" sizes="32x32" th:href="@{../static/img/favicon-32x32.png}">
@@ -20,34 +23,34 @@
 	<link rel="mask-icon" th:href="@{../static/img/safari-pinned-tab.svg}" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-
-	<!-- JS Script -->
-	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
 	
 </head>
-
-<body class="body-checkout">
-	<div class="row">
+<body>
+	<header th:insert="headerfooter :: login-header"></header>
+	<div class="row body-checkout">
 		<div class="col-md-4 order-md-2 mb-4">
 		  <h4 class="d-flex justify-content-between align-items-center mb-3">
 			<span class="text-muted">Your cart</span>
-			<span class="badge badge-secondary badge-pill">3</span>
+			<span class="cart-icon material-icons-outlined">
+				shopping_cart
+			</span>
+			<span class="badge badge-secondary badge-pill" th:text="${session.cartProductsQuantity}"></span>
 		  </h4>
 		  <ul class="list-group mb-3">
-			<li class="list-group-item d-flex justify-content-between lh-condensed">
+			<li th:each="details: ${details}" class="list-group-item d-flex justify-content-between lh-condensed">
 			  <div>
-				<h6 class="my-0">Product name</h6>
-				<small class="text-muted">Brief description</small>
+				<h6 th:text="${details.productName} + ' x ' + ${details.quantity}" class="my-0"></h6>
+				<small class="text-muted"></small>
 			  </div>
-			  <span class="text-muted">$12</span>
+			  <span th:text="'$'+${details.costCoupon}" class="text-muted"></span>
 			</li>
 			
 			<li class="list-group-item d-flex justify-content-between">
 			  <span>Total (USD)</span>
-			  <strong>$20</strong>
+			  <span th:text="'$'+${session.cartPrice}"></span>
 			</li>
 		  </ul>
-		  <form class="card p-2">
+		  <form class="card p-2 redeem-code">
 			<div class="input-group">
 			  <input type="text" class="form-control" placeholder="Promo code">
 			  <div class="input-group-append">
@@ -152,42 +155,6 @@
 				<label class="custom-control-label" for="paypal">PayPal</label>
 			  </div>
 			</div>
-			<!--
-
-			<div class="row">
-			<div class="col-md-6 mb-3">
-				<label for="cc-name">Name on card</label>
-				<input type="text" class="form-control" id="cc-name" placeholder="" required>
-				<small class="text-muted">Full name as displayed on card</small>
-				<div class="invalid-feedback">
-				  Name on card is required
-				</div>
-			  </div>
-			  <div class="col-md-6 mb-3">
-				<label for="cc-number">Credit card number</label>
-				<input type="text" class="form-control" id="cc-number" placeholder="" required>
-				<div class="invalid-feedback">
-				  Credit card number is required
-				</div>
-			  </div>
-			</div>
-			<div class="row">
-			  <div class="col-md-3 mb-3">
-				<label for="cc-expiration">Expiration</label>
-				<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-				<div class="invalid-feedback">
-				  Expiration date required
-				</div>
-			  </div>
-			  <div class="col-md-3 mb-3">
-				<label for="cc-cvv">CVV</label>
-				<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-				<div class="invalid-feedback">
-				  Security code required
-				</div>
-			  </div>
-
-			-->
 			<div>
 				<div class="row">
 					<!--<div class="tips">
@@ -204,33 +171,38 @@
 									<span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
 									<div class="date"><span class="date_value">MM / YYYY</span></div>
 									<span class="fullname">FULL NAME</span>
+									<span class="wb-logo"><img class="wb-logo" th:src="@{/img/webuy-color.png}" /></span>
 								</div>
 								<div class="back">
 									<div class="magnetic"></div>
 									<div class="bar"></div>
 									<span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
 									<span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+									
 								</div>
 							</div>
 						</div>
 						<div class="col2">
 							<label>Card Number</label>
-							<input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-							<label>Cardholder name</label>
-							<input class="inputname" type="text" placeholder=""/>
-							<label>Expiry date</label>
-							<input class="expire" type="text" placeholder="MM / YYYY"/>
+							<input class="form-control number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+							<label>Cardholder's Name</label>
+							<input class="form-control inputname" type="text" placeholder=""/>
+							<label>Expiration Date</label>
+							<input class="form-control expire" type="text" placeholder="MM / YYYY"/>
 							<label>Security Number</label>
-							<input class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+							<input class="form-control ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 						</div>
 					</div>
 				</div>
 			</div>
 			<hr class="mb-4">
-			<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Make Payment</button>
 		  </form>
 		</div>
 	  </div>
+
+	  <!-- Footer -->
+	  <footer th:insert="headerfooter :: footer"> </footer>
 </body>
 
 </html>

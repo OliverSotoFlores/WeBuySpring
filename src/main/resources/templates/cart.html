@@ -40,9 +40,17 @@
 	            	</nav>
             	</div>
             <h1>My cart</h1>
+            <form id="update" action="updateCart" method="POST">
+            	<input type="text" id="idProductDetail" name="id" hidden/>
+            	<input type="text" id="quantityProductDetail" name="quantity" hidden/>
+            	<input type="text" id="priceProductDetail" name="price" hidden/>
+            </form>
+            <form id="delete" action="deleteCart" method="POST">
+            	<input type="text" id="idProductDetailDelete" name="id" hidden/>
+            </form>
             <form>
 	            <div th:each="details: ${details}">
-		            <div class="module-border-wrap" >
+		            <div class="module-border-wrap" th:attr="data-detid=${details.id}, data-cost=${details.costCoupon}, data-quantity=${details.quantity}">
 	                    <div class="module">
 	                        <div class="left-div">
 	                            <img th:src="${details.productImage}" class="img-cart" alt="Product image"/>
@@ -50,13 +58,20 @@
 	                        <div class="center-div">
 	                            <span class="description" th:text="${details.productName}"></span>
 	                            <br />
-	                            <label for="item1" class="form-label">Quantity: </label>
-	                            <input type="text" class="form-control" id="item1" th:value="${details.quantity}">
+	                            <div class="number">
+	                            	<span style="color:black; display: block;">Quantity:</span>
+									<span class="minus">-</span>
+									<input class="quantity" type="text" th:value="${details.quantity}" disabled/>
+									<span class="plus">+</span>
+									
+								</div>
 	                        </div>
 	                        <div class="right-div">
-	                            <span class="description" th:text="'Price: $' + ${details.costCoupon}"></span>
+	                            <span class="description oPrice" th:text="'Price: $' + ${details.costCoupon}"></span>
 	                            <br />
-	                            <button class="btn-remove">Remove</button>
+	                            <button type="button" class="btn btn-danger deleteProduct">Remove</button>
+	                            <button type="button" class="btn btn-success saveChanges" hidden>Save</button>
+	                            <button type="button" class="btn btn-secondary cancelChanges" hidden>Cancel</button>
 	                        </div>
 	                    </div>
 	                </div>
@@ -84,6 +99,8 @@
         </div>
     </div>
     <footer th:insert="headerfooter :: footer"> </footer>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/cart.js"></script>
 </body>
 
 </html>

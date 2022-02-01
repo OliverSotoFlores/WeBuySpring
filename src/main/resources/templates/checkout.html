@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Webuy | Register</title>
+	<link rel="stylesheet" href="../css/checkout.css" />
+	<link rel="stylesheet" href="../css/global.css" />
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+	<!-- Bootstrap CSS only -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" th:href="@{../static/img/apple-touch-icon.png}">
+	<link rel="shortcut icon" type="image/png" sizes="32x32" th:href="@{../static/img/favicon-32x32.png}">
+	<link rel="shortcut icon" type="image/png" sizes="16x16" th:href="@{../static/img/favicon-16x16.png}">
+	<link rel="manifest" th:href="@{../static/img/site.webmanifest}">
+	<link rel="mask-icon" th:href="@{../static/img/safari-pinned-tab.svg}" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- JS Script -->
+	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
+	
+</head>
+
+<body class="body-checkout">
+	<div class="row">
+		<div class="col-md-4 order-md-2 mb-4">
+		  <h4 class="d-flex justify-content-between align-items-center mb-3">
+			<span class="text-muted">Your cart</span>
+			<span class="badge badge-secondary badge-pill">3</span>
+		  </h4>
+		  <ul class="list-group mb-3">
+			<li class="list-group-item d-flex justify-content-between lh-condensed">
+			  <div>
+				<h6 class="my-0">Product name</h6>
+				<small class="text-muted">Brief description</small>
+			  </div>
+			  <span class="text-muted">$12</span>
+			</li>
+			
+			<li class="list-group-item d-flex justify-content-between">
+			  <span>Total (USD)</span>
+			  <strong>$20</strong>
+			</li>
+		  </ul>
+		  <form class="card p-2">
+			<div class="input-group">
+			  <input type="text" class="form-control" placeholder="Promo code">
+			  <div class="input-group-append">
+				<button type="submit" class="btn btn-secondary">Redeem</button>
+			  </div>
+			</div>
+		  </form>
+		</div>
+
+		<div class="col-md-8 order-md-1 address-checkout">
+		  <h4 class="mb-3">Billing Information</h4>
+		  <form class="needs-validation" novalidate>
+			<div class="row">
+			  <div class="col-md-6 mb-3">
+				<label for="firstName">First name</label>
+				<input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+				<div class="invalid-feedback">
+				  Valid first name is required.
+				</div>
+			  </div>
+			  <div class="col-md-6 mb-3">
+				<label for="lastName">Last name</label>
+				<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+				<div class="invalid-feedback">
+				  Valid last name is required.
+				</div>
+			  </div>
+			</div>
+	
+			<div class="mb-3">
+			  <label for="email">Email <span class="text-muted">(Optional)</span></label>
+			  <input type="email" class="form-control" id="email" placeholder="you@example.com">
+			  <div class="invalid-feedback">
+				Please enter a valid email address for shipping updates.
+			  </div>
+			</div>
+	
+			<div class="mb-3">
+			  <label for="address">Address</label>
+			  <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+			  <div class="invalid-feedback">
+				Please enter your shipping address.
+			  </div>
+			</div>
+	
+			<div class="mb-3">
+			  <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+			  <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+			</div>
+	
+			<div class="row">
+			  <div class="col-md-5 mb-3">
+				<label for="country">Country</label>
+				<select class="custom-select d-block w-100" id="country" required>
+				  <option value="">Choose...</option>
+				  <option>United States</option>
+				</select>
+				<div class="invalid-feedback">
+				  Please select a valid country.
+				</div>
+			  </div>
+			  <div class="col-md-4 mb-3">
+				<label for="state">State</label>
+				<select class="custom-select d-block w-100" id="state" required>
+				  <option value="">Choose...</option>
+				  <option>California</option>
+				</select>
+				<div class="invalid-feedback">
+				  Please provide a valid state.
+				</div>
+			  </div>
+			  <div class="col-md-3 mb-3">
+				<label for="zip">Zip Code</label>
+				<input type="text" class="form-control" id="zip" placeholder="" required>
+				<div class="invalid-feedback">
+				  Zip code required.
+				</div>
+			  </div>
+			</div>
+			<hr class="mb-4">
+			<div class="custom-control custom-checkbox">
+			  <input type="checkbox" class="custom-control-input" id="same-address">
+			  <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+			  <input type="checkbox" class="custom-control-input" id="save-info">
+			  <label class="custom-control-label" for="save-info">Save this information for next time</label>
+			</div>
+			<hr class="mb-4">
+			<h4 class="mb-3">Payment</h4>
+			<div class="d-block my-3">
+			  <div class="custom-control custom-radio">
+				<input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+				<label class="custom-control-label" for="credit">Credit card</label>
+			  </div>
+			  <div class="custom-control custom-radio">
+				<input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+				<label class="custom-control-label" for="debit">Debit card</label>
+			  </div>
+			  <div class="custom-control custom-radio">
+				<input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+				<label class="custom-control-label" for="paypal">PayPal</label>
+			  </div>
+			</div>
+			<!--
+
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label for="cc-name">Name on card</label>
+				<input type="text" class="form-control" id="cc-name" placeholder="" required>
+				<small class="text-muted">Full name as displayed on card</small>
+				<div class="invalid-feedback">
+				  Name on card is required
+				</div>
+			  </div>
+			  <div class="col-md-6 mb-3">
+				<label for="cc-number">Credit card number</label>
+				<input type="text" class="form-control" id="cc-number" placeholder="" required>
+				<div class="invalid-feedback">
+				  Credit card number is required
+				</div>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-md-3 mb-3">
+				<label for="cc-expiration">Expiration</label>
+				<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+				<div class="invalid-feedback">
+				  Expiration date required
+				</div>
+			  </div>
+			  <div class="col-md-3 mb-3">
+				<label for="cc-cvv">CVV</label>
+				<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+				<div class="invalid-feedback">
+				  Security code required
+				</div>
+			  </div>
+
+			-->
+			<div>
+				<div class="row">
+					<!--<div class="tips">
+						Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) dankort
+					</div>-->
+					<div class="container">
+						<div class="col1">
+							<div class="card">
+								<div class="front">
+									<div class="type">
+										<img class="bankid"/>
+									</div>
+									<span class="chip"></span>
+									<span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
+									<div class="date"><span class="date_value">MM / YYYY</span></div>
+									<span class="fullname">FULL NAME</span>
+								</div>
+								<div class="back">
+									<div class="magnetic"></div>
+									<div class="bar"></div>
+									<span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+									<span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+								</div>
+							</div>
+						</div>
+						<div class="col2">
+							<label>Card Number</label>
+							<input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+							<label>Cardholder name</label>
+							<input class="inputname" type="text" placeholder=""/>
+							<label>Expiry date</label>
+							<input class="expire" type="text" placeholder="MM / YYYY"/>
+							<label>Security Number</label>
+							<input class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="mb-4">
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+		  </form>
+		</div>
+	  </div>
+</body>
+
+</html>

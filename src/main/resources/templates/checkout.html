@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<!-- JS Script -->
+	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
+
 	<meta charset="UTF-8">
 	<title>Webuy | Register</title>
 	<link rel="stylesheet" href="../css/checkout.css" />
@@ -20,9 +23,6 @@
 	<link rel="mask-icon" th:href="@{../static/img/safari-pinned-tab.svg}" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-
-	<!-- JS Script -->
-	<script type="text/javascript" th:src="@{/js/checkout.js}"></script>
 	
 </head>
 
@@ -216,9 +216,9 @@
 						<div class="col2">
 							<label>Card Number</label>
 							<input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-							<label>Cardholder name</label>
+							<label>Cardholder's name</label>
 							<input class="inputname" type="text" placeholder=""/>
-							<label>Expiry date</label>
+							<label>Expiration date</label>
 							<input class="expire" type="text" placeholder="MM / YYYY"/>
 							<label>Security Number</label>
 							<input class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
@@ -227,7 +227,7 @@
 				</div>
 			</div>
 			<hr class="mb-4">
-			<button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Make Payment</button>
 		  </form>
 		</div>
 	  </div>

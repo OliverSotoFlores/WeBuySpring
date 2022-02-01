@@ -1,9 +1,9 @@
 // 4: VISA, 51 -> 55: MasterCard, 36-38-39: DinersClub, 34-37: American Express, 65: Discover, 5019: dankort
 
 $(function(){
-    
-    console.log("Its working");
 
+    console.log("Its working");
+    
     var cards = [{
       nome: "mastercard",
       colore: "#0061A8",
@@ -156,4 +156,4 @@ $(function(){
     }).focus(function(){
       $(".date_value").css("color", "white");
     });
-});
+  });

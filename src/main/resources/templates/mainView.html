@@ -56,20 +56,7 @@
 	            	</nav>
             	</div>
                 <div class="main">
-                    <div class="col-12">
-                        <section class="list-actions">
-                            <form action="" class="list-form">
-                                <input type="text" name="search-bar" class="search-input"
-                                    placeholder="Search product..." />
-                                <button type="submit" class="search-btn">
-                                    <span class="material-icons md-36">
-                                        search
-                                    </span>
-                                </button>
-                            </form>
-                        </section>
-                    </div>
-                    <div class="col-4"></div>
+                    
                     
 					<section class="list-container">
 
@@ -134,7 +121,7 @@
                     </section>
                 </div>
             </div>
-        <footer th:insert=" productmodal :: modal-addCart"> </footer>
+        <div th:insert=" productmodal :: modal-addCart"> </div>
         <footer th:insert=" headerfooter :: footer"> </footer>
     </div>
     <script type="text/javascript" src="../js/sideBar.js"></script>

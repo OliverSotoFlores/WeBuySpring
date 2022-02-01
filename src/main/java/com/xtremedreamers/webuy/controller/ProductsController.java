@@ -59,7 +59,7 @@ public class ProductsController {
 		String route = path+filename;
 		product.setImagePath(route);*/
 		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
-		String path = "Y:\\Documentos\\Trabajo\\webuy\\src\\main\\resources\\static\\img";
+		String path = "C:\\Users\\a844920\\eclipse-workspace\\WeBuySpring\\WeBuySpring\\src\\main\\resources\\static\\img\\";
 		multipartFile.transferTo(new File(path + filename));
 		product.setImagePath("../img/"+filename);
 		productDao.save(product);

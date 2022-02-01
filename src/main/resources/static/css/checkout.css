@@ -237,10 +237,10 @@ img {
 
 .date {
     position: absolute;
-    bottom: 40px;
+    bottom: 42px;
     right: 55px;
     width: 90px;
-    height: 35px;
+    height: 40px;
     color: var(--text-color);
     transition: color 0.5s;
 }
@@ -249,27 +249,27 @@ img {
     font-size: 12px;
     position: absolute;
     margin-left: 22px;
-    margin-top: 12px;
+    margin-top: 20px;
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.5s;
 }
 
-.date_value:after {
+.date_value:before {
     content: 'MONTH / YEAR';
     position: absolute;
-    display: block;
     font-size: 7px;
-    margin-left: 20px;
+    top: -10px;
 }
 
-.date_value:before {
+.date_value:after {
     content: 'valid \a thru';
     position: absolute;
     display: block;
     font-size: 8px;
     white-space: pre;
-    margin-top: 8px;
+    top: -3px;
+    left: -25px;
 }
 
 .wb-logo {

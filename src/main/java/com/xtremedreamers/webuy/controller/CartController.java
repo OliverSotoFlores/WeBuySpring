@@ -86,15 +86,15 @@ public class CartController {
 	}
 
 	@RequestMapping("/checkout")
-	public String checkout() {
-		/*request.getSession(false);
+	public String checkout(HttpServletRequest request, HttpSession session, Model model) {
+		request.getSession(false);
 		Cart cart = (Cart) session.getAttribute("cart");
 		if (cart == null) {
 			return "redirect:/signin";
 		}
 
 		List<CartDetails> details = dao.findByCartID(cart.getId());
-		model.addAttribute("details",details);*/
+		model.addAttribute("details",details);
 
 		return "checkout";
 	}

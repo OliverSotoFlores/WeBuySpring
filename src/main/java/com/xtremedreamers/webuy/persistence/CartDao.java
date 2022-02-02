@@ -109,6 +109,13 @@ public class CartDao implements GenericDao<Cart, Integer>{
 		return null;
 	}
 	
+	public int countProducts(int cartId) {
+		return jdbcTemplate.queryForObject(
+				"select count(*) from shopping_product_details where shopping_cart_id = ?",
+				new Object[] {cartId}, 
+				Integer.class);
+	}
+	
 	public int getProductsCount(int cartId) {
 		return jdbcTemplate.queryForObject(
 				"select sum(quantity) from shopping_product_details where shopping_cart_id = ?",

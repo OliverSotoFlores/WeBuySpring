@@ -105,12 +105,20 @@ public class CartController {
 		CartDetails details= new CartDetails(); 
 		details.setId(id);
 		dao.delete(details);
-		int cartProducts = cartDao.getProductsCount(cart.getId());
-		double cartPrice = cartDao.getProductsTotal(cart.getId());
-		session.setAttribute("cartProductsQuantity", cartProducts);
-		session.setAttribute("cartPrice", cartPrice);
-		return "redirect:/cart";
-		
+		int res = cartDao.countProducts(cart.getId());
+		if(res > 0) {
+			int cartProducts = cartDao.getProductsCount(cart.getId());
+			double cartPrice = cartDao.getProductsTotal(cart.getId());
+			session.setAttribute("cartProductsQuantity", cartProducts);
+			session.setAttribute("cartPrice", cartPrice);
+			
+			return "redirect:/cart";
+			
+		} else {
+			
+			return "redirect:/cart";
+			
+		}
 	}
 	
 	@GetMapping("/purchase")
@@ -125,7 +133,7 @@ public class CartController {
 		session.setAttribute("cart", cartDao.completePurchase(cart.getId(), user, totalPrice));
 		session.setAttribute("cartProductsQuantity", 0);
 		session.setAttribute("cartPrice", 0);
-		return "redirect:/cart";
+		return "redirect:/home";
 		
 	}
 

@@ -52,12 +52,6 @@ public class ProductsController {
 	 */
 	@PostMapping("/admin/products/create")
 	public String CreateProduct(HttpServletRequest request, @ModelAttribute Product product, @RequestParam("image") MultipartFile multipartFile) throws IOException {
-		/*String path = "C:\\Users\\a844017\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\productimg";
-		System.out.println(path);
-		String filename = "file"+System.currentTimeMillis()+ multipartFile.getOriginalFilename();
-		multipartFile.transferTo(new File("C:\\Users\\a844017\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\productimg" + multipartFile.getOriginalFilename() ));
-		String route = path+filename;
-		product.setImagePath(route);*/
 		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
 		String path = "C:\\Users\\a844920\\eclipse-workspace\\WeBuySpring\\WeBuySpring\\src\\main\\resources\\static\\img\\";
 		multipartFile.transferTo(new File(path + filename));
@@ -112,7 +106,7 @@ public class ProductsController {
 	@PostMapping("/admin/products/edit")
 	public String editProduct(HttpServletRequest request, @ModelAttribute Product product, @RequestParam("image") MultipartFile multipartFile) throws IOException{
 		String filename = System.currentTimeMillis()+ multipartFile.getOriginalFilename();
-		String path = "C:\\Users\\a843643\\eclipse-workspace\\WeBuySpring\\src\\main\\resources\\static\\img\\";
+		String path = "C:\\Users\\a844920\\eclipse-workspace\\WeBuySpring\\WeBuySpring\\src\\main\\resources\\static\\img\\";
 		multipartFile.transferTo(new File(path + filename));
 		product.setImagePath("../img/"+filename);
 		productDao.update(product);

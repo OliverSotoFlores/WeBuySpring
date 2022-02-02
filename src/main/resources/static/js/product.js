@@ -1,6 +1,6 @@
 $(".product-item").click(function() {
 	let id = $(this).data("id");
-	let categoryId = 1;//$(this).data("idcategory");
+	let categoryId = $(this).data("idcategory");
 	let $sR = $("#promotionCodeSelect").empty();
 	$.ajax({
 		url: '/productdetails',

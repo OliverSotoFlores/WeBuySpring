@@ -18,7 +18,7 @@ public class AdminController {
 	@Autowired
 	AdminDao aDao;
 	
-	@GetMapping("/adminIndex")
+	@PostMapping("/adminIndex")
 	public String login(HttpServletRequest request, HttpSession session) {
 		request.getSession();
 		if (session.getAttribute("admin") != null) {

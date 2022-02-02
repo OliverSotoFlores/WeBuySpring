@@ -23,6 +23,17 @@
 	<link rel="mask-icon" th:href="@{../static/img/safari-pinned-tab.svg}" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
+	<script type="text/javascript">
+		function discount(){
+	var discount = document.getElementById("co-list").value;
+	var price = document.getElementById("price").innerText;
+	discount = discount/100;
+	discount = (price*discount)
+	price = price - discount
+	document.getElementById("price").innerHTML = "$"+price;
+	document.getElementById("redeem").setAttribute('disabled', 'disabled');
+	}
+	</script>
 	
 </head>
 <body>
@@ -47,17 +58,20 @@
 			
 			<li class="list-group-item d-flex justify-content-between">
 			  <span>Total (USD)</span>
-			  <span th:text="'$'+${session.cartPrice}"></span>
+			  <span id="price" th:text="${session.cartPrice}"></span>
 			</li>
 		  </ul>
-		  <form class="card p-2 redeem-code">
 			<div class="input-group">
-			  <input type="text" class="form-control" placeholder="Promo code">
+			  <select class="form-select" id="co-list" name="co-list" aria-label="Available coupons">
+								    <option  th:each="coupons : ${coupons}"
+						                    th:text="${coupons.coupon_name}+' '+${coupons.coupon_discount}+'%'"
+						                    th:value="${coupons.coupon_discount}"/>
+							  	</select>
 			  <div class="input-group-append">
-				<button type="submit" class="btn btn-secondary">Redeem</button>
+				<button id="redeem" onclick="discount()" class="btn btn-secondary">Redeem</button>
 			  </div>
 			</div>
-		  </form>
+		  
 		</div>
 
 		<div class="col-md-8 order-md-1 address-checkout">

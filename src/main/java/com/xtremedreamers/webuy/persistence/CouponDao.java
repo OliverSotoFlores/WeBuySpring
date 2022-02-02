@@ -85,6 +85,14 @@ public class CouponDao implements GenericDao<Coupon, Integer> {
 				+ "inner join product_category pc on c.product_category_id = pc.product_category_id";
 		return jdbcTemplate.query(sql, new CouponRowMapper());
 	}
+	
+	public List<Coupon> findAll2() {
+		// TODO Auto-generated method stub
+		String sql = "select * from coupon where coupon_type = 'open'";
+		
+		return jdbcTemplate.query(sql, new CouponRowMapper2());
+	}
+	
 
 	@Override
 	public List<Coupon> find(Coupon example) {

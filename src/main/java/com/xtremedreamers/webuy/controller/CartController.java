@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xtremedreamers.webuy.models.Cart;
 import com.xtremedreamers.webuy.models.CartDetails;
+import com.xtremedreamers.webuy.models.Coupon;
 import com.xtremedreamers.webuy.models.RegisteredUser;
 import com.xtremedreamers.webuy.persistence.CartDao;
 import com.xtremedreamers.webuy.persistence.CartDetailsDao;
+import com.xtremedreamers.webuy.persistence.CouponDao;
 
 @Controller
 public class CartController {
@@ -27,6 +29,10 @@ public class CartController {
 	
 	@Autowired
 	CartDao cartDao;
+	
+	@Autowired
+	CouponDao couponDao;
+
 	
 	@RequestMapping("/cart")
 	public String getCart(HttpServletRequest request, HttpSession session, Model model) {
@@ -136,10 +142,13 @@ public class CartController {
 		if (cart == null) {
 			return "redirect:/signin";
 		}
-
+		
 		List<CartDetails> details = dao.findByCartID(cart.getId());
+		List<Coupon> coupons = couponDao.findAll2();
+		System.out.println(coupons);
 		model.addAttribute("details",details);
-
+		model.addAttribute("coupons",coupons);
+		
 		return "checkout";
 	}
 }

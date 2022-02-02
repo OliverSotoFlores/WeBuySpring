@@ -1,3 +1,11 @@
+.body-admin {
+    min-height: 100vh;
+
+    background-image: url("../img/bg-cart-70.png");
+    background-repeat: repeat; 
+            font-family: 'Nunito', sans-serif;
+}
+
 .body-register {
     min-height: 100vh;
 

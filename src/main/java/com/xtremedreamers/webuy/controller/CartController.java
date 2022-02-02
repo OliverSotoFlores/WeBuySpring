@@ -163,15 +163,17 @@ public class CartController {
 	}
 
 	@RequestMapping("/thankyou")
-	public String thankyou() {
-
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				
-			}
-		}, 0, 50000);
+	public String thankyou(HttpServletRequest request, HttpSession session) {
+		request.getSession(false);
+		RegisteredUser user = (RegisteredUser) session.getAttribute("user");
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			return "redirect:/signin";
+		}
+		double totalPrice = (double) session.getAttribute("cartPrice");
+		session.setAttribute("cart", cartDao.completePurchase(cart.getId(), user, totalPrice));
+		session.setAttribute("cartProductsQuantity", 0);
+		session.setAttribute("cartPrice", 0);
 
 		return "thankyou";
 	}

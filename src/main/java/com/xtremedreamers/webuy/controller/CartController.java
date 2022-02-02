@@ -2,6 +2,8 @@ package com.xtremedreamers.webuy.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -149,5 +151,19 @@ public class CartController {
 		model.addAttribute("details",details);
 
 		return "checkout";
+	}
+
+	@RequestMapping("/thankyou")
+	public String thankyou() {
+
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				
+			}
+		}, 0, 50000);
+
+		return "thankyou";
 	}
 }
